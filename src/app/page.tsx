@@ -49,7 +49,7 @@ export default function Home() {
   };
 
   const ovexisParallaxImages = [
-    { src: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1280&h=720&fit=crop&q=80', alt: 'Ovexis Core Interface' },
+    { src: 'https://github.com/user-attachments/assets/c466d05f-5628-4116-98e1-98fb017348bf', alt: 'Ovexis Core Interface' },
     { src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280&h=720&fit=crop&q=80', alt: 'AI Neural Mapping' },
     { src: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=800&fit=crop&q=80', alt: 'Robotic Assistance' },
     { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1280&h=720&fit=crop&q=80', alt: 'Medical Tech Analysis' },
@@ -173,7 +173,7 @@ export default function Home() {
               Medicine, AI, and the Future <br /> of <span className="text-primary animate-glow">Intelligent Hospitals.</span>
             </h1>
             <p className="mx-auto mb-10 max-w-2xl text-lg md:text-xl text-white/60 font-body">
-              Medical student at Jhargram Government Medical College building AI assistants and healthcare systems designed for the next generation of medicine.
+              Medical student at Jhargram Government Medical College building Ovexis AI assistants and healthcare systems designed for the next generation of medicine.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button 
@@ -538,3 +538,4 @@ export default function Home() {
     </main>
   );
 }
+

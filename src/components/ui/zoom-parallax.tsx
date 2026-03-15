@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef } from 'react';
 
 interface Image {
   src: string;
@@ -16,7 +16,7 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start start", "end end"],
+    offset: ['start start', 'end end'],
   });
 
   const scale4 = useTransform(scrollYProgress, [0, 1], [1, 4]);
@@ -28,8 +28,8 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
   const scales = [scale4, scale5, scale6, scale5, scale6, scale8, scale9];
 
   return (
-    <div ref={container} className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-black">
+    <div ref={container} className="relative h-[300vh] bg-black">
+      <div className="sticky top-0 h-screen overflow-hidden">
         {images.map(({ src, alt }, index) => {
           const scale = scales[index % scales.length];
 
@@ -38,22 +38,22 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
               key={index}
               style={{ scale }}
               className={`absolute top-0 flex h-full w-full items-center justify-center ${
-                index === 1 ? "[&>div]:!-top-[30vh] [&>div]:!left-[5vw] [&>div]:!h-[30vh] [&>div]:!w-[35vw]" : ""
+                index === 1 ? '[&>div]:!-top-[30vh] [&>div]:!left-[5vw] [&>div]:!h-[30vh] [&>div]:!w-[35vw]' : ''
               } ${
-                index === 2 ? "[&>div]:!-top-[10vh] [&>div]:!-left-[25vw] [&>div]:!h-[45vh] [&>div]:!w-[20vw]" : ""
+                index === 2 ? '[&>div]:!-top-[10vh] [&>div]:!-left-[25vw] [&>div]:!h-[45vh] [&>div]:!w-[20vw]' : ''
               } ${
-                index === 3 ? "[&>div]:!left-[27.5vw] [&>div]:!h-[25vh] [&>div]:!w-[25vw]" : ""
+                index === 3 ? '[&>div]:!left-[27.5vw] [&>div]:!h-[25vh] [&>div]:!w-[25vw]' : ''
               } ${
-                index === 4 ? "[&>div]:!top-[27.5vh] [&>div]:!left-[5vw] [&>div]:!h-[25vh] [&>div]:!w-[20vw]" : ""
+                index === 4 ? '[&>div]:!top-[27.5vh] [&>div]:!left-[5vw] [&>div]:!h-[25vh] [&>div]:!w-[20vw]' : ''
               } ${
-                index === 5 ? "[&>div]:!top-[27.5vh] [&>div]:!-left-[22.5vw] [&>div]:!h-[25vh] [&>div]:!w-[30vw]" : ""
+                index === 5 ? '[&>div]:!top-[27.5vh] [&>div]:!-left-[22.5vw] [&>div]:!h-[25vh] [&>div]:!w-[30vw]' : ''
               } ${
-                index === 6 ? "[&>div]:!top-[22.5vh] [&>div]:!left-[25vw] [&>div]:!h-[15vh] [&>div]:!w-[15vw]" : ""
+                index === 6 ? '[&>div]:!top-[22.5vh] [&>div]:!left-[25vw] [&>div]:!h-[15vh] [&>div]:!w-[15vw]' : ''
               } `}
             >
-              <div className="relative h-[25vh] w-[25vw] rounded-xl overflow-hidden shadow-2xl border border-white/10">
+              <div className="relative h-[25vh] w-[25vw] rounded-xl overflow-hidden border border-white/10 shadow-2xl">
                 <img
-                  src={src || "/placeholder.svg"}
+                  src={src || '/placeholder.svg'}
                   alt={alt || `Parallax image ${index + 1}`}
                   className="h-full w-full object-cover"
                 />

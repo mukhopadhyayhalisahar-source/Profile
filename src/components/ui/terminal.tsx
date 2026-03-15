@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 
 interface TerminalProps {
   commands: string[];
@@ -42,11 +41,12 @@ export function Terminal({
         setDisplayedLines(prev => [...prev, { type: 'cmd', text: command }]);
         setCurrentText("");
 
-        if (outputs[currentCommandIndex]) {
+        const lineOutputs = outputs[currentCommandIndex];
+        if (lineOutputs) {
           setTimeout(() => {
             setDisplayedLines(prev => [
               ...prev,
-              ...outputs[currentCommandIndex].map(text => ({ type: 'out' as const, text }))
+              ...lineOutputs.map(text => ({ type: 'out' as const, text }))
             ]);
             
             setTimeout(() => {
@@ -73,7 +73,7 @@ export function Terminal({
   return (
     <div 
       ref={containerRef}
-      className="w-full max-w-3xl mx-auto h-[400px] bg-black/90 rounded-xl border border-white/10 p-6 font-mono text-sm md:text-base overflow-y-auto scrollbar-hide shadow-2xl"
+      className="w-full max-w-3xl mx-auto h-[450px] bg-black/90 rounded-xl border border-white/10 p-6 font-mono text-sm md:text-base overflow-y-auto scrollbar-hide shadow-2xl"
     >
       <div className="flex gap-2 mb-4 border-b border-white/5 pb-2">
         <div className="w-3 h-3 rounded-full bg-red-500/50" />

@@ -8,11 +8,6 @@ interface SplineSceneProps {
   className?: string
 }
 
-/**
- * A robust, hydration-safe wrapper for Spline scenes.
- * Bypasses the React wrapper components to avoid React 19 "ReactCurrentOwner" errors
- * by using the @splinetool/runtime directly on a canvas element.
- */
 export function SplineScene({ scene, className }: SplineSceneProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -25,18 +20,12 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
       if (!canvasRef.current) return
 
       try {
-        // Dynamically import the Application class from the runtime
         const { Application } = await import('@splinetool/runtime')
-        
-        // Initialize the vanilla JS application on our canvas ref
         splineRuntime = new Application(canvasRef.current)
-        
-        // Load the scene file
         await splineRuntime.load(scene)
-        
         setIsLoading(false)
       } catch (err) {
-        console.error('Spline loading error:', err)
+        console.error('Spline error:', err)
         setError('Failed to initialize 3D scene')
         setIsLoading(false)
       }
@@ -44,10 +33,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
 
     initSpline()
 
-    return () => {
-      // Basic cleanup: if the runtime provides a stop/dispose method in future versions, 
-      // it should be called here. For current versions, removing the canvas via React cleanup is sufficient.
-    }
+    return () => {}
   }, [scene])
 
   return (

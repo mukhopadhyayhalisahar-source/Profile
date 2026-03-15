@@ -1,5 +1,3 @@
-
-"use client";
 import React from "react";
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
 
@@ -17,7 +15,7 @@ export default function MacbookScrollDemo() {
             <Badge className="h-10 w-10 -rotate-12 transform" />
           </a>
         }
-        src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200"
+        src={`https://picsum.photos/seed/macbook/1200/800`}
         showGradient={false}
       />
     </div>
@@ -28,8 +26,8 @@ export default function MacbookScrollDemo() {
 const Badge = ({ className }: { className?: string }) => {
   return (
     <svg
-      width="56"
-      height="56"
+      width="24"
+      height="24"
       viewBox="0 0 56 56"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +58,7 @@ const Badge = ({ className }: { className?: string }) => {
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 19.1111 33.6154 21.0864 33.6154 23.4444C33.6154 25.8024 31.6194 27.7778 29.0769 27.7778H26.3846Z"
+        d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 27.7778 33.6154 25.8024 33.6154 23.4444C33.6154 21.0864 31.6154 19.1111 29.0769 19.1111H26.3846Z"
         fill="#24292E"
       ></path>
     </svg>

@@ -162,7 +162,7 @@ export const Lid = ({
       >
         <div className="absolute inset-0 rounded-lg bg-[#272729]" />
         <img
-          src={src || "https://picsum.photos/seed/gameox/1200/800"}
+          src={src || "https://picsum.photos/seed/mac-screen/1200/800"}
           alt="macbook screen"
           className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
         />

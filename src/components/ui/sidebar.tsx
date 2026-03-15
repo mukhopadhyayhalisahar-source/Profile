@@ -1,3 +1,4 @@
+
 "use client"
 
 import * as React from "react"
@@ -650,9 +651,12 @@ const SidebarMenuSkeleton = React.forwardRef<
     showIcon?: boolean
   }
 >(({ className, showIcon = false, ...props }, ref) => {
-  // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
+  // Use a stable value for server render to avoid hydration mismatches.
+  const [width, setWidth] = React.useState("70%")
+  
+  React.useEffect(() => {
+    // Only randomize after mounting on the client.
+    setWidth(`${Math.floor(Math.random() * 40) + 50}%`)
   }, [])
 
   return (

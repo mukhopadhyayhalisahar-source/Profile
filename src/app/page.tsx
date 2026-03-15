@@ -99,8 +99,8 @@ export default function Home() {
   ];
 
   return (
-    <main className="bg-black text-white selection:bg-primary/40 overflow-x-hidden">
-      {/* Background Pixel Grid - Render early to trigger permission prompt */}
+    <main className="bg-black text-white selection:bg-primary/40 overflow-x-hidden min-h-screen">
+      {/* Background Pixel Grid - Render early to trigger permission prompt and provide ambient background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <WebcamPixelGrid 
           gridCols={60}
@@ -108,6 +108,7 @@ export default function Home() {
           darken={0.6}
           motionSensitivity={0.5}
           maxElevation={20}
+          className="opacity-40"
         />
       </div>
 
@@ -118,7 +119,7 @@ export default function Home() {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.8 }}
-            className="fixed inset-0 z-[100] bg-black flex items-center justify-center p-6"
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-6"
           >
             <Terminal 
               commands={terminalCommands}
@@ -166,7 +167,7 @@ export default function Home() {
               <span className="text-primary">Future of Intelligent Hospitals.</span>
             </h1>
             
-            <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-400 font-body leading-relaxed">
+            <p className="max-w-3xl mx-auto text-lg md:text-xl text-neutral-400 font-body leading-relaxed">
               Medical student at Jhargram Government Medical College building AI assistants and healthcare systems designed for the next generation of medicine.
             </p>
 

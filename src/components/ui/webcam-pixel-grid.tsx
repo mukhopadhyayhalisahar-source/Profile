@@ -68,7 +68,7 @@ export function WebcamPixelGrid({
         toast({
           variant: 'destructive',
           title: 'Camera Access Denied',
-          description: 'Please enable camera permissions in your browser settings to experience the interactive background.',
+          description: 'Please enable camera permissions in your browser settings to use the interactive background.',
         });
       }
     };
@@ -179,7 +179,7 @@ export function WebcamPixelGrid({
 
   return (
     <div className={cn("relative overflow-hidden w-full h-full", className)}>
-      <video ref={videoRef} autoPlay muted playsInline className="hidden" />
+      <video ref={videoRef} autoPlay muted playsInline className="absolute opacity-0 pointer-events-none" />
       <canvas 
         ref={canvasRef} 
         width={1200} 
@@ -192,7 +192,7 @@ export function WebcamPixelGrid({
           <Alert variant="destructive" className="max-w-md bg-background/95">
             <AlertTitle>Camera Access Required</AlertTitle>
             <AlertDescription>
-              Please allow camera access in your browser settings to experience the interactive webcam pixel grid background.
+              Please allow camera access in your browser settings to experience the interactive background.
             </AlertDescription>
           </Alert>
         </div>

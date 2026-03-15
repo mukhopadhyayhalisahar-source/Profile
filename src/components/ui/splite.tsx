@@ -13,34 +13,46 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     let splineApp: any = null;
 
     const initSpline = async () => {
       try {
+        // Direct dynamic import to ensure chunk loading is handled on client only
         const { Application } = await import('@splinetool/runtime');
-        if (!canvasRef.current) return;
+        
+        if (!isMounted || !canvasRef.current) return;
 
         splineApp = new Application(canvasRef.current);
         await splineApp.load(scene);
-        setLoading(false);
+        
+        if (isMounted) {
+          setLoading(false);
+        }
       } catch (error) {
-        console.error('Error loading Spline scene:', error);
-        setLoading(false);
+        console.warn('Spline initialization issue:', error);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
     initSpline();
 
     return () => {
-      // Cleanup if necessary
+      isMounted = false;
+      splineApp = null;
     };
   }, [scene]);
 
   return (
-    <div className={className + " relative overflow-hidden"}>
+    <div className={`${className} relative overflow-hidden flex items-center justify-center`}>
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
-          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 z-10 backdrop-blur-sm">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-[10px] uppercase tracking-widest text-primary/60 font-bold">Initializing Engine</p>
+          </div>
         </div>
       )}
       <canvas ref={canvasRef} className="w-full h-full block" />

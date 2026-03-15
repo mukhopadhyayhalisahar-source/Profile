@@ -28,18 +28,18 @@ interface WebcamPixelGridProps {
 export function WebcamPixelGrid({
   gridCols = 60,
   gridRows = 40,
-  maxElevation = 50,
-  motionSensitivity = 0.25,
-  elevationSmoothing = 0.2,
+  maxElevation = 35,
+  motionSensitivity = 0.35,
+  elevationSmoothing = 0.15,
   colorMode = "webcam",
   monochromeColor = "#5A46B9",
   backgroundColor = "#030303",
   mirror = true,
-  gapRatio = 0.05,
+  gapRatio = 0.08,
   invertColors = false,
-  darken = 0.6,
+  darken = 0.7,
   borderColor = "#ffffff",
-  borderOpacity = 0.06,
+  borderOpacity = 0.05,
   className,
   onWebcamReady,
   onWebcamError,
@@ -55,9 +55,6 @@ export function WebcamPixelGrid({
   useEffect(() => {
     const getCameraPermission = async () => {
       try {
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          throw new Error("MediaDevices API not supported");
-        }
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         setHasCameraPermission(true);
         if (videoRef.current) {
@@ -71,7 +68,7 @@ export function WebcamPixelGrid({
         toast({
           variant: 'destructive',
           title: 'Camera Access Denied',
-          description: 'Please enable camera permissions to use the interactive 3D background.',
+          description: 'Please enable camera permissions to use the interactive 3D voxel background.',
         });
       }
     };
@@ -89,7 +86,8 @@ export function WebcamPixelGrid({
   useEffect(() => {
     if (!hasCameraPermission || !canvasRef.current || !videoRef.current) return;
 
-    const ctx = canvasRef.current.getContext("2d", { alpha: false });
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d", { alpha: false });
     if (!ctx) return;
 
     const procCanvas = procCanvasRef.current || document.createElement('canvas');
@@ -119,6 +117,8 @@ export function WebcamPixelGrid({
         const cellH = height / gridRows;
         const gapX = cellW * gapRatio;
         const gapY = cellH * gapRatio;
+        const boxW = cellW - gapX;
+        const boxH = cellH - gapY;
 
         for (let j = 0; j < gridRows; j++) {
           for (let i = 0; i < gridCols; i++) {
@@ -142,56 +142,68 @@ export function WebcamPixelGrid({
 
             const elevation = elevationsRef.current[idx];
             
-            let color;
-            if (colorMode === "webcam") {
-              const dr = invertColors ? 255 - r : r;
-              const dg = invertColors ? 255 - g : g;
-              const db = invertColors ? 255 - b : b;
-              color = `rgb(${dr * (1 - darken)}, ${dg * (1 - darken)}, ${db * (1 - darken)})`;
-            } else {
-              color = monochromeColor;
+            // Base Color
+            let baseR = r, baseG = g, baseB = b;
+            if (colorMode === "monochrome") {
+              // Convert monochrome hex to RGB (simple extraction)
+              baseR = 90; baseG = 70; baseB = 185; 
             }
+            if (invertColors) {
+              baseR = 255 - baseR; baseG = 255 - baseG; baseB = 255 - baseB;
+            }
+            
+            const darkFactor = 1 - darken;
+            const mainColor = `rgb(${baseR * darkFactor}, ${baseG * darkFactor}, ${baseB * darkFactor})`;
+            const topColor = `rgb(${Math.min(255, (baseR + 40) * darkFactor)}, ${Math.min(255, (baseG + 40) * darkFactor)}, ${Math.min(255, (baseB + 40) * darkFactor)})`;
+            const sideColor = `rgb(${Math.max(0, (baseR - 30) * darkFactor)}, ${Math.max(0, (baseG - 30) * darkFactor)}, ${Math.max(0, (baseB - 30) * darkFactor)})`;
 
             const drawX = i * cellW + gapX / 2;
             const drawY = j * cellH + gapY / 2;
-            const drawW = cellW - gapX;
-            const drawH = cellH - gapY;
 
-            // 3D Voxel Rendering
-            if (elevation > 0.5) {
-              const perspectiveX = elevation * 0.4;
-              const perspectiveY = elevation * 0.4;
+            // Draw 3D Voxel with Perspective
+            const depth = elevation;
+            if (depth > 0.1) {
+              // Right Side Face
+              ctx.fillStyle = sideColor;
+              ctx.beginPath();
+              ctx.moveTo(drawX + boxW, drawY);
+              ctx.lineTo(drawX + boxW + depth, drawY - depth);
+              ctx.lineTo(drawX + boxW + depth, drawY + boxH - depth);
+              ctx.lineTo(drawX + boxW, drawY + boxH);
+              ctx.closePath();
+              ctx.fill();
 
-              // Draw Depth (Sides of the cube)
-              ctx.fillStyle = `rgba(0,0,0,0.4)`;
+              // Top Face
+              ctx.fillStyle = topColor;
               ctx.beginPath();
               ctx.moveTo(drawX, drawY);
-              ctx.lineTo(drawX + perspectiveX, drawY - perspectiveY);
-              ctx.lineTo(drawX + drawW + perspectiveX, drawY - perspectiveY);
-              ctx.lineTo(drawX + drawW, drawY);
+              ctx.lineTo(drawX + depth, drawY - depth);
+              ctx.lineTo(drawX + boxW + depth, drawY - depth);
+              ctx.lineTo(drawX + boxW, drawY);
+              ctx.closePath();
               ctx.fill();
 
-              ctx.beginPath();
-              ctx.moveTo(drawX + drawW, drawY);
-              ctx.lineTo(drawX + drawW + perspectiveX, drawY - perspectiveY);
-              ctx.lineTo(drawX + drawW + perspectiveX, drawY + drawH - perspectiveY);
-              ctx.lineTo(drawX + drawW, drawY + drawH);
-              ctx.fill();
-
-              // Draw Top Face (The elevated pixel)
-              ctx.fillStyle = color;
-              ctx.fillRect(drawX + perspectiveX, drawY - perspectiveY, drawW, drawH);
+              // Front Face (Elevated)
+              ctx.fillStyle = mainColor;
+              ctx.fillRect(drawX + depth, drawY - depth, boxW, boxH);
+              
+              if (borderOpacity > 0) {
+                ctx.strokeStyle = borderColor;
+                ctx.globalAlpha = borderOpacity;
+                ctx.lineWidth = 0.5;
+                ctx.strokeRect(drawX + depth, drawY - depth, boxW, boxH);
+                ctx.globalAlpha = 1.0;
+              }
             } else {
-              ctx.fillStyle = color;
-              ctx.fillRect(drawX, drawY, drawW, drawH);
-            }
-            
-            if (borderOpacity > 0) {
-              ctx.strokeStyle = borderColor;
-              ctx.globalAlpha = borderOpacity;
-              ctx.lineWidth = 0.5;
-              ctx.strokeRect(drawX, drawY, drawW, drawH);
-              ctx.globalAlpha = 1.0;
+              // Flat Voxel
+              ctx.fillStyle = mainColor;
+              ctx.fillRect(drawX, drawY, boxW, boxH);
+              
+              if (borderOpacity > 0) {
+                ctx.strokeStyle = borderColor;
+                ctx.globalAlpha = borderOpacity;
+                ctx.strokeRect(drawX, drawY, boxW, boxH);
+              }
             }
           }
         }
@@ -220,7 +232,7 @@ export function WebcamPixelGrid({
           <Alert variant="destructive" className="max-w-md bg-background/95">
             <AlertTitle>Camera Access Required</AlertTitle>
             <AlertDescription>
-              Please allow camera access in your browser settings to enable the 3D motion-reactive grid.
+              Please allow camera access in your browser settings to enable the reactive 3D voxel grid background.
             </AlertDescription>
           </Alert>
         </div>

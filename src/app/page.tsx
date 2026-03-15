@@ -100,14 +100,13 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white selection:bg-primary/40 overflow-x-hidden min-h-screen">
-      {/* Background Pixel Grid - Render early to trigger permission prompt and provide ambient background */}
+      {/* Background Voxel Grid - Always rendered to ensure permission early */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <WebcamPixelGrid 
           gridCols={60}
           gridRows={40}
-          darken={0.6}
-          motionSensitivity={0.25}
-          maxElevation={50}
+          darken={0.65}
+          motionSensitivity={0.3}
           className="opacity-40"
         />
       </div>

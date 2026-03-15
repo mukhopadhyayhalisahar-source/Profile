@@ -32,8 +32,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
     initSpline();
 
     return () => {
-      // The runtime doesn't have a formal destroy, 
-      // but we can clear the canvas if needed.
+      // Cleanup if necessary
     };
   }, [scene]);
 

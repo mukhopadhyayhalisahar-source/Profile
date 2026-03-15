@@ -17,7 +17,7 @@ import Lenis from "@studio-freight/lenis";
 import { 
   ArrowRight, Github, 
   Linkedin, Mail, MapPin, GraduationCap, Code, Rocket, Target, 
-  BrainCircuit, Activity, Shield, UserCircle
+  BrainCircuit, Activity, Shield, UserCircle, AlertCircle, Cpu, Zap, Eye, Database
 } from "lucide-react";
 
 export default function Home() {
@@ -157,10 +157,10 @@ export default function Home() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button 
-                onClick={() => document.getElementById('interactive-3d')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('lynex-hq')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-bold text-black transition-all hover:bg-white/90 hover:scale-105"
               >
-                Get Started
+                Explore Lynex
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
               <button className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 text-base font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10">
@@ -170,22 +170,35 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Interactive 3D Card */}
-        <section id="interactive-3d" className="px-6 py-20 bg-black">
-          <div className="max-w-7xl mx-auto">
-            <Card className="w-full h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-3xl">
+        {/* Project Lynex — The HQ */}
+        <section id="lynex-hq" className="px-6 py-20 bg-black">
+          <div className="max-w-7xl mx-auto space-y-20">
+            {/* Intro Card */}
+            <Card className="w-full min-h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-3xl">
               <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={600} />
               <div className="flex flex-col lg:flex-row h-full">
                 <div className="flex-1 p-12 relative z-10 flex flex-col justify-center space-y-6">
-                  <h2 className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-                    Interactive <br /> 3D UI.
-                  </h2>
-                  <p className="text-neutral-300 max-w-lg text-lg leading-relaxed font-body">
-                    Bring your UI to life with beautiful 3D scenes. Create immersive experiences 
-                    that capture attention and enhance your design.
+                  <motion.h2 
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400"
+                  >
+                    Project Lynex — <br /> <span className="text-primary text-3xl md:text-5xl">Building an Intelligent Personal AI Assistant</span>
+                  </motion.h2>
+                  <p className="text-neutral-300 max-w-2xl text-lg md:text-xl leading-relaxed font-body">
+                    Project Lynex is a modular AI assistant designed to function as a personal companion, productivity system, and intelligent automation platform capable of operating across devices.
                   </p>
+                  <div className="space-y-4 pt-4 border-t border-white/10">
+                    <h3 className="text-xl font-bold flex items-center gap-2">
+                      <Target className="w-5 h-5 text-primary" />
+                      1. Overview
+                    </h3>
+                    <p className="text-neutral-400 font-body">
+                      Project Lynex is an AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Lynex is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information, supporting productivity, and eventually integrating with complex environments such as healthcare systems.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1 relative">
+                <div className="flex-1 relative min-h-[400px]">
                   <SplineScene 
                     scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                     className="w-full h-full"
@@ -193,65 +206,129 @@ export default function Home() {
                 </div>
               </div>
             </Card>
-          </div>
-        </section>
 
-        {/* Project Lynex Section */}
-        <section id="lynex" className="bg-black">
-          <div className="max-w-7xl mx-auto px-6 py-20 text-center space-y-4">
-            <h2 className="text-5xl md:text-7xl font-headline font-bold">Project Lynex</h2>
-            <p className="text-xl text-neutral-400 max-w-2xl mx-auto font-body">Building an Intelligent Personal AI Assistant designed to optimize cognitive performance.</p>
-          </div>
-          
-          <ZoomParallax images={lynexParallaxImages} />
-
-          <div className="max-w-5xl mx-auto px-6 py-32 space-y-16">
-            <div className="space-y-6">
-              <h3 className="text-3xl font-headline font-bold text-primary">Overview</h3>
-              <p className="text-xl text-neutral-300 leading-relaxed font-body">
-                Project Lynex is a modular AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Lynex is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information and supporting productivity in complex environments such as healthcare systems.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-headline font-bold">Core Features</h3>
-                <ul className="space-y-4">
-                  {[
-                    { icon: Activity, title: "Voice Interaction", desc: "Natural language communication for hands-free control." },
-                    { icon: Shield, title: "Dual Mode", desc: "Online and offline capabilities for data security." },
-                    { icon: Rocket, title: "Task Automation", desc: "Executes predefined workflows and application control." },
-                    { icon: BrainCircuit, title: "Contextual Assistance", desc: "Remembers preferences for relevant responses." }
-                  ].map((feature, i) => (
-                    <li key={i} className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
-                      <feature.icon className="w-6 h-6 text-primary shrink-0" />
-                      <div>
-                        <h4 className="font-bold">{feature.title}</h4>
-                        <p className="text-sm text-neutral-400">{feature.desc}</p>
-                      </div>
-                    </li>
-                  ))}
+            {/* Detailed Content Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* The Problem */}
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 space-y-6">
+                <div className="w-12 h-12 rounded-2xl bg-destructive/20 flex items-center justify-center">
+                  <AlertCircle className="w-6 h-6 text-destructive" />
+                </div>
+                <h3 className="text-2xl font-bold">2. The Problem</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Current digital assistants (Siri, Google Assistant, Alexa) have major limitations: 
+                </p>
+                <ul className="space-y-2 text-neutral-400 text-sm list-disc list-inside">
+                  <li>Mostly command-based interactions</li>
+                  <li>Limited contextual memory</li>
+                  <li>Poor customization for individual workflows</li>
+                  <li>Weak integration with specialized domains</li>
+                  <li>Heavy reliance on cloud connectivity</li>
                 </ul>
               </div>
-              <div className="space-y-6">
-                <h3 className="text-2xl font-headline font-bold">Technology Stack</h3>
+
+              {/* The Vision */}
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 space-y-6">
+                <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
+                  <Rocket className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold">3. The Vision</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Lynex aims to create a more intelligent system capable of:
+                </p>
+                <ul className="space-y-2 text-neutral-400 text-sm list-disc list-inside">
+                  <li>Acting as a personal digital assistant</li>
+                  <li>Automating routine digital workflows</li>
+                  <li>Providing contextual info support</li>
+                  <li>Integrating across all devices</li>
+                  <li>Supporting future intelligent hospitals</li>
+                </ul>
+              </div>
+
+              {/* Core Features */}
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 space-y-6">
+                <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center">
+                  <Activity className="w-6 h-6 text-secondary" />
+                </div>
+                <h3 className="text-2xl font-bold">4. Core Features</h3>
+                <ul className="space-y-4 text-sm">
+                  <li><strong className="text-white">Voice Interaction:</strong> Hands-free control with natural language.</li>
+                  <li><strong className="text-white">Dual Mode:</strong> Seamless online/offline operation for reliability.</li>
+                  <li><strong className="text-white">Task Automation:</strong> Execute complex predefined workflows.</li>
+                  <li><strong className="text-white">Contextual Memory:</strong> Learns and remembers user preferences.</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Tech Stack & Status */}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-3xl bg-gradient-to-br from-primary/10 to-transparent border border-white/10">
+                <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                  <Cpu className="w-6 h-6 text-primary" />
+                  5. Technology Stack
+                </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    "Python (Core)",
+                    "Python (Core Development)",
                     "Speech Recognition",
-                    "Text-to-Speech",
+                    "Text-to-Speech Systems",
                     "Automation Scripts",
-                    "AI APIs (LLMs)",
+                    "Advanced AI APIs",
                     "Modular Architecture"
                   ].map((tech, i) => (
-                    <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/5 text-sm font-medium text-center">
+                    <div key={i} className="px-4 py-2 rounded-lg bg-black/40 border border-white/5 text-xs text-neutral-300">
                       {tech}
                     </div>
                   ))}
                 </div>
               </div>
+
+              <div className="p-8 rounded-3xl bg-white/5 border border-white/10 space-y-6">
+                <h3 className="text-2xl font-bold flex items-center gap-3">
+                  <Zap className="w-6 h-6 text-yellow-500" />
+                  6. Development Goals
+                </h3>
+                <ul className="space-y-3 text-sm text-neutral-400">
+                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Persistent AI memory system</li>
+                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Computer vision integration</li>
+                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Device control & automation expansion</li>
+                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Cross-device synchronization</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Impact & Status Footer */}
+            <div className="p-12 rounded-[3rem] bg-black border border-white/10 flex flex-col md:flex-row items-center gap-12">
+              <div className="flex-1 space-y-6">
+                <h3 className="text-3xl font-bold flex items-center gap-3">
+                  <Eye className="w-8 h-8 text-primary" />
+                  7. Long-Term Impact
+                </h3>
+                <p className="text-neutral-400 leading-relaxed font-body">
+                  Project Lynex serves as an experimental platform to explore the future role of AI assistants in professional environments. The project is particularly focused on understanding how intelligent systems could eventually assist in medical workflows, hospital operations, and decision support systems.
+                </p>
+              </div>
+              <div className="w-full md:w-[350px] p-8 rounded-2xl bg-white/5 border border-white/10 space-y-4">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-neutral-500">8. Project Status</span>
+                  <span className="px-2 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-bold text-[10px]">ACTIVE</span>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-xs flex justify-between"><span>Type:</span> <span className="text-white">Independent project</span></p>
+                  <p className="text-xs flex justify-between"><span>Focus:</span> <span className="text-white text-right">AI Assistants, Automation</span></p>
+                </div>
+                <RainbowButton className="w-full mt-4">Source Code</RainbowButton>
+              </div>
             </div>
           </div>
+        </section>
+
+        {/* Parallax Showcase */}
+        <section className="bg-black">
+          <div className="max-w-7xl mx-auto px-6 py-20 text-center space-y-4">
+            <h2 className="text-5xl md:text-7xl font-headline font-bold">Visualizing the Vision</h2>
+          </div>
+          <ZoomParallax images={lynexParallaxImages} />
         </section>
 
         {/* Project Gameox Section */}
@@ -277,10 +354,47 @@ export default function Home() {
             >
               Medical student exploring the intersection of medicine, artificial intelligence, and future healthcare systems.
             </motion.p>
-            <h2 className="text-4xl md:text-6xl font-headline font-bold">Professional Milestones</h2>
+            <h2 className="text-4xl md:text-6xl font-headline font-bold">Educational Qualifications</h2>
           </div>
           
-          <StickyScroll content={profileContent} />
+          <StickyScroll content={[
+            {
+              title: "1. Medical Education",
+              description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently Pursuing. Focus areas include pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
+              content: (
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center">
+                  <GraduationCap className="w-16 h-16" />
+                </div>
+              ),
+            },
+            {
+              title: "2. Technical Interests",
+              description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. Key areas: AI in Healthcare, Medical Data Systems, AI Assistants, HCI, Digital Health Innovation.",
+              content: (
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center">
+                  <Code className="w-16 h-16" />
+                </div>
+              ),
+            },
+            {
+              title: "3. Independent Projects",
+              description: "Project Lynex: Modular AI assistant for workflow automation. Gameox: Gesture-operated space shooter exploring how gameplay motion data contributes to neurological monitoring.",
+              content: (
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center">
+                  <Rocket className="w-16 h-16" />
+                </div>
+              ),
+            },
+            {
+              title: "4. Skills",
+              description: "Python Programming, AI Tool Integration, Computer Vision Concepts, Voice Interface Development, Technical Writing, Digital Content Design (Canva).",
+              content: (
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center">
+                  <Target className="w-16 h-16" />
+                </div>
+              ),
+            },
+          ]} />
 
           {/* Contact Details Integration */}
           <div className="max-w-4xl mx-auto mt-32 px-6 grid md:grid-cols-2 gap-12 items-center">

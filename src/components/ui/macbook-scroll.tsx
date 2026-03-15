@@ -129,11 +129,10 @@ export const Lid = ({
   translate: MotionValue<number>;
   src?: string;
 }) => {
-  // Robust detection for video assets (supports GitHub issue attachments and common formats)
   const isVideo = src?.endsWith('.webm') || 
                   src?.endsWith('.mp4') || 
                   src?.includes('user-attachments/assets') || 
-                  src?.includes('github.com') && src?.includes('issue');
+                  (src?.includes('github.com') && src?.includes('issue'));
 
   return (
     <div className="relative [perspective:800px]">

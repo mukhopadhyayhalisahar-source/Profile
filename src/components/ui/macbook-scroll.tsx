@@ -44,72 +44,84 @@ export const MacbookScroll = ({
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      setIsMobile(true);
-    }
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Aggressive scaling for "fit screen" effect
   const scaleX = useTransform(
     scrollYProgress,
-    [0, 0.3],
-    [1.2, isMobile ? 1 : 1.5]
+    [0, 0.4],
+    [1, isMobile ? 1.2 : 3.2]
   );
   const scaleY = useTransform(
     scrollYProgress,
-    [0, 0.3],
-    [0.6, isMobile ? 1 : 1.5]
+    [0, 0.4],
+    [1, isMobile ? 1.2 : 3.2]
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
-  const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
+  
+  const translate = useTransform(scrollYProgress, [0, 1], [0, 1200]);
+  const rotate = useTransform(scrollYProgress, [0.1, 0.15, 0.4], [-28, -28, 0]);
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   return (
     <div
       ref={ref}
-      className="flex min-h-[200vh] shrink-0 scale-[0.35] transform flex-col items-center justify-start py-0 [perspective:800px] sm:scale-50 md:scale-100 md:py-80"
+      className="flex min-h-[250vh] shrink-0 transform flex-col items-center justify-start py-20 [perspective:1200px] bg-black"
     >
-      <motion.h2
+      <motion.div
         style={{
           translateY: textTransform,
           opacity: textOpacity,
         }}
-        className="mb-20 text-center text-3xl font-bold text-neutral-800 dark:text-white font-headline"
+        className="mb-20 text-center z-50"
       >
-        {title || (
-          <span>
-            This Macbook is built with Tailwindcss. <br /> No kidding.
-          </span>
-        )}
-      </motion.h2>
-      <Lid
-        src={src}
-        scaleX={scaleX}
-        scaleY={scaleY}
-        rotate={rotate}
-        translate={translate}
-      />
-      <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
-        <div className="relative h-10 w-full">
-          <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505]" />
+        <h2 className="text-3xl md:text-5xl font-bold text-white font-headline max-w-2xl px-6 leading-tight">
+          {title}
+        </h2>
+      </motion.div>
+
+      <div className="sticky top-[15%] flex flex-col items-center">
+        <Lid
+          src={src}
+          scaleX={scaleX}
+          scaleY={scaleY}
+          rotate={rotate}
+          translate={translate}
+        />
+        
+        {/* Macbook Base */}
+        <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-[#272729] shadow-2xl border border-white/5">
+          <div className="relative h-10 w-full">
+            <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505] rounded-b-xl" />
+          </div>
+          <div className="relative flex px-2">
+            <div className="mx-auto h-full w-[10%]">
+              <SpeakerGrid />
+            </div>
+            <div className="mx-auto h-full w-[80%]">
+              <Keypad />
+            </div>
+            <div className="mx-auto h-full w-[10%]">
+              <SpeakerGrid />
+            </div>
+          </div>
+          <Trackpad />
+          <div className="absolute inset-x-0 bottom-0 mx-auto h-2 w-24 rounded-t-xl bg-gradient-to-t from-[#3a3a3c] to-[#050505]" />
+          
+          {showGradient && (
+            <div className="absolute inset-x-0 bottom-0 z-40 h-32 w-full bg-gradient-to-t from-black via-black/40 to-transparent" />
+          )}
+          
+          {badge && (
+            <div className="absolute bottom-6 left-6 z-50 hover:scale-110 transition-transform duration-300">
+              {badge}
+            </div>
+          )}
         </div>
-        <div className="relative flex">
-          <div className="mx-auto h-full w-[10%] overflow-hidden">
-            <SpeakerGrid />
-          </div>
-          <div className="mx-auto h-full w-[80%]">
-            <Keypad />
-          </div>
-          <div className="mx-auto h-full w-[10%] overflow-hidden">
-            <SpeakerGrid />
-          </div>
-        </div>
-        <Trackpad />
-        <div className="absolute inset-x-0 bottom-0 mx-auto h-2 w-20 rounded-tl-3xl rounded-tr-3xl bg-gradient-to-t from-[#272729] to-[#050505]" />
-        {showGradient && (
-          <div className="absolute inset-x-0 bottom-0 z-50 h-40 w-full bg-gradient-to-t from-white via-white to-transparent dark:from-black dark:via-black"></div>
-        )}
-        {badge && <div className="absolute bottom-4 left-4 z-50">{badge}</div>}
       </div>
     </div>
   );
@@ -133,26 +145,22 @@ export const Lid = ({
                   src?.includes('user-attachments/assets');
 
   return (
-    <div className="relative [perspective:800px]">
+    <div className="relative [perspective:1200px] z-50">
+      {/* Back of Lid */}
       <div
         style={{
-          transform: "perspective(800px) rotateX(-25deg) translateZ(0px)",
+          transform: "perspective(1200px) rotateX(-25deg) translateZ(0px)",
           transformOrigin: "bottom",
           transformStyle: "preserve-3d",
         }}
         className="relative h-[12rem] w-[32rem] rounded-2xl bg-[#010101] p-2"
       >
-        <div
-          style={{
-            boxShadow: "0px 2px 0px 2px #171717 inset",
-          }}
-          className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#010101]"
-        >
-          <span className="text-white">
-            <AceternityLogo />
-          </span>
+        <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#0a0a0a] border border-white/5">
+          <AceternityLogo />
         </div>
       </div>
+
+      {/* Interactive Screen Lid */}
       <motion.div
         style={{
           scaleX: scaleX,
@@ -162,25 +170,29 @@ export const Lid = ({
           transformStyle: "preserve-3d",
           transformOrigin: "top",
         }}
-        className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-[#010101] p-2"
+        className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-[#010101] p-2 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden"
       >
-        <div className="absolute inset-0 rounded-lg bg-[#272729]" />
-        {isVideo ? (
-          <video
-            src={src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
-          />
-        ) : (
-          <img
-            src={src || "https://picsum.photos/seed/mac-screen/1200/800"}
-            alt="macbook screen"
-            className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
-          />
-        )}
+        <div className="absolute inset-0 rounded-lg bg-[#1a1a1a]" />
+        <div className="relative w-full h-full rounded-lg overflow-hidden border border-white/10 bg-black">
+          {isVideo ? (
+            <video
+              src={src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img
+              src={src || "https://picsum.photos/seed/mac-screen/1200/800"}
+              alt="MacBook screen content"
+              className="w-full h-full object-cover"
+            />
+          )}
+          {/* Bezel reflections */}
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/5 via-transparent to-transparent" />
+        </div>
       </motion.div>
     </div>
   );
@@ -189,20 +201,20 @@ export const Lid = ({
 export const Trackpad = () => {
   return (
     <div
-      className="mx-auto my-1 h-32 w-[40%] rounded-xl"
+      className="mx-auto my-4 h-28 w-[45%] rounded-2xl bg-[#0a0a0a]/50 border border-white/5 shadow-inner"
       style={{
-        boxShadow: "0px 0px 1px 1px #00000020 inset",
+        boxShadow: "inset 0 2px 10px rgba(0,0,0,0.5)",
       }}
-    ></div>
+    />
   );
 };
 
 export const Keypad = () => {
   return (
-    <div className="mx-1 h-full [transform:translateZ(0)] rounded-md bg-[#050505] p-1 [will-change:transform]">
+    <div className="mx-1 h-full [transform:translateZ(0)] rounded-xl bg-[#050505] p-2 border border-white/5 shadow-2xl">
       {/* Row 1: Function Keys */}
-      <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[5px]">esc</KBtn>
+      <div className="mb-1 flex w-full shrink-0 gap-1">
+        <KBtn className="w-12 items-end justify-start pb-1 pl-1" childrenClassName="items-start text-[6px]">esc</KBtn>
         {[
           { icon: IconBrightnessDown, f: "F1" },
           { icon: IconBrightnessUp, f: "F2" },
@@ -218,80 +230,80 @@ export const Keypad = () => {
           { icon: IconVolume, f: "F12" },
         ].map((item, i) => (
           <KBtn key={i} className="flex-1">
-            <item.icon className="h-[6px] w-[6px]" />
-            <span className="mt-1 inline-block text-[5px]">{item.f}</span>
+            <item.icon className="h-2 w-2" />
+            <span className="text-[5px] mt-0.5">{item.f}</span>
           </KBtn>
         ))}
-        <KBtn className="flex-none"><div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-900 from-20% via-black via-50% to-neutral-900 to-95% p-px"><div className="h-full w-full rounded-full bg-black" /></div></KBtn>
+        <KBtn className="w-8"><div className="h-3 w-3 rounded-full bg-neutral-900 border border-white/10" /></KBtn>
       </div>
 
       {/* Row 2: Numbers */}
-      <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
+      <div className="mb-1 flex w-full shrink-0 gap-1">
         {["~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "+"].map((char, i) => (
-          <KBtn key={i} className="flex-1"><span className="block text-[6px]">{char}</span></KBtn>
+          <KBtn key={i} className="flex-1 text-[8px] font-medium">{char}</KBtn>
         ))}
-        <KBtn className="w-10 items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">delete</KBtn>
+        <KBtn className="w-12 items-end justify-end pr-1 pb-1" childrenClassName="items-end text-[7px]">delete</KBtn>
       </div>
 
       {/* Row 3: QWERTY */}
-      <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">tab</KBtn>
+      <div className="mb-1 flex w-full shrink-0 gap-1">
+        <KBtn className="w-12 items-end justify-start pb-1 pl-1" childrenClassName="items-start text-[7px]">tab</KBtn>
         {["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"].map((char, i) => (
-          <KBtn key={i} className="flex-1"><span className="text-[7px]">{char}</span></KBtn>
+          <KBtn key={i} className="flex-1 text-[9px] font-bold">{char}</KBtn>
         ))}
       </div>
 
       {/* Row 4: ASDF */}
-      <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="w-[2.8rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">caps lock</KBtn>
-        {["A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "'"].map((char, i) => (
-          <KBtn key={i} className="flex-1"><span className="text-[7px]">{char}</span></KBtn>
+      <div className="mb-1 flex w-full shrink-0 gap-1">
+        <KBtn className="w-14 items-end justify-start pb-1 pl-1" childrenClassName="items-start text-[7px]">caps lock</KBtn>
+        {["A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'"].map((char, i) => (
+          <KBtn key={i} className="flex-1 text-[9px] font-bold">{char}</KBtn>
         ))}
-        <KBtn className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">return</KBtn>
+        <KBtn className="w-14 items-end justify-end pr-1 pb-1" childrenClassName="items-end text-[7px]">return</KBtn>
       </div>
 
       {/* Row 5: ZXCV */}
-      <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="w-[3.65rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">shift</KBtn>
+      <div className="mb-1 flex w-full shrink-0 gap-1">
+        <KBtn className="w-16 items-end justify-start pb-1 pl-1" childrenClassName="items-start text-[7px]">shift</KBtn>
         {["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"].map((char, i) => (
-          <KBtn key={i} className="flex-1"><span className="text-[7px]">{char}</span></KBtn>
+          <KBtn key={i} className="flex-1 text-[9px] font-bold">{char}</KBtn>
         ))}
-        <KBtn className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">shift</KBtn>
+        <KBtn className="w-16 items-end justify-end pr-1 pb-1" childrenClassName="items-end text-[7px]">shift</KBtn>
       </div>
 
       {/* Row 6: Controls */}
-      <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-end pr-1"><span className="block text-[5px]">fn</span></div>
-          <div className="flex w-full justify-start pl-1"><IconWorld className="h-[6px] w-[6px]" /></div>
+      <div className="flex w-full shrink-0 gap-1">
+        <KBtn className="flex-1" childrenClassName="h-full justify-between py-1">
+          <span className="text-[6px] pl-1">fn</span>
+          <IconWorld className="h-2 w-2 pr-1" />
         </KBtn>
-        <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-end pr-1"><IconChevronUp className="h-[6px] w-[6px]" /></div>
-          <div className="flex w-full justify-start pl-1"><span className="block text-[5px]">control</span></div>
+        <KBtn className="flex-1" childrenClassName="h-full justify-between py-1">
+          <IconChevronUp className="h-2 w-2 pl-1" />
+          <span className="text-[6px] pr-1">ctrl</span>
         </KBtn>
-        <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-end pr-1"><OptionKey className="h-[6px] w-[6px]" /></div>
-          <div className="flex w-full justify-start pl-1"><span className="block text-[5px]">option</span></div>
+        <KBtn className="flex-1" childrenClassName="h-full justify-between py-1">
+          <OptionKey className="h-2 w-2 pl-1" />
+          <span className="text-[6px] pr-1">opt</span>
         </KBtn>
-        <KBtn className="w-8" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-end pr-1"><IconCommand className="h-[6px] w-[6px]" /></div>
-          <div className="flex w-full justify-start pl-1"><span className="block text-[5px]">command</span></div>
+        <KBtn className="w-10" childrenClassName="h-full justify-between py-1">
+          <IconCommand className="h-2 w-2 pl-1" />
+          <span className="text-[6px] pr-1">cmd</span>
         </KBtn>
-        <KBtn className="w-[8.2rem]"></KBtn>
-        <KBtn className="w-8" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-end pr-1"><IconCommand className="h-[6px] w-[6px]" /></div>
-          <div className="flex w-full justify-start pl-1"><span className="block text-[5px]">command</span></div>
+        <KBtn className="w-[8rem] h-6"></KBtn>
+        <KBtn className="w-10" childrenClassName="h-full justify-between py-1">
+          <IconCommand className="h-2 w-2 pl-1" />
+          <span className="text-[6px] pr-1">cmd</span>
         </KBtn>
-        <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-start pl-1"><OptionKey className="h-[6px] w-[6px]" /></div>
-          <div className="flex w-full justify-start pl-1"><span className="block text-[5px]">option</span></div>
+        <KBtn className="flex-1" childrenClassName="h-full justify-between py-1">
+          <OptionKey className="h-2 w-2 pl-1" />
+          <span className="text-[6px] pr-1">opt</span>
         </KBtn>
-        <div className="mt-[2px] flex h-6 w-[4.9rem] flex-col items-center justify-end rounded-[4px] p-[0.5px]">
-          <KBtn className="h-3 w-6"><IconCaretUpFilled className="h-[6px] w-[6px]" /></KBtn>
-          <div className="flex">
-            <KBtn className="h-3 w-6"><IconCaretLeftFilled className="h-[6px] w-[6px]" /></KBtn>
-            <KBtn className="h-3 w-6"><IconCaretDownFilled className="h-[6px] w-[6px]" /></KBtn>
-            <KBtn className="h-3 w-6"><IconCaretRightFilled className="h-[6px] w-[6px]" /></KBtn>
+        <div className="flex flex-col gap-0.5">
+          <KBtn className="h-3 w-10"><IconCaretUpFilled className="h-2 w-2" /></KBtn>
+          <div className="flex gap-0.5">
+            <KBtn className="h-3 w-[1.2rem]"><IconCaretLeftFilled className="h-2 w-2" /></KBtn>
+            <KBtn className="h-3 w-[1.2rem]"><IconCaretDownFilled className="h-2 w-2" /></KBtn>
+            <KBtn className="h-3 w-[1.2rem]"><IconCaretRightFilled className="h-2 w-2" /></KBtn>
           </div>
         </div>
       </div>
@@ -311,13 +323,13 @@ const KBtn = ({
   return (
     <div
       className={cn(
-        "p-[0.5px] rounded-[4px] bg-gradient-to-b from-[#464646] via-[#282828] to-[#040404] shadow-[0px_2px_2px_0px_rgba(0,0,0,0.5)]",
+        "p-[0.5px] rounded-[3px] bg-gradient-to-b from-[#464646] to-[#040404] shadow-md",
         className
       )}
     >
       <div
         className={cn(
-          "h-full w-full rounded-[3.5px] bg-[#050505] flex flex-col items-center justify-center text-white",
+          "h-full w-full rounded-[2.5px] bg-[#050505] flex flex-col items-center justify-center text-white/90 select-none",
           childrenClassName
         )}
       >
@@ -330,53 +342,27 @@ const KBtn = ({
 const SpeakerGrid = () => {
   return (
     <div
-      className="flex px-[0.5px] gap-[2px] mt-2 h-full w-full flex-wrap"
+      className="flex px-[1px] gap-[2px] mt-4 h-full w-full flex-wrap opacity-40"
       style={{
-        backgroundImage:
-          "radial-gradient(circle, #08080a 0.5px, transparent 0.5px)",
+        backgroundImage: "radial-gradient(circle, #888 0.5px, transparent 0.5px)",
         backgroundSize: "3px 3px",
       }}
-    ></div>
+    />
   );
 };
 
 const OptionKey = ({ className }: { className?: string }) => {
   return (
-    <svg
-      fill="none"
-      version="1.1"
-      id="Layer_1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 22 22"
-      xmlSpace="preserve"
-      className={className}
-    >
-      <path
-        fill="currentColor"
-        d="M6,22L6,22L6,22C6,22,6,22,6,22z M15,6h6v2h-6V6z M10.2,6h2.2L6,22H3.8L10.2,6z M15,22h6v-2h-6V22z"
-      />
+    <svg fill="none" viewBox="0 0 22 22" className={className}>
+      <path fill="currentColor" d="M6,22L6,22L6,22C6,22,6,22,6,22z M15,6h6v2h-6V6z M10.2,6h2.2L6,22H3.8L10.2,6z M15,22h6v-2h-6V22z" />
     </svg>
   );
 };
 
 const AceternityLogo = () => {
   return (
-    <svg
-      width="66"
-      height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-3 w-3 text-white"
-    >
-      <path
-        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-        stroke="currentColor"
-        strokeWidth="15"
-        strokeMiterlimit="3.86874"
-        strokeLinecap="round"
-      />
+    <svg width="40" height="40" viewBox="0 0 66 65" fill="none" className="h-6 w-6 text-white/20">
+      <path d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696" stroke="currentColor" strokeWidth="15" strokeLinecap="round" />
     </svg>
   );
 };

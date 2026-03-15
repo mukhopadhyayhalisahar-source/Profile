@@ -68,7 +68,7 @@ export function WebcamPixelGrid({
         toast({
           variant: 'destructive',
           title: 'Camera Access Denied',
-          description: 'Please enable camera permissions in your browser settings to use the interactive background.',
+          description: 'Please enable camera permissions in your browser settings to experience the interactive background.',
         });
       }
     };
@@ -104,11 +104,9 @@ export function WebcamPixelGrid({
 
       const { width, height } = canvasRef.current;
       
-      // Clear background
       ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
-      // Only draw if the video metadata is loaded
       if (videoRef.current.readyState >= 2) {
         procCtx.drawImage(videoRef.current, 0, 0, gridCols, gridRows);
         const imageData = procCtx.getImageData(0, 0, gridCols, gridRows);

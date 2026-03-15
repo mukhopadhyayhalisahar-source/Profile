@@ -100,6 +100,17 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white selection:bg-primary/40 overflow-x-hidden">
+      {/* Background Pixel Grid - Render early to trigger permission prompt */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <WebcamPixelGrid 
+          gridCols={60}
+          gridRows={40}
+          darken={0.6}
+          motionSensitivity={0.5}
+          maxElevation={20}
+        />
+      </div>
+
       <AnimatePresence mode="wait">
         {!booted && (
           <motion.div
@@ -120,7 +131,7 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <div className={booted ? "block" : "hidden"}>
+      <div className={booted ? "block relative z-10" : "hidden"}>
         {/* Nav */}
         <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center backdrop-blur-md bg-black/20 border-b border-white/5">
           <div className="text-xl font-headline font-bold tracking-tighter">
@@ -139,20 +150,12 @@ export default function Home() {
 
         {/* Hero Section */}
         <section id="vision" className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
-          <WebcamPixelGrid 
-            className="absolute inset-0 z-0" 
-            gridCols={60}
-            gridRows={40}
-            darken={0.6}
-            motionSensitivity={0.5}
-            maxElevation={20}
-          />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 pointer-events-none z-[1]" />
           
           <div className="relative z-10 max-w-5xl space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white/70 backdrop-blur-sm"
             >
               Medical Student x AI Innovator &rarr;

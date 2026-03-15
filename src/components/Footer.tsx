@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -9,7 +8,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left Side (Branding) */}
         <div className="text-neutral-400 text-sm text-center md:text-left font-body">
-          © 2026 Mukho. Building the future of MedTech.
+          © 2026 Lynex. Building the future of MedTech.
         </div>
 
         {/* Middle (Links) */}

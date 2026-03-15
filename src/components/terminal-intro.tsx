@@ -16,7 +16,7 @@ export function TerminalIntro({ onComplete }: TerminalIntroProps) {
     "> INITIALIZING_CORE_KERNELS... [OK]",
     "> CONNECTING_TO_GLOBAL_NETWORK... [OK]",
     "> ACCESSING_FOUNDER_VISION... [OK]",
-    "> LOADING_PROJECT_LYNEX... [OK]",
+    "> LOADING_PROJECT_OVEXIS... [OK]",
     "> LOADING_PROJECT_GAMEOX... [OK]",
     "> ESTABLISHING_IMMERSIVE_INTERFACE...",
     "> WELCOME TO THE FUTURE OF COGNITION.",

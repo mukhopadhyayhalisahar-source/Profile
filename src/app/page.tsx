@@ -40,14 +40,14 @@ export default function Home() {
   ];
 
   const terminalOutputs = {
-    0: ["Ayan Mukhopadhyay", "Medical Student @ Jhargram Government Medical College", "AI Research Builder | Founder @ Project Lynex"],
+    0: ["Ayan Mukhopadhyay", "Medical Student @ Jhargram Government Medical College", "AI Research Builder | Founder @ Project Ovexis"],
     1: ["Redesigning healthcare using AI, computer vision, and intelligent hospital infrastructure."],
-    2: ["lynex_core_v2/", "gameox_cv_engine/", "clipper_360_prototype/", "sign_language_translator/"],
+    2: ["ovexis_core_v2/", "gameox_cv_engine/", "clipper_360_prototype/", "sign_language_translator/"],
     3: ["Building the world's first AI-native hospital ecosystem."],
     4: ["[SUCCESS] Connection established. Scroll to explore."],
   };
 
-  const lynexParallaxImages = [
+  const ovexisParallaxImages = [
     { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1280&h=720&fit=crop&q=80', alt: 'AI Architecture' },
     { src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&h=720&fit=crop&q=80', alt: 'Urban Cityscape' },
     { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=800&h=800&fit=crop&q=80', alt: 'Abstract UI' },
@@ -78,7 +78,7 @@ export default function Home() {
     },
     {
       title: "3. Independent Projects",
-      description: "Project Lynex: Development of a modular AI assistant designed to automate workflows and explore healthcare integration. Gameox: Gesture-operated space shooter game designed to explore gameplay motion data for health analytics and neurological monitoring.",
+      description: "Project Ovexis: Development of a modular AI assistant designed to automate workflows and explore healthcare integration. Gameox: Gesture-operated space shooter game designed to explore gameplay motion data for health analytics and neurological monitoring.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center font-bold text-xl">
           Independent Projects
@@ -136,7 +136,7 @@ export default function Home() {
 
       <div className={booted ? "block relative" : "hidden"}>
         <nav className="fixed top-0 left-0 right-0 z-[60] px-6 py-4 flex justify-between items-center backdrop-blur-md bg-black/20 border-b border-white/5">
-          <div className="text-xl font-headline font-bold">MUKHO<span className="text-primary">.AI</span></div>
+          <div className="text-xl font-headline font-bold">LYNEX</div>
           <RainbowButton onClick={() => window.open('https://linkedin.com/in/ayan-mukhopadhyay1', '_blank')}>
             Connect
           </RainbowButton>
@@ -175,18 +175,18 @@ export default function Home() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button 
-                onClick={() => document.getElementById('lynex-hq')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('ovexis-hq')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-bold text-black transition-all hover:bg-white/90 hover:scale-105"
               >
-                Explore Lynex
+                Explore Ovexis
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
           </div>
         </section>
 
-        {/* Project Lynex HQ */}
-        <section id="lynex-hq" className="px-6 py-20 bg-black">
+        {/* Project Ovexis HQ */}
+        <section id="ovexis-hq" className="px-6 py-20 bg-black">
           <div className="max-w-7xl mx-auto space-y-20">
             <Card className="w-full min-h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-[3rem]">
               <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={600} />
@@ -197,10 +197,10 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400"
                   >
-                    Project Lynex — <br /> <span className="text-primary text-3xl md:text-5xl">Building an Intelligent Personal AI Assistant</span>
+                    Project Ovexis — <br /> <span className="text-primary text-3xl md:text-5xl">Building an Intelligent Personal AI Assistant</span>
                   </motion.h2>
                   <p className="text-neutral-300 max-w-2xl text-lg md:text-xl leading-relaxed font-body">
-                    Project Lynex is a modular AI assistant designed to function as a personal companion, productivity system, and intelligent automation platform capable of operating across devices.
+                    Project Ovexis is a modular AI assistant designed to function as a personal companion, productivity system, and intelligent automation platform capable of operating across devices.
                   </p>
                   <div className="space-y-4 pt-4 border-t border-white/10">
                     <h3 className="text-xl font-bold flex items-center gap-2">
@@ -208,7 +208,7 @@ export default function Home() {
                       1. Overview
                     </h3>
                     <p className="text-neutral-400 font-body text-sm leading-relaxed">
-                      Project Lynex is an AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Lynex is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information, supporting productivity, and eventually integrating with complex environments such as healthcare systems.
+                      Project Ovexis is an AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Ovexis is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information, supporting productivity, and eventually integrating with complex environments such as healthcare systems.
                     </p>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">3. The Vision</h3>
                 <div className="text-neutral-400 text-sm leading-relaxed space-y-2">
-                  <p>Project Lynex aims to create a more intelligent and adaptable AI system capable of:</p>
+                  <p>Project Ovexis aims to create a more intelligent and adaptable AI system capable of:</p>
                   <ul className="list-disc list-inside">
                     <li>Acting as a personal digital assistant</li>
                     <li>Automating routine digital workflows</li>
@@ -321,7 +321,7 @@ export default function Home() {
                       <span className="text-xs text-neutral-300">{goal}</span>
                     </div>
                   ))}
-                  <p className="text-xs text-neutral-500 mt-2 italic">These improvements aim to transform Lynex from a simple assistant into a fully capable AI operating companion.</p>
+                  <p className="text-xs text-neutral-500 mt-2 italic">These improvements aim to transform Ovexis from a simple assistant into a fully capable AI operating companion.</p>
                 </div>
               </div>
             </div>
@@ -333,7 +333,7 @@ export default function Home() {
                   7. Long-Term Impact
                 </h3>
                 <p className="text-neutral-300 leading-relaxed font-body text-lg">
-                  Project Lynex serves as an experimental platform to explore the future role of AI assistants in professional environments. The project is particularly focused on understanding how intelligent systems could eventually assist in medical workflows, hospital operations, and decision support systems.
+                  Project Ovexis serves as an experimental platform to explore the future role of AI assistants in professional environments. The project is particularly focused on understanding how intelligent systems could eventually assist in medical workflows, hospital operations, and decision support systems.
                 </p>
                 <div className="pt-4 border-t border-white/5">
                   <div className="flex flex-col gap-2">
@@ -355,7 +355,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 py-4 text-center space-y-2">
             <h2 className="text-5xl md:text-7xl font-headline font-bold">Visualizing the Vision</h2>
           </div>
-          <ZoomParallax images={lynexParallaxImages} />
+          <ZoomParallax images={ovexisParallaxImages} />
         </section>
 
         {/* Project Gameox HQ */}

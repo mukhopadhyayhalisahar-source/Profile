@@ -52,7 +52,7 @@ const Badge = ({ className }: { className?: string }) => {
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 27.7778 33.6154 25.8024 33.6154 23.4444C33.6154 21.0864 31.6194 19.1111 29.0769 19.1111H26.3846Z"
+        d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 19.1111 33.6154 21.0864 33.6154 23.4444C33.6154 25.8024 31.6194 27.7778 29.0769 27.7778H26.3846Z"
         fill="#24292E"
       ></path>
     </svg>
@@ -124,9 +124,9 @@ export default function Home() {
         <WebcamPixelGrid 
           gridCols={60}
           gridRows={40}
-          maxElevation={50}
-          motionSensitivity={0.35}
-          elevationSmoothing={0.15}
+          maxElevation={60}
+          motionSensitivity={0.3}
+          elevationSmoothing={0.12}
           className="opacity-40"
         />
       </div>
@@ -163,7 +163,7 @@ export default function Home() {
           </RainbowButton>
         </nav>
 
-        <section id="vision" className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        <section id="vision" className="relative h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-20">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 pointer-events-none z-[1]" />
           <div className="relative z-10 max-w-5xl space-y-8">
             <motion.div
@@ -273,7 +273,7 @@ export default function Home() {
                 <Badge className="h-10 w-10 -rotate-12 transform hover:scale-110 transition-transform" />
               </button>
             }
-            src="https://picsum.photos/seed/gameox/1200/800"
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200"
             showGradient={false}
           />
 

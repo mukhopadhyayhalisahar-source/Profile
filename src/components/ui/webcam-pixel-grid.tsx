@@ -22,16 +22,16 @@ interface WebcamPixelGridProps {
 }
 
 export function WebcamPixelGrid({
-  gridCols = 60,
-  gridRows = 40,
-  maxElevation = 50,
-  motionSensitivity = 0.35,
-  elevationSmoothing = 0.15,
+  gridCols = 64,
+  gridRows = 48,
+  maxElevation = 45,
+  motionSensitivity = 0.4,
+  elevationSmoothing = 0.1,
   colorMode = "webcam",
   backgroundColor = "#030303",
   mirror = true,
-  gapRatio = 0.08,
-  darken = 0.7,
+  gapRatio = 0.1,
+  darken = 0.6,
   className,
   onWebcamReady,
   onWebcamError,
@@ -96,7 +96,6 @@ export function WebcamPixelGrid({
       if (!videoRef.current || !canvasRef.current) return;
 
       const { width, height } = canvasRef.current;
-      
       ctx.fillStyle = backgroundColor;
       ctx.fillRect(0, 0, width, height);
 
@@ -134,25 +133,27 @@ export function WebcamPixelGrid({
             elevationsRef.current[idx] += (targetElevation - elevationsRef.current[idx]) * elevationSmoothing;
 
             const elevation = elevationsRef.current[idx];
-            if (elevation < 0.1) continue;
+            if (elevation < 0.2) continue;
 
-            const baseR = colorMode === "monochrome" ? 90 : r;
-            const baseG = colorMode === "monochrome" ? 70 : g;
-            const baseB = colorMode === "monochrome" ? 185 : b;
-
+            // Base Shading Factors
             const darkFactor = 1 - darken;
-            const mainColor = `rgb(${baseR * darkFactor}, ${baseG * darkFactor}, ${baseB * darkFactor})`;
-            const topColor = `rgb(${Math.min(255, (baseR + 60) * darkFactor)}, ${Math.min(255, (baseG + 60) * darkFactor)}, ${Math.min(255, (baseB + 60) * darkFactor)})`;
-            const sideColor = `rgb(${Math.max(0, (baseR - 40) * darkFactor)}, ${Math.max(0, (baseG - 40) * darkFactor)}, ${Math.max(0, (baseB - 40) * darkFactor)})`;
+            const rScaled = r * darkFactor;
+            const gScaled = g * darkFactor;
+            const bScaled = b * darkFactor;
+
+            // Face colors
+            const frontColor = `rgb(${rScaled}, ${gScaled}, ${bScaled})`;
+            const topColor = `rgb(${Math.min(255, rScaled + 40)}, ${Math.min(255, gScaled + 40)}, ${Math.min(255, bScaled + 40)})`;
+            const sideColor = `rgb(${Math.max(0, rScaled - 40)}, ${Math.max(0, gScaled - 40)}, ${Math.max(0, bScaled - 40)})`;
 
             const drawX = i * cellW + (cellW * gapRatio) / 2;
             const drawY = j * cellH + (cellH * gapRatio) / 2;
 
-            // Perspective extrusion offsets
+            // Perspective extrusion projection
             const perspectiveX = (drawX - centerX) / centerX * elevation;
             const perspectiveY = (drawY - centerY) / centerY * elevation;
 
-            // Side Face
+            // Drawing Side Face
             ctx.fillStyle = sideColor;
             ctx.beginPath();
             ctx.moveTo(drawX + boxW, drawY);
@@ -161,7 +162,7 @@ export function WebcamPixelGrid({
             ctx.lineTo(drawX + boxW, drawY + boxH);
             ctx.fill();
 
-            // Top Face
+            // Drawing Top Face
             ctx.fillStyle = topColor;
             ctx.beginPath();
             ctx.moveTo(drawX, drawY);
@@ -170,8 +171,8 @@ export function WebcamPixelGrid({
             ctx.lineTo(drawX + boxW, drawY);
             ctx.fill();
 
-            // Front Face
-            ctx.fillStyle = mainColor;
+            // Drawing Front Face
+            ctx.fillStyle = frontColor;
             ctx.fillRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
           }
         }
@@ -198,7 +199,7 @@ export function WebcamPixelGrid({
       {hasCameraPermission === false && (
         <div className="absolute inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
           <Alert variant="destructive" className="max-w-md">
-            <AlertTitle>Camera Required</AlertTitle>
+            <AlertTitle>Camera Access Required</AlertTitle>
             <AlertDescription>
               Please allow camera access to enable the reactive 3D voxel background.
             </AlertDescription>

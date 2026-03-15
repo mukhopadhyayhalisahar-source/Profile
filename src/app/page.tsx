@@ -260,7 +260,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="gameox" className="bg-black relative">
+        <section id="gameox" className="bg-black relative overflow-clip">
           <MacbookScroll 
             title={
               <span>
@@ -276,7 +276,7 @@ export default function Home() {
             showGradient={false}
           />
 
-          <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center border-t border-white/5 relative z-10">
+          <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center border-t border-white/5 relative z-10 bg-black">
             <h3 className="text-3xl font-headline font-bold">The Science of Movement</h3>
             <p className="text-xl text-neutral-400 leading-relaxed font-body">Analyzing gesture patterns—speed, reaction time, and stability—to monitor motor coordination via computer vision.</p>
             <div className="flex justify-center gap-6">

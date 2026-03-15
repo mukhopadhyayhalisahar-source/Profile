@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   IconBrightnessDown,
@@ -93,7 +93,7 @@ export const MacbookScroll = ({
           translate={translate}
         />
         
-        {/* Macbook Base */}
+        {/* Macbook Base Area */}
         <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-[#272729] shadow-2xl border border-white/5">
           <div className="relative h-10 w-full">
             <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505] rounded-b-xl" />
@@ -140,10 +140,6 @@ export const Lid = ({
   translate: MotionValue<number>;
   src?: string;
 }) => {
-  const isVideo = src?.endsWith('.mp4') || 
-                  src?.endsWith('.webm') || 
-                  src?.includes('user-attachments/assets');
-
   return (
     <div className="relative [perspective:1200px] z-50">
       {/* Back of Lid */}
@@ -174,22 +170,14 @@ export const Lid = ({
       >
         <div className="absolute inset-0 rounded-lg bg-[#1a1a1a]" />
         <div className="relative w-full h-full rounded-lg overflow-hidden border border-white/10 bg-black">
-          {isVideo ? (
-            <video
-              src={src}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <img
-              src={src || "https://picsum.photos/seed/mac-screen/1200/800"}
-              alt="MacBook screen content"
-              className="w-full h-full object-cover"
-            />
-          )}
+          <video
+            src={src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          />
           {/* Bezel reflections */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/5 via-transparent to-transparent" />
         </div>

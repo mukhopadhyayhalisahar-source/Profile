@@ -17,7 +17,7 @@ import Lenis from "@studio-freight/lenis";
 import { 
   ArrowRight, Github, 
   Linkedin, Mail, MapPin, GraduationCap, Code, Rocket, Target, 
-  BrainCircuit, Activity, Shield, UserCircle, AlertCircle, Cpu, Zap, Eye, Database
+  BrainCircuit, Activity, Shield, UserCircle, AlertCircle, Cpu, Zap, Eye, Database, Info, Sparkles
 } from "lucide-react";
 
 export default function Home() {
@@ -59,7 +59,7 @@ export default function Home() {
 
   const profileContent = [
     {
-      title: "Medical Education",
+      title: "1. Medical Education",
       description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently Pursuing. Focus areas include pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center">
@@ -68,8 +68,8 @@ export default function Home() {
       ),
     },
     {
-      title: "Technical Interests",
-      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments.",
+      title: "2. Technical Interests",
+      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments. Key areas of interest include: Artificial Intelligence in Healthcare, Medical Data Systems, AI Assistants and Automation, Human–Computer Interaction, Digital Health Innovation.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center">
           <Code className="w-16 h-16" />
@@ -77,8 +77,8 @@ export default function Home() {
       ),
     },
     {
-      title: "Independent Projects",
-      description: "Project Lynex: Modular AI assistant designed to automate workflows and integrate into healthcare environments. Gameox: Gesture-operated platform exploring how gameplay motion data contributes to neurological monitoring concepts.",
+      title: "3. Independent Projects",
+      description: "Project Lynex: Development of a modular AI assistant designed to automate workflows, support productivity, and explore integration possibilities in complex environments such as healthcare systems. Gameox: Gesture-operated space shooter game designed as an experimental platform exploring how gameplay motion data could contribute to health analytics and neurological monitoring concepts.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center">
           <Rocket className="w-16 h-16" />
@@ -86,7 +86,7 @@ export default function Home() {
       ),
     },
     {
-      title: "Core Skills",
+      title: "4. Skills",
       description: "Python Programming, AI Tool Integration, Computer Vision Concepts, Voice Interface Development, Technical Writing and Documentation, Digital Content Design (Canva).",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center">
@@ -190,10 +190,10 @@ export default function Home() {
                   </p>
                   <div className="space-y-4 pt-4 border-t border-white/10">
                     <h3 className="text-xl font-bold flex items-center gap-2">
-                      <Target className="w-5 h-5 text-primary" />
+                      <Info className="w-5 h-5 text-primary" />
                       1. Overview
                     </h3>
-                    <p className="text-neutral-400 font-body">
+                    <p className="text-neutral-400 font-body text-sm leading-relaxed">
                       Project Lynex is an AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Lynex is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information, supporting productivity, and eventually integrating with complex environments such as healthcare systems.
                     </p>
                   </div>
@@ -218,13 +218,14 @@ export default function Home() {
                 <p className="text-neutral-400 text-sm leading-relaxed">
                   Current digital assistants (Siri, Google Assistant, Alexa) have major limitations: 
                 </p>
-                <ul className="space-y-2 text-neutral-400 text-sm list-disc list-inside">
+                <ul className="space-y-2 text-neutral-400 text-xs list-disc list-inside">
                   <li>Mostly command-based interactions</li>
                   <li>Limited contextual memory</li>
                   <li>Poor customization for individual workflows</li>
-                  <li>Weak integration with specialized domains</li>
+                  <li>Weak integration with specialized domains like healthcare</li>
                   <li>Heavy reliance on cloud connectivity</li>
                 </ul>
+                <p className="text-neutral-500 text-[10px] mt-2 italic">As a result, users still spend significant time manually managing tasks, information, and tools.</p>
               </div>
 
               {/* The Vision */}
@@ -236,13 +237,14 @@ export default function Home() {
                 <p className="text-neutral-400 text-sm leading-relaxed">
                   Lynex aims to create a more intelligent system capable of:
                 </p>
-                <ul className="space-y-2 text-neutral-400 text-sm list-disc list-inside">
+                <ul className="space-y-2 text-neutral-400 text-xs list-disc list-inside">
                   <li>Acting as a personal digital assistant</li>
                   <li>Automating routine digital workflows</li>
-                  <li>Providing contextual info support</li>
-                  <li>Integrating across all devices</li>
-                  <li>Supporting future intelligent hospitals</li>
+                  <li>Providing contextual information support</li>
+                  <li>Integrating across devices (phone, computer)</li>
+                  <li>Supporting specialized professional environments</li>
                 </ul>
+                <p className="text-neutral-500 text-[10px] mt-2 italic">The long-term goal is to explore assistants for future intelligent hospitals.</p>
               </div>
 
               {/* Core Features */}
@@ -251,11 +253,11 @@ export default function Home() {
                   <Activity className="w-6 h-6 text-secondary" />
                 </div>
                 <h3 className="text-2xl font-bold">4. Core Features</h3>
-                <ul className="space-y-4 text-sm">
-                  <li><strong className="text-white">Voice Interaction:</strong> Hands-free control with natural language.</li>
-                  <li><strong className="text-white">Dual Mode:</strong> Seamless online/offline operation for reliability.</li>
-                  <li><strong className="text-white">Task Automation:</strong> Execute complex predefined workflows.</li>
-                  <li><strong className="text-white">Contextual Memory:</strong> Learns and remembers user preferences.</li>
+                <ul className="space-y-4 text-xs">
+                  <li><strong className="text-white block">Voice Interaction:</strong> Natural language communication allowing hands-free interaction.</li>
+                  <li><strong className="text-white block">Dual Mode Operation:</strong> Online and offline capabilities for reliability anywhere.</li>
+                  <li><strong className="text-white block">Task Automation:</strong> Ability to launch apps, retrieve info, and execute workflows.</li>
+                  <li><strong className="text-white block">Contextual Assistance:</strong> Remembers user preferences and provides relevant info over time.</li>
                 </ul>
               </div>
             </div>
@@ -270,13 +272,13 @@ export default function Home() {
                 <div className="grid grid-cols-2 gap-4">
                   {[
                     "Python (Core Development)",
-                    "Speech Recognition",
-                    "Text-to-Speech Systems",
-                    "Automation Scripts",
-                    "Advanced AI APIs",
-                    "Modular Architecture"
+                    "Speech Recognition (Voice Commands)",
+                    "Text-to-Speech (Output Systems)",
+                    "Automation Scripts (Device Control)",
+                    "Advanced AI APIs (LLM Integration)",
+                    "Modular System Architecture"
                   ].map((tech, i) => (
-                    <div key={i} className="px-4 py-2 rounded-lg bg-black/40 border border-white/5 text-xs text-neutral-300">
+                    <div key={i} className="px-4 py-2 rounded-lg bg-black/40 border border-white/5 text-[10px] text-neutral-300">
                       {tech}
                     </div>
                   ))}
@@ -288,11 +290,12 @@ export default function Home() {
                   <Zap className="w-6 h-6 text-yellow-500" />
                   6. Development Goals
                 </h3>
-                <ul className="space-y-3 text-sm text-neutral-400">
+                <ul className="space-y-3 text-xs text-neutral-400">
                   <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Persistent AI memory system</li>
                   <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Computer vision integration</li>
-                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Device control & automation expansion</li>
+                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Device control and automation expansion</li>
                   <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Cross-device synchronization</li>
+                  <li className="flex gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" /> Advanced reasoning capabilities</li>
                 </ul>
               </div>
             </div>
@@ -309,13 +312,13 @@ export default function Home() {
                 </p>
               </div>
               <div className="w-full md:w-[350px] p-8 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-neutral-500">8. Project Status</span>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-neutral-500 uppercase tracking-tighter">8. Project Status</span>
                   <span className="px-2 py-1 rounded-md bg-emerald-500/20 text-emerald-400 font-bold text-[10px]">ACTIVE</span>
                 </div>
                 <div className="space-y-2">
                   <p className="text-xs flex justify-between"><span>Type:</span> <span className="text-white">Independent project</span></p>
-                  <p className="text-xs flex justify-between"><span>Focus:</span> <span className="text-white text-right">AI Assistants, Automation</span></p>
+                  <p className="text-xs flex justify-between"><span>Focus:</span> <span className="text-white text-right">AI Assistants, MedTech</span></p>
                 </div>
                 <RainbowButton className="w-full mt-4">Source Code</RainbowButton>
               </div>
@@ -357,44 +360,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-headline font-bold">Educational Qualifications</h2>
           </div>
           
-          <StickyScroll content={[
-            {
-              title: "1. Medical Education",
-              description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently Pursuing. Focus areas include pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
-              content: (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center">
-                  <GraduationCap className="w-16 h-16" />
-                </div>
-              ),
-            },
-            {
-              title: "2. Technical Interests",
-              description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. Key areas: AI in Healthcare, Medical Data Systems, AI Assistants, HCI, Digital Health Innovation.",
-              content: (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center">
-                  <Code className="w-16 h-16" />
-                </div>
-              ),
-            },
-            {
-              title: "3. Independent Projects",
-              description: "Project Lynex: Modular AI assistant for workflow automation. Gameox: Gesture-operated space shooter exploring how gameplay motion data contributes to neurological monitoring.",
-              content: (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center">
-                  <Rocket className="w-16 h-16" />
-                </div>
-              ),
-            },
-            {
-              title: "4. Skills",
-              description: "Python Programming, AI Tool Integration, Computer Vision Concepts, Voice Interface Development, Technical Writing, Digital Content Design (Canva).",
-              content: (
-                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center">
-                  <Target className="w-16 h-16" />
-                </div>
-              ),
-            },
-          ]} />
+          <StickyScroll content={profileContent} />
 
           {/* Contact Details Integration */}
           <div className="max-w-4xl mx-auto mt-32 px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -427,17 +393,21 @@ export default function Home() {
                 Open For
               </h4>
               <ul className="text-neutral-400 text-sm space-y-2">
-                <li className="flex items-center gap-2 justify-center md:justify-start">
+                <li className="flex items-center gap-2 justify-center md:justify-start text-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   Research collaborations
                 </li>
-                <li className="flex items-center gap-2 justify-center md:justify-start">
+                <li className="flex items-center gap-2 justify-center md:justify-start text-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   Health technology projects
                 </li>
-                <li className="flex items-center gap-2 justify-center md:justify-start">
+                <li className="flex items-center gap-2 justify-center md:justify-start text-xs">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  AI and healthcare innovation
+                  AI and healthcare innovation initiatives
+                </li>
+                <li className="flex items-center gap-2 justify-center md:justify-start text-xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  Open-source development
                 </li>
               </ul>
               <button 

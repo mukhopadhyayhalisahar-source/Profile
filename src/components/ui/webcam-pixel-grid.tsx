@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -40,20 +41,30 @@ export function WebcamPixelGrid({
 
   useEffect(() => {
     const getCameraPermission = async () => {
+      // Check if navigator and mediaDevices are available
+      if (typeof window === "undefined" || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        setHasCameraPermission(false);
+        return;
+      }
+
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         setHasCameraPermission(true);
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
-      } catch (error) {
-        console.error('Error accessing camera:', error);
+      } catch (error: any) {
+        console.warn('Camera access error handled:', error.name);
         setHasCameraPermission(false);
-        toast({
-          variant: 'destructive',
-          title: 'Camera Access Denied',
-          description: 'Please enable camera permissions to use the interactive 3D voxel background.',
-        });
+        
+        // Only toast if it wasn't a manual denial to avoid being intrusive
+        if (error.name !== 'NotAllowedError') {
+          toast({
+            variant: 'destructive',
+            title: 'Camera Access Error',
+            description: 'Could not access webcam. Please check your hardware and permissions.',
+          });
+        }
       }
     };
 
@@ -188,9 +199,9 @@ export function WebcamPixelGrid({
       {hasCameraPermission === false && (
         <div className="absolute inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
           <Alert variant="destructive" className="max-w-md">
-            <AlertTitle>Camera Access Required</AlertTitle>
+            <AlertTitle>Interactive Background Disabled</AlertTitle>
             <AlertDescription>
-              Please allow camera access to enable the reactive 3D voxel background.
+              Camera permission was denied or not supported. The background will remain static.
             </AlertDescription>
           </Alert>
         </div>

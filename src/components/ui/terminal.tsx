@@ -8,6 +8,7 @@ interface TerminalProps {
   typingSpeed?: number;
   delayBetweenCommands?: number;
   onComplete?: () => void;
+  user?: string;
 }
 
 export function Terminal({
@@ -16,6 +17,7 @@ export function Terminal({
   typingSpeed = 45,
   delayBetweenCommands = 1000,
   onComplete,
+  user = "mukho",
 }: TerminalProps) {
   const [displayedLines, setDisplayedLines] = useState<{ type: 'cmd' | 'out', text: string }[]>([]);
   const [currentCommandIndex, setCurrentCommandIndex] = useState(0);
@@ -79,7 +81,7 @@ export function Terminal({
         <div className="w-3 h-3 rounded-full bg-red-500/50" />
         <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
         <div className="w-3 h-3 rounded-full bg-green-500/50" />
-        <span className="ml-2 text-white/30 text-xs">mukho@neural-canvas ~ bash</span>
+        <span className="ml-2 text-white/30 text-xs">{user}@neural-canvas ~ bash</span>
       </div>
       
       <div className="space-y-1">

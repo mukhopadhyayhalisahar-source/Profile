@@ -1,18 +1,7 @@
 
 'use client';
 
-import { Suspense } from 'react';
-import dynamic from 'next/dynamic';
-
-// Use next/dynamic with ssr: false to prevent hydration errors and ReactCurrentOwner conflicts
-const Spline = dynamic(() => import('@splinetool/react-spline'), { 
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-black/20">
-      <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-    </div>
-  )
-});
+import { useEffect, useRef, useState } from 'react';
 
 interface SplineSceneProps {
   scene: string;
@@ -20,17 +9,42 @@ interface SplineSceneProps {
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
-  return (
-    <Suspense 
-      fallback={
-        <div className="w-full h-full flex items-center justify-center bg-black/20">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        </div>
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let splineApp: any = null;
+
+    const initSpline = async () => {
+      try {
+        const { Application } = await import('@splinetool/runtime');
+        if (!canvasRef.current) return;
+
+        splineApp = new Application(canvasRef.current);
+        await splineApp.load(scene);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading Spline scene:', error);
+        setLoading(false);
       }
-    >
-      <div className={className}>
-        <Spline scene={scene} />
-      </div>
-    </Suspense>
+    };
+
+    initSpline();
+
+    return () => {
+      // The runtime doesn't have a formal destroy, 
+      // but we can clear the canvas if needed.
+    };
+  }, [scene]);
+
+  return (
+    <div className={className + " relative overflow-hidden"}>
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20 z-10">
+          <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
+      <canvas ref={canvasRef} className="w-full h-full block" />
+    </div>
   );
 }

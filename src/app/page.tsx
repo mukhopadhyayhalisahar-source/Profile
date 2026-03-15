@@ -17,7 +17,7 @@ import Lenis from "@studio-freight/lenis";
 import { 
   ArrowRight, Github, 
   Linkedin, Mail, MapPin, GraduationCap, Code, Rocket, Target, 
-  BrainCircuit, Activity, HeartPulse, UserCircle, Shield
+  BrainCircuit, Activity, Shield, UserCircle
 } from "lucide-react";
 
 export default function Home() {
@@ -49,12 +49,12 @@ export default function Home() {
 
   const lynexParallaxImages = [
     { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1280&h=720&fit=crop&q=80', alt: 'AI Architecture' },
-    { src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&h=720&fit=crop&q=80', alt: 'Future City' },
+    { src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&h=720&fit=crop&q=80', alt: 'Urban Cityscape' },
     { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=800&h=800&fit=crop&q=80', alt: 'Abstract UI' },
-    { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&h=720&fit=crop&q=80', alt: 'Precision' },
-    { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=800&fit=crop&q=80', alt: 'Neural Core' },
-    { src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1280&h=720&fit=crop&q=80', alt: 'Flow' },
-    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&h=720&fit=crop&q=80', alt: 'Organic Intelligence' },
+    { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&h=720&fit=crop&q=80', alt: 'Mountainscape' },
+    { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=800&fit=crop&q=80', alt: 'Minimalist Core' },
+    { src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1280&h=720&fit=crop&q=80', alt: 'Ocean Flow' },
+    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&h=720&fit=crop&q=80', alt: 'Sunlight Forest' },
   ];
 
   const profileContent = [
@@ -69,7 +69,7 @@ export default function Home() {
     },
     {
       title: "Technical Interests",
-      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments. Key areas: AI in Healthcare, Medical Data Systems, AI Assistants, Human-Computer Interaction.",
+      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center">
           <Code className="w-16 h-16" />
@@ -78,7 +78,7 @@ export default function Home() {
     },
     {
       title: "Independent Projects",
-      description: "Project Lynex: Development of a modular AI assistant designed to automate workflows and explore integration in healthcare. Gameox: Gesture-operated space shooter exploring how gameplay motion data could contribute to neurological monitoring concepts.",
+      description: "Project Lynex: Modular AI assistant designed to automate workflows and integrate into healthcare environments. Gameox: Gesture-operated platform exploring how gameplay motion data contributes to neurological monitoring concepts.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center">
           <Rocket className="w-16 h-16" />
@@ -157,7 +157,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button 
-                onClick={() => document.getElementById('lynex')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('interactive-3d')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-bold text-black transition-all hover:bg-white/90 hover:scale-105"
               >
                 Get Started
@@ -171,7 +171,7 @@ export default function Home() {
         </section>
 
         {/* Interactive 3D Card */}
-        <section className="px-6 py-20 bg-black">
+        <section id="interactive-3d" className="px-6 py-20 bg-black">
           <div className="max-w-7xl mx-auto">
             <Card className="w-full h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-3xl">
               <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={600} />
@@ -307,19 +307,23 @@ export default function Home() {
                 </RainbowButton>
               </div>
             </div>
-            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm space-y-6">
-              <h4 className="text-xl font-bold flex items-center gap-2">
+            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm space-y-6 text-center md:text-left">
+              <h4 className="text-xl font-bold flex items-center justify-center md:justify-start gap-2">
                 <UserCircle className="w-5 h-5 text-primary" />
                 Open For
               </h4>
               <ul className="text-neutral-400 text-sm space-y-2">
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 justify-center md:justify-start">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   Research collaborations
                 </li>
-                <li className="flex items-center gap-2">
+                <li className="flex items-center gap-2 justify-center md:justify-start">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   Health technology projects
+                </li>
+                <li className="flex items-center gap-2 justify-center md:justify-start">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  AI and healthcare innovation
                 </li>
               </ul>
               <button 

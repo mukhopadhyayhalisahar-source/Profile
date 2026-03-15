@@ -1,18 +1,14 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 import { Loader2 } from 'lucide-react'
 
-// Use next/dynamic with ssr: false to completely isolate the Spline runtime from the server.
-// This prevents "ReactCurrentOwner" errors which occur when Spline tries to access React 19 internals during SSR.
+/**
+ * Dynamically import the Spline component with SSR disabled.
+ */
 const Spline = dynamic(() => import('@splinetool/react-spline'), {
   ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center bg-black/20 backdrop-blur-sm min-h-[300px]">
-      <Loader2 className="w-8 h-8 animate-spin text-primary" />
-    </div>
-  ),
 })
 
 interface SplineSceneProps {
@@ -22,9 +18,25 @@ interface SplineSceneProps {
 
 /**
  * A hydration-safe wrapper for Spline scenes.
- * Renders a loader until the browser is ready to initialize the 3D runtime.
+ * Uses both next/dynamic (ssr: false) and a mounted state guard 
+ * to prevent React 19 "ReactCurrentOwner" errors during initial render.
  */
 export function SplineScene({ scene, className }: SplineSceneProps) {
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  // Return a loader during SSR and the initial hydration pass
+  if (!isMounted) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-black/20 backdrop-blur-sm min-h-[300px]">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    )
+  }
+
   return (
     <div className="w-full h-full relative">
       <Spline

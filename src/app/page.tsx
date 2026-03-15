@@ -106,8 +106,8 @@ export default function Home() {
           gridCols={60}
           gridRows={40}
           darken={0.6}
-          motionSensitivity={0.5}
-          maxElevation={20}
+          motionSensitivity={0.25}
+          maxElevation={50}
           className="opacity-40"
         />
       </div>

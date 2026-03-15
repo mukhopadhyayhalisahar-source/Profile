@@ -26,20 +26,20 @@ interface WebcamPixelGridProps {
 }
 
 export function WebcamPixelGrid({
-  gridCols = 64,
-  gridRows = 48,
-  maxElevation = 15,
-  motionSensitivity = 0.4,
-  elevationSmoothing = 0.1,
+  gridCols = 60,
+  gridRows = 40,
+  maxElevation = 50,
+  motionSensitivity = 0.25,
+  elevationSmoothing = 0.2,
   colorMode = "webcam",
   monochromeColor = "#5A46B9",
   backgroundColor = "#030303",
   mirror = true,
-  gapRatio = 0.1,
+  gapRatio = 0.05,
   invertColors = false,
-  darken = 0,
+  darken = 0.6,
   borderColor = "#ffffff",
-  borderOpacity = 0.08,
+  borderOpacity = 0.06,
   className,
   onWebcamReady,
   onWebcamError,
@@ -55,6 +55,9 @@ export function WebcamPixelGrid({
   useEffect(() => {
     const getCameraPermission = async () => {
       try {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          throw new Error("MediaDevices API not supported");
+        }
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         setHasCameraPermission(true);
         if (videoRef.current) {
@@ -68,7 +71,7 @@ export function WebcamPixelGrid({
         toast({
           variant: 'destructive',
           title: 'Camera Access Denied',
-          description: 'Please enable camera permissions in your browser settings to use the interactive background.',
+          description: 'Please enable camera permissions to use the interactive 3D background.',
         });
       }
     };
@@ -81,7 +84,7 @@ export function WebcamPixelGrid({
         stream.getTracks().forEach(track => track.stop());
       }
     };
-  }, [onWebcamReady, onWebcamError, toast]);
+  }, []);
 
   useEffect(() => {
     if (!hasCameraPermission || !canvasRef.current || !videoRef.current) return;
@@ -154,22 +157,47 @@ export function WebcamPixelGrid({
             const drawW = cellW - gapX;
             const drawH = cellH - gapY;
 
-            ctx.fillStyle = color;
-            ctx.globalAlpha = 0.4 + (elevation / maxElevation) * 0.6;
-            ctx.fillRect(drawX, drawY, drawW, drawH);
+            // 3D Voxel Rendering
+            if (elevation > 0.5) {
+              const perspectiveX = elevation * 0.4;
+              const perspectiveY = elevation * 0.4;
+
+              // Draw Depth (Sides of the cube)
+              ctx.fillStyle = `rgba(0,0,0,0.4)`;
+              ctx.beginPath();
+              ctx.moveTo(drawX, drawY);
+              ctx.lineTo(drawX + perspectiveX, drawY - perspectiveY);
+              ctx.lineTo(drawX + drawW + perspectiveX, drawY - perspectiveY);
+              ctx.lineTo(drawX + drawW, drawY);
+              ctx.fill();
+
+              ctx.beginPath();
+              ctx.moveTo(drawX + drawW, drawY);
+              ctx.lineTo(drawX + drawW + perspectiveX, drawY - perspectiveY);
+              ctx.lineTo(drawX + drawW + perspectiveX, drawY + drawH - perspectiveY);
+              ctx.lineTo(drawX + drawW, drawY + drawH);
+              ctx.fill();
+
+              // Draw Top Face (The elevated pixel)
+              ctx.fillStyle = color;
+              ctx.fillRect(drawX + perspectiveX, drawY - perspectiveY, drawW, drawH);
+            } else {
+              ctx.fillStyle = color;
+              ctx.fillRect(drawX, drawY, drawW, drawH);
+            }
             
             if (borderOpacity > 0) {
               ctx.strokeStyle = borderColor;
               ctx.globalAlpha = borderOpacity;
               ctx.lineWidth = 0.5;
               ctx.strokeRect(drawX, drawY, drawW, drawH);
+              ctx.globalAlpha = 1.0;
             }
           }
         }
         previousFrameRef.current = new Uint8ClampedArray(data);
       }
 
-      ctx.globalAlpha = 1.0;
       animationFrameId = requestAnimationFrame(render);
     };
 
@@ -179,7 +207,7 @@ export function WebcamPixelGrid({
 
   return (
     <div className={cn("relative overflow-hidden w-full h-full", className)}>
-      <video ref={videoRef} autoPlay muted playsInline className="absolute opacity-0 pointer-events-none" />
+      <video ref={videoRef} autoPlay muted playsInline className="absolute opacity-0 pointer-events-none w-0 h-0" />
       <canvas 
         ref={canvasRef} 
         width={1200} 
@@ -188,11 +216,11 @@ export function WebcamPixelGrid({
       />
       
       {hasCameraPermission === false && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm">
+        <div className="absolute inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
           <Alert variant="destructive" className="max-w-md bg-background/95">
             <AlertTitle>Camera Access Required</AlertTitle>
             <AlertDescription>
-              Please allow camera access in your browser settings to experience the interactive background.
+              Please allow camera access in your browser settings to enable the 3D motion-reactive grid.
             </AlertDescription>
           </Alert>
         </div>

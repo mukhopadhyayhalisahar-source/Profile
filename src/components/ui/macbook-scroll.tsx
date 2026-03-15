@@ -1,6 +1,5 @@
-
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -35,32 +34,29 @@ export const MacbookScroll = ({
     >
       <motion.h2
         style={{ opacity: textOpacity }}
-        className="text-neutral-800 dark:text-white text-3xl font-bold mb-20 text-center"
+        className="text-white text-3xl md:text-5xl font-bold mb-20 text-center px-4"
       >
-        {title || (
-          <span>
-            This Macbook is built with Tailwindcss. <br /> No kidding.
-          </span>
-        )}
+        {title}
       </motion.h2>
-      {/* Lid */}
-      <Lid
-        src={src}
-        scaleX={scaleX}
-        scaleY={scaleY}
-        rotate={rotate}
-        translate={translate}
-      />
-      {/* Base */}
-      <div className="h-[22rem] w-[32rem] bg-gray-200 dark:bg-[#272729] rounded-2xl overflow-hidden relative shadow-2xl">
-        {/* Keyboard Simulation */}
-        <motion.div style={{ opacity: keyboardOpacity }} className="h-full w-full p-4">
-           <div className="grid grid-cols-12 gap-1 h-full opacity-20">
-             {Array.from({length: 48}).map((_, i) => (
-               <div key={i} className="bg-neutral-500 rounded-sm h-6 w-full" />
-             ))}
-           </div>
-        </motion.div>
+      
+      <div className="relative [perspective:800px]">
+        <Lid
+          src={src}
+          scaleX={scaleX}
+          scaleY={scaleY}
+          rotate={rotate}
+          translate={translate}
+        />
+        {/* Base */}
+        <div className="h-[22rem] w-[32rem] bg-[#272729] rounded-2xl overflow-hidden relative shadow-2xl border-t-2 border-white/5">
+          <motion.div style={{ opacity: keyboardOpacity }} className="h-full w-full p-4">
+             <div className="grid grid-cols-12 gap-1 h-full opacity-20">
+               {Array.from({length: 48}).map((_, i) => (
+                 <div key={i} className="bg-neutral-500 rounded-sm h-6 w-full" />
+               ))}
+             </div>
+          </motion.div>
+        </div>
       </div>
       {badge && <div className="absolute bottom-20 right-20">{badge}</div>}
     </div>
@@ -81,35 +77,33 @@ export const Lid = ({
   src?: string;
 }) => {
   return (
-    <div className="relative [perspective:800px]">
-      <div
-        style={{
-          transform: "perspective(800px) rotateX(-25deg) translateZ(0px)",
-          transformOrigin: "bottom",
-        }}
-        className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl"
-      >
-        <div className="h-full w-full relative">
-          <motion.div
-            style={{
-              scaleX: scaleX,
-              scaleY: scaleY,
-              rotateX: rotate,
-              translateY: translate,
-              transformOrigin: "top",
-              transformStyle: "preserve-3d",
-            }}
-            className="h-full w-full absolute inset-0 bg-[#010101] rounded-2xl p-2"
-          >
-            <div className="h-full w-full bg-neutral-900 rounded-xl overflow-hidden relative border border-white/10">
-              <img
-                src={src || "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1024&h=768"}
-                alt="macbook cover"
-                className="object-cover h-full w-full"
-              />
-            </div>
-          </motion.div>
-        </div>
+    <div
+      style={{
+        transform: "perspective(800px) rotateX(-25deg) translateZ(0px)",
+        transformOrigin: "bottom",
+      }}
+      className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl"
+    >
+      <div className="h-full w-full relative">
+        <motion.div
+          style={{
+            scaleX: scaleX,
+            scaleY: scaleY,
+            rotateX: rotate,
+            translateY: translate,
+            transformOrigin: "top",
+            transformStyle: "preserve-3d",
+          }}
+          className="h-full w-full absolute inset-0 bg-[#010101] rounded-2xl p-2"
+        >
+          <div className="h-full w-full bg-neutral-900 rounded-xl overflow-hidden relative border border-white/10">
+            <img
+              src={src || "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1024&h=768"}
+              alt="macbook cover"
+              className="object-cover h-full w-full"
+            />
+          </div>
+        </motion.div>
       </div>
     </div>
   );

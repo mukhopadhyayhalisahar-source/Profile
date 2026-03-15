@@ -14,7 +14,7 @@ export function HeroSection() {
     const rect = containerRef.current.getBoundingClientRect();
     setMousePos({
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+      y: e.cliey: e.clientY - rect.top,nfY - rect.top,
     });
   };
 

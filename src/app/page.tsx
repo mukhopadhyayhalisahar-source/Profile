@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -15,7 +14,7 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
-import { ExternalLink, Github, Linkedin, BrainCircuit, Activity, Database, Shield, Zap, Monitor } from "lucide-react";
+import { Github, Linkedin, BrainCircuit, Activity, Database, Shield, Zap, Monitor, ArrowRight } from "lucide-react";
 
 export default function Home() {
   const [booted, setBooted] = useState(false);
@@ -145,33 +144,39 @@ export default function Home() {
             gridCols={60}
             gridRows={40}
             darken={0.6}
+            motionSensitivity={0.5}
+            maxElevation={20}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 pointer-events-none z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80 pointer-events-none z-[1]" />
           
           <div className="relative z-10 max-w-5xl space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white/70 backdrop-blur-sm"
             >
-              Medical Student x AI Innovator
+              Medical Student x AI Innovator &rarr;
             </motion.div>
             
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-headline font-bold tracking-tighter leading-none">
+            <h1 className="text-4xl md:text-7xl lg:text-8xl font-headline font-bold tracking-tighter leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40">
               Medicine, AI, and the <br />
               <span className="text-primary">Future of Intelligent Hospitals.</span>
             </h1>
             
-            <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-400 font-body">
+            <p className="max-w-2xl mx-auto text-lg md:text-xl text-neutral-400 font-body leading-relaxed">
               Medical student at Jhargram Government Medical College building AI assistants and healthcare systems designed for the next generation of medicine.
             </p>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row pt-4">
-              <RainbowButton onClick={() => document.getElementById('lynex')?.scrollIntoView({ behavior: 'smooth' })}>
-                Explore Projects
-              </RainbowButton>
-              <button className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 text-sm font-bold uppercase tracking-widest text-white backdrop-blur-sm transition-all hover:bg-white/10">
-                Contact Founder
+              <button 
+                onClick={() => document.getElementById('lynex')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group relative inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-8 text-base font-bold text-black transition-all hover:bg-white/90 hover:scale-105"
+              >
+                Get Started
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </button>
+              <button className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 text-base font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10">
+                View Documentation
               </button>
             </div>
           </div>

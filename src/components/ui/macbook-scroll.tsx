@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
@@ -129,10 +128,9 @@ export const Lid = ({
   translate: MotionValue<number>;
   src?: string;
 }) => {
-  const isVideo = src?.endsWith('.webm') || 
-                  src?.endsWith('.mp4') || 
-                  src?.includes('user-attachments/assets') || 
-                  (src?.includes('github.com') && src?.includes('issue'));
+  const isVideo = src?.endsWith('.mp4') || 
+                  src?.endsWith('.webm') || 
+                  src?.includes('user-attachments/assets');
 
   return (
     <div className="relative [perspective:800px]">
@@ -281,7 +279,7 @@ export const Keypad = () => {
         </KBtn>
         <KBtn className="w-[8.2rem]"></KBtn>
         <KBtn className="w-8" childrenClassName="h-full justify-between py-[4px]">
-          <div className="flex w-full justify-start pl-1"><IconCommand className="h-[6px] w-[6px]" /></div>
+          <div className="flex w-full justify-end pr-1"><IconCommand className="h-[6px] w-[6px]" /></div>
           <div className="flex w-full justify-start pl-1"><span className="block text-[5px]">command</span></div>
         </KBtn>
         <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -92,7 +91,6 @@ export default function Home() {
     { src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200", alt: "Hardware" },
     { src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200", alt: "MedTech" },
     { src: "https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=1200", alt: "Neural" },
-    { src: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=1200", alt: "Future" },
     { src: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200", alt: "Robotics" },
     { src: "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=1200", alt: "Data" },
   ];
@@ -274,7 +272,7 @@ export default function Home() {
                 <Badge className="h-10 w-10 -rotate-12 transform hover:scale-110 transition-transform" />
               </button>
             }
-            src="https://github.com/mukhopadhyayhalisahar-source/Profile/issues/1#issue-4078628592"
+            src="https://github.com/user-attachments/assets/c6b07f4d-2222-4c76-9b75-e10040ddd5a9"
             showGradient={false}
           />
 

@@ -12,14 +12,10 @@ interface WebcamPixelGridProps {
   motionSensitivity?: number;
   elevationSmoothing?: number;
   colorMode?: "webcam" | "monochrome";
-  monochromeColor?: string;
   backgroundColor?: string;
   mirror?: boolean;
   gapRatio?: number;
-  invertColors?: boolean;
   darken?: number;
-  borderColor?: string;
-  borderOpacity?: number;
   className?: string;
   onWebcamReady?: () => void;
   onWebcamError?: (err: any) => void;
@@ -28,18 +24,14 @@ interface WebcamPixelGridProps {
 export function WebcamPixelGrid({
   gridCols = 60,
   gridRows = 40,
-  maxElevation = 45,
+  maxElevation = 50,
   motionSensitivity = 0.35,
   elevationSmoothing = 0.15,
   colorMode = "webcam",
-  monochromeColor = "#5A46B9",
   backgroundColor = "#030303",
   mirror = true,
   gapRatio = 0.08,
-  invertColors = false,
   darken = 0.7,
-  borderColor = "#ffffff",
-  borderOpacity = 0.05,
   className,
   onWebcamReady,
   onWebcamError,
@@ -115,13 +107,11 @@ export function WebcamPixelGrid({
 
         const cellW = width / gridCols;
         const cellH = height / gridRows;
-        const gapX = cellW * gapRatio;
-        const gapY = cellH * gapRatio;
-        const boxW = cellW - gapX;
-        const boxH = cellH - gapY;
+        const boxW = cellW * (1 - gapRatio);
+        const boxH = cellH * (1 - gapRatio);
 
-        const centerX = gridCols / 2;
-        const centerY = gridRows / 2;
+        const centerX = width / 2;
+        const centerY = height / 2;
 
         for (let j = 0; j < gridRows; j++) {
           for (let i = 0; i < gridCols; i++) {
@@ -139,74 +129,50 @@ export function WebcamPixelGrid({
               motion = (Math.abs(r - pr) + Math.abs(g - pg) + Math.abs(b - pb)) / 765;
             }
 
-            const targetElevation = motion * motionSensitivity * maxElevation;
             const idx = j * gridCols + i;
+            const targetElevation = motion * motionSensitivity * maxElevation;
             elevationsRef.current[idx] += (targetElevation - elevationsRef.current[idx]) * elevationSmoothing;
 
             const elevation = elevationsRef.current[idx];
-            
-            // Base Color
-            let baseR = r, baseG = g, baseB = b;
-            if (colorMode === "monochrome") {
-              baseR = 90; baseG = 70; baseB = 185; 
-            }
-            if (invertColors) {
-              baseR = 255 - baseR; baseG = 255 - baseG; baseB = 255 - baseB;
-            }
-            
+            if (elevation < 0.1) continue;
+
+            const baseR = colorMode === "monochrome" ? 90 : r;
+            const baseG = colorMode === "monochrome" ? 70 : g;
+            const baseB = colorMode === "monochrome" ? 185 : b;
+
             const darkFactor = 1 - darken;
-            // Enhanced shading for better voxel depth
             const mainColor = `rgb(${baseR * darkFactor}, ${baseG * darkFactor}, ${baseB * darkFactor})`;
-            const topColor = `rgb(${Math.min(255, (baseR + 80) * darkFactor)}, ${Math.min(255, (baseG + 80) * darkFactor)}, ${Math.min(255, (baseB + 80) * darkFactor)})`;
-            const sideColor = `rgb(${Math.max(0, (baseR - 60) * darkFactor)}, ${Math.max(0, (baseG - 60) * darkFactor)}, ${Math.max(0, (baseB - 60) * darkFactor)})`;
+            const topColor = `rgb(${Math.min(255, (baseR + 60) * darkFactor)}, ${Math.min(255, (baseG + 60) * darkFactor)}, ${Math.min(255, (baseB + 60) * darkFactor)})`;
+            const sideColor = `rgb(${Math.max(0, (baseR - 40) * darkFactor)}, ${Math.max(0, (baseG - 40) * darkFactor)}, ${Math.max(0, (baseB - 40) * darkFactor)})`;
 
-            const drawX = i * cellW + gapX / 2;
-            const drawY = j * cellH + gapY / 2;
+            const drawX = i * cellW + (cellW * gapRatio) / 2;
+            const drawY = j * cellH + (cellH * gapRatio) / 2;
 
-            // Voxel depth and perspective offsets
-            const depth = elevation;
-            
-            // Perspective extrusion: cubes tilt away from the center
-            const perspectiveX = (i - centerX) / centerX * depth;
-            const perspectiveY = (j - centerY) / centerY * depth;
+            // Perspective extrusion offsets
+            const perspectiveX = (drawX - centerX) / centerX * elevation;
+            const perspectiveY = (drawY - centerY) / centerY * elevation;
 
-            if (depth > 0.1) {
-              // Side Face (Right/Left)
-              ctx.fillStyle = sideColor;
-              ctx.beginPath();
-              ctx.moveTo(drawX + boxW, drawY);
-              ctx.lineTo(drawX + boxW + perspectiveX, drawY + perspectiveY);
-              ctx.lineTo(drawX + boxW + perspectiveX, drawY + boxH + perspectiveY);
-              ctx.lineTo(drawX + boxW, drawY + boxH);
-              ctx.closePath();
-              ctx.fill();
+            // Side Face
+            ctx.fillStyle = sideColor;
+            ctx.beginPath();
+            ctx.moveTo(drawX + boxW, drawY);
+            ctx.lineTo(drawX + boxW + perspectiveX, drawY + perspectiveY);
+            ctx.lineTo(drawX + boxW + perspectiveX, drawY + boxH + perspectiveY);
+            ctx.lineTo(drawX + boxW, drawY + boxH);
+            ctx.fill();
 
-              // Top Face
-              ctx.fillStyle = topColor;
-              ctx.beginPath();
-              ctx.moveTo(drawX, drawY);
-              ctx.lineTo(drawX + perspectiveX, drawY + perspectiveY);
-              ctx.lineTo(drawX + boxW + perspectiveX, drawY + perspectiveY);
-              ctx.lineTo(drawX + boxW, drawY);
-              ctx.closePath();
-              ctx.fill();
+            // Top Face
+            ctx.fillStyle = topColor;
+            ctx.beginPath();
+            ctx.moveTo(drawX, drawY);
+            ctx.lineTo(drawX + perspectiveX, drawY + perspectiveY);
+            ctx.lineTo(drawX + boxW + perspectiveX, drawY + perspectiveY);
+            ctx.lineTo(drawX + boxW, drawY);
+            ctx.fill();
 
-              // Front Face (Elevated)
-              ctx.fillStyle = mainColor;
-              ctx.fillRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
-              
-              if (borderOpacity > 0) {
-                ctx.strokeStyle = borderColor;
-                ctx.globalAlpha = borderOpacity;
-                ctx.lineWidth = 0.5;
-                ctx.strokeRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
-                ctx.globalAlpha = 1.0;
-              }
-            } else {
-              // Flat Voxel
-              ctx.fillStyle = mainColor;
-              ctx.fillRect(drawX, drawY, boxW, boxH);
-            }
+            // Front Face
+            ctx.fillStyle = mainColor;
+            ctx.fillRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
           }
         }
         previousFrameRef.current = new Uint8ClampedArray(data);
@@ -217,7 +183,7 @@ export function WebcamPixelGrid({
 
     render();
     return () => cancelAnimationFrame(animationFrameId);
-  }, [hasCameraPermission, gridCols, gridRows, maxElevation, motionSensitivity, elevationSmoothing, colorMode, monochromeColor, backgroundColor, mirror, gapRatio, invertColors, darken, borderColor, borderOpacity]);
+  }, [hasCameraPermission, gridCols, gridRows, maxElevation, motionSensitivity, elevationSmoothing, colorMode, backgroundColor, mirror, gapRatio, darken]);
 
   return (
     <div className={cn("relative overflow-hidden w-full h-full", className)}>
@@ -231,10 +197,10 @@ export function WebcamPixelGrid({
       
       {hasCameraPermission === false && (
         <div className="absolute inset-0 z-50 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
-          <Alert variant="destructive" className="max-w-md bg-background/95">
-            <AlertTitle>Camera Access Required</AlertTitle>
+          <Alert variant="destructive" className="max-w-md">
+            <AlertTitle>Camera Required</AlertTitle>
             <AlertDescription>
-              Please allow camera access in your browser settings to enable the reactive 3D voxel grid background.
+              Please allow camera access to enable the reactive 3D voxel background.
             </AlertDescription>
           </Alert>
         </div>

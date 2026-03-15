@@ -34,7 +34,7 @@ export const MacbookScroll = ({
     >
       <motion.h2
         style={{ opacity: textOpacity }}
-        className="text-white text-3xl md:text-5xl font-bold mb-20 text-center px-4"
+        className="text-white text-3xl md:text-5xl font-bold mb-20 text-center px-4 font-headline"
       >
         {title}
       </motion.h2>
@@ -47,18 +47,30 @@ export const MacbookScroll = ({
           rotate={rotate}
           translate={translate}
         />
-        {/* Base */}
+        {/* Base / Keyboard */}
         <div className="h-[22rem] w-[32rem] bg-[#272729] rounded-2xl overflow-hidden relative shadow-2xl border-t-2 border-white/5">
           <motion.div style={{ opacity: keyboardOpacity }} className="h-full w-full p-4">
-             <div className="grid grid-cols-12 gap-1 h-full opacity-20">
-               {Array.from({length: 48}).map((_, i) => (
-                 <div key={i} className="bg-neutral-500 rounded-sm h-6 w-full" />
+             {/* Simplified Keyboard Layout */}
+             <div className="grid grid-cols-12 gap-1.5 h-full opacity-40">
+               {Array.from({length: 60}).map((_, i) => (
+                 <div key={i} className={cn(
+                   "bg-neutral-600 rounded-sm h-6 shadow-inner border border-black/20",
+                   i % 12 === 0 ? "col-span-2" : "col-span-1",
+                   i === 58 ? "col-span-4" : ""
+                 )} />
                ))}
              </div>
+             {/* Trackpad */}
+             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-32 h-20 bg-neutral-800 rounded-lg border border-white/5 shadow-inner" />
           </motion.div>
         </div>
+
+        {badge && (
+          <div className="absolute -right-20 bottom-10 z-50">
+            {badge}
+          </div>
+        )}
       </div>
-      {badge && <div className="absolute bottom-20 right-20">{badge}</div>}
     </div>
   );
 };
@@ -82,7 +94,7 @@ export const Lid = ({
         transform: "perspective(800px) rotateX(-25deg) translateZ(0px)",
         transformOrigin: "bottom",
       }}
-      className="h-[12rem] w-[32rem] bg-[#010101] rounded-2xl"
+      className="h-[12.5rem] w-[32rem] bg-[#010101] rounded-2xl"
     >
       <div className="h-full w-full relative">
         <motion.div
@@ -91,17 +103,18 @@ export const Lid = ({
             scaleY: scaleY,
             rotateX: rotate,
             translateY: translate,
-            transformOrigin: "top",
+            transformOrigin: "bottom",
             transformStyle: "preserve-3d",
           }}
-          className="h-full w-full absolute inset-0 bg-[#010101] rounded-2xl p-2"
+          className="h-full w-full absolute inset-0 bg-[#010101] rounded-2xl p-2 border-t border-white/10"
         >
-          <div className="h-full w-full bg-neutral-900 rounded-xl overflow-hidden relative border border-white/10">
+          <div className="h-full w-full bg-neutral-900 rounded-xl overflow-hidden relative border border-white/5">
             <img
-              src={src || "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1024&h=768"}
-              alt="macbook cover"
+              src={src || "https://picsum.photos/seed/gameox/1200/800"}
+              alt="Project Showcase"
               className="object-cover h-full w-full"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
         </motion.div>
       </div>

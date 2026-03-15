@@ -49,13 +49,13 @@ export default function Home() {
   };
 
   const ovexisParallaxImages = [
-    { src: 'https://github.com/user-attachments/assets/c466d05f-5628-4116-98e1-98fb017348bf', alt: 'Ovexis Core Interface' },
-    { src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280&h=720&fit=crop&q=80', alt: 'AI Neural Mapping' },
-    { src: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=800&fit=crop&q=80', alt: 'Robotic Assistance' },
-    { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1280&h=720&fit=crop&q=80', alt: 'Medical Tech Analysis' },
-    { src: 'https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=800&h=800&fit=crop&q=80', alt: 'Human-AI Interaction' },
-    { src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&h=720&fit=crop&q=80', alt: 'Core Circuitry' },
-    { src: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1280&h=720&fit=crop&q=80', alt: 'Scientific Research' },
+    { src: 'https://github.com/user-attachments/assets/c466d05f-5628-4116-98e1-98fb017348bf', alt: 'Ovexis Core' },
+    { src: 'https://github.com/user-attachments/assets/4e0dc5bf-5639-4aaa-a117-c665fec5f5c5', alt: 'Ovexis System Interface' },
+    { src: 'https://github.com/user-attachments/assets/f0bf1cd2-96ba-4e92-b529-3cb2942f0531', alt: 'Ovexis Neural Node' },
+    { src: 'https://github.com/user-attachments/assets/8b56ae54-b536-46a1-9cd6-589089dcc3d1', alt: 'Ovexis Data Analytics' },
+    { src: 'https://github.com/user-attachments/assets/6c27a12c-eec8-414e-a846-2472576b7b74', alt: 'Ovexis Visual Protocol' },
+    { src: 'https://github.com/user-attachments/assets/4e0dc5bf-5639-4aaa-a117-c665fec5f5c5', alt: 'Ovexis Sub-system' },
+    { src: 'https://github.com/user-attachments/assets/f0bf1cd2-96ba-4e92-b529-3cb2942f0531', alt: 'Ovexis Component' },
   ];
 
   const profileContent = [
@@ -538,4 +538,3 @@ export default function Home() {
     </main>
   );
 }
-

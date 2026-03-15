@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Sparkles, Loader2, Lightbulb } from "lucide-react";
+import { Sparkles, Loader2, Lightbulb, Cpu } from "lucide-react";
 
 export function ProjectInsights() {
   const [loading, setLoading] = useState(false);

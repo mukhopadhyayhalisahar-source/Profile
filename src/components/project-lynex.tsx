@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { PlaceHolderImages } from "@/app/lib/placeholder-images";
-import { Monitor, Zap, Shield, Database } from "lucide-react";
+import { Monitor, Zap, Shield, Database, BrainCircuit } from "lucide-react";
 
 export function ProjectLynex() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -87,32 +87,5 @@ export function ProjectLynex() {
         </motion.div>
       </div>
     </section>
-  );
-}
-
-function BrainCircuit(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 4.5V2" />
-      <path d="m4.929 7.071-1.768-1.768" />
-      <path d="M2.5 12H1" />
-      <path d="m4.929 16.929-1.768 1.768" />
-      <path d="M12 19.5V22" />
-      <path d="m19.071 16.929 1.768 1.768" />
-      <path d="M21.5 12H23" />
-      <path d="m19.071 7.071 1.768-1.768" />
-      <path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-    </svg>
   );
 }

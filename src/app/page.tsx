@@ -69,7 +69,7 @@ export default function Home() {
     },
     {
       title: "2. Technical Interests",
-      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. Key areas of interest include: Artificial Intelligence in Healthcare, Medical Data Systems, AI Assistants and Automation, Human–Computer Interaction, Digital Health Innovation.",
+      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center font-bold">
           Technical Interests
@@ -100,11 +100,9 @@ export default function Home() {
       content: (
         <div className="flex flex-col h-full w-full items-center justify-center bg-slate-900 p-8 gap-6">
            <RainbowButton onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
-            <Github className="w-4 h-4 mr-2" />
             GitHub Profile
           </RainbowButton>
           <RainbowButton onClick={() => window.open('https://www.linkedin.com/in/ayan-mukhopadhyay1', '_blank')}>
-            <Linkedin className="w-4 h-4 mr-2" />
             LinkedIn Profile
           </RainbowButton>
           <div className="flex items-center gap-2 text-white/60 text-sm">
@@ -193,7 +191,7 @@ export default function Home() {
         {/* Project Lynex — The HQ */}
         <section id="lynex-hq" className="px-6 py-20 bg-black">
           <div className="max-w-7xl mx-auto space-y-20">
-            {/* 1. Overview & Hero Card */}
+            {/* 1. Header & Overview */}
             <Card className="w-full min-h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-[3rem]">
               <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={600} />
               <div className="flex flex-col lg:flex-row h-full">
@@ -244,7 +242,6 @@ export default function Home() {
                   <li>Weak integration with specialized domains like healthcare or research</li>
                   <li>Heavy reliance on cloud connectivity</li>
                 </ul>
-                <p className="text-neutral-500 text-[10px] mt-4 italic border-t border-white/5 pt-4">As a result, users still spend significant time manually managing tasks, information, and tools.</p>
               </div>
 
               <div className="p-10 rounded-[2.5rem] bg-primary/5 border border-primary/10 space-y-6">
@@ -308,7 +305,6 @@ export default function Home() {
                       <div className="text-sm font-medium"><span className="text-white">{tech.name}</span> — <span className="text-neutral-400">{tech.role}</span></div>
                     </div>
                   ))}
-                  <p className="text-[10px] text-neutral-500 italic">The system architecture is designed to be modular, allowing future integration of vision systems and memory layers.</p>
                 </div>
               </div>
 
@@ -330,7 +326,6 @@ export default function Home() {
                       <span className="text-xs text-neutral-300">{goal}</span>
                     </div>
                   ))}
-                  <p className="text-[10px] text-neutral-500 italic">These improvements aim to transform Lynex into a fully capable AI operating companion.</p>
                 </div>
               </div>
             </div>
@@ -365,7 +360,9 @@ export default function Home() {
                     <span className="text-white font-bold text-right">AI Assistants, MedTech</span>
                   </div>
                 </div>
-                <RainbowButton className="w-full">View Source Code</RainbowButton>
+                <RainbowButton className="w-full" onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
+                  View Source Code
+                </RainbowButton>
               </div>
             </div>
           </div>
@@ -379,7 +376,108 @@ export default function Home() {
           <ZoomParallax images={lynexParallaxImages} />
         </section>
 
-        {/* Project Gameox Section */}
+        {/* Project Gameox — The HQ */}
+        <section id="gameox-hq" className="px-6 py-20 bg-black">
+          <div className="max-w-7xl mx-auto space-y-20">
+            {/* Header & Overview */}
+            <div className="space-y-6 max-w-4xl">
+              <h2 className="text-4xl md:text-6xl font-headline font-bold text-white">
+                Gameox — <span className="text-secondary">Gesture-Operated Health Analytics Game</span>
+              </h2>
+              <p className="text-neutral-300 text-lg md:text-xl leading-relaxed font-body">
+                Gameox is an experimental gesture-controlled space shooter game that combines interactive gameplay with basic health analytics. The project explores how gaming environments can be used to collect motion data and generate preliminary insights related to neurological and motor conditions.
+              </p>
+              <p className="text-neutral-400 text-sm leading-relaxed font-body">
+                Unlike traditional games that rely on keyboards or controllers, Gameox allows players to control the game using hand gestures detected through a camera. Player movements directly control the spaceship, enabling a fully touch-free gameplay experience.
+              </p>
+            </div>
+
+            {/* Concept & Purpose */}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 space-y-6">
+                <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center">
+                  <BrainCircuit className="w-6 h-6 text-secondary" />
+                </div>
+                <h3 className="text-2xl font-bold">Concept</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Gameox was designed to explore the intersection of gaming, computer vision, and health monitoring. By analyzing a player’s gesture patterns during gameplay—such as movement speed, reaction time, and stability—the system can generate a simple analytical report at the end of the session. The project investigates whether game-based motion analysis could someday contribute to the early screening or monitoring of neurological conditions that affect motor control.
+                </p>
+              </div>
+
+              <div className="p-10 rounded-[2.5rem] bg-primary/5 border border-primary/10 space-y-6">
+                <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
+                  <Target className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold">Purpose of the Project</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed">
+                  Gameox was created as an exploratory project to investigate how interactive games could serve as data collection tools for health analytics. The aim is not to provide medical diagnosis but to demonstrate how gameplay environments could potentially contribute to non-invasive monitoring of motor functions. This concept may open possibilities for future research in digital health, neurological monitoring, and gamified diagnostic tools.
+                </p>
+              </div>
+            </div>
+
+            {/* Core Features */}
+            <div className="space-y-8">
+              <h3 className="text-3xl font-bold flex items-center gap-3">
+                <Activity className="w-8 h-8 text-secondary" />
+                Core Features
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { title: "Gesture-Based Gameplay", desc: "Players control the spaceship using hand gestures detected by the system’s camera, eliminating the need for traditional controllers." },
+                  { title: "Real-Time Motion Tracking", desc: "The system tracks hand movements and converts them into in-game actions such as navigation and shooting." },
+                  { title: "Space Shooter Gameplay", desc: "Players navigate through waves of enemies in a classic arcade-style space environment." },
+                  { title: "Session-Based Analysis", desc: "After the game session ends, the system analyzes captured motion patterns and generates a simple report based on the collected data." },
+                  { title: "Experimental Health Insights", desc: "The report explores potential indicators related to motor coordination, which may be relevant for studying neurological conditions such as Parkinsonian movement patterns." }
+                ].map((feature, i) => (
+                  <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-secondary/40 transition-colors">
+                    <h4 className="font-bold mb-3 text-white">{feature.title}</h4>
+                    <p className="text-neutral-400 text-xs leading-relaxed">{feature.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Technologies Used & Project Status */}
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-8">
+                <h3 className="text-3xl font-bold flex items-center gap-3">
+                  <Cpu className="w-8 h-8 text-secondary" />
+                  Technologies Used
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    "Computer Vision for gesture detection",
+                    "Real-time motion tracking algorithms",
+                    "Python-based game logic",
+                    "Camera input processing",
+                    "Data analysis for session reporting"
+                  ].map((tech, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                      <div className="w-2 h-2 rounded-full bg-secondary" />
+                      <div className="text-sm font-medium text-neutral-300">{tech}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-12 rounded-[3.5rem] bg-gradient-to-br from-secondary/10 via-black to-black border border-white/10 flex flex-col justify-center space-y-6">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">Project Status</span>
+                  <div className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold">EXPERIMENTAL</div>
+                </div>
+                <h3 className="text-2xl font-bold">Prototype / Experimental Research Project</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed font-body">
+                  Exploring non-invasive monitoring of motor functions through interactive gameplay.
+                </p>
+                <RainbowButton className="w-full" onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
+                  View Case Study
+                </RainbowButton>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Project Gameox Animation */}
         <section id="gameox" className="bg-black relative">
           <MacbookScroll 
             title={
@@ -422,11 +520,9 @@ export default function Home() {
               </div>
               <div className="flex flex-wrap gap-4">
                 <RainbowButton onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
-                  <Github className="w-4 h-4 mr-2" />
                   GitHub Profile
                 </RainbowButton>
                 <RainbowButton onClick={() => window.open('https://www.linkedin.com/in/ayan-mukhopadhyay1', '_blank')}>
-                  <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn Profile
                 </RainbowButton>
               </div>

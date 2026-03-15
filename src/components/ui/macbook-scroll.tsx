@@ -62,7 +62,8 @@ export const MacbookScroll = ({
     [1, isMobile ? 1.2 : 3.2]
   );
   
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1200]);
+  // Translation to clear the section and fit into view
+  const translate = useTransform(scrollYProgress, [0, 0.6], [0, 1400]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.15, 0.4], [-28, -28, 0]);
   const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
@@ -70,7 +71,7 @@ export const MacbookScroll = ({
   return (
     <div
       ref={ref}
-      className="flex min-h-[250vh] shrink-0 transform flex-col items-center justify-start py-20 [perspective:1200px] bg-black"
+      className="flex min-h-[300vh] shrink-0 transform flex-col items-center justify-start py-20 [perspective:1200px] bg-black overflow-clip"
     >
       <motion.div
         style={{
@@ -84,7 +85,7 @@ export const MacbookScroll = ({
         </h2>
       </motion.div>
 
-      <div className="sticky top-[15%] flex flex-col items-center">
+      <div className="sticky top-[15%] flex flex-col items-center z-40">
         <Lid
           src={src}
           scaleX={scaleX}
@@ -152,7 +153,9 @@ export const Lid = ({
         className="relative h-[12rem] w-[32rem] rounded-2xl bg-[#010101] p-2"
       >
         <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-[#0a0a0a] border border-white/5">
-          <AceternityLogo />
+          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+             <div className="w-4 h-4 rounded-full bg-white/10" />
+          </div>
         </div>
       </div>
 
@@ -166,18 +169,26 @@ export const Lid = ({
           transformStyle: "preserve-3d",
           transformOrigin: "top",
         }}
-        className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-[#010101] p-2 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden"
+        className="absolute inset-0 h-[20rem] w-[32rem] rounded-2xl bg-[#010101] p-3 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden"
       >
-        <div className="absolute inset-0 rounded-lg bg-[#1a1a1a]" />
+        <div className="absolute inset-0 rounded-lg bg-[#111]" />
         <div className="relative w-full h-full rounded-lg overflow-hidden border border-white/10 bg-black">
-          <video
-            src={src}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
+          {src?.includes('assets') || src?.endsWith('.mp4') || src?.endsWith('.webm') ? (
+            <video
+              src={src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <img 
+              src={src} 
+              alt="Screen Content" 
+              className="w-full h-full object-cover"
+            />
+          )}
           {/* Bezel reflections */}
           <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-white/5 via-transparent to-transparent" />
         </div>
@@ -343,14 +354,6 @@ const OptionKey = ({ className }: { className?: string }) => {
   return (
     <svg fill="none" viewBox="0 0 22 22" className={className}>
       <path fill="currentColor" d="M6,22L6,22L6,22C6,22,6,22,6,22z M15,6h6v2h-6V6z M10.2,6h2.2L6,22H3.8L10.2,6z M15,22h6v-2h-6V22z" />
-    </svg>
-  );
-};
-
-const AceternityLogo = () => {
-  return (
-    <svg width="40" height="40" viewBox="0 0 66 65" fill="none" className="h-6 w-6 text-white/20">
-      <path d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696" stroke="currentColor" strokeWidth="15" strokeLinecap="round" />
     </svg>
   );
 };

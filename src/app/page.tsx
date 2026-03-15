@@ -52,7 +52,7 @@ const Badge = ({ className }: { className?: string }) => {
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 27.7778 33.6154 25.8024 33.6154 23.4444C33.6154 25.8024 31.6194 27.7778 29.0769 27.7778H26.3846Z"
+        d="M17 10H29.0769C36.7305 10 43 15.984 43 23.4444C43 30.9048 36.7305 36.8889 29.0769 36.8889H26.3846V44H17V10ZM19 12V42H24.3846V34.8889H29.0769C35.6978 34.8889 41 29.7298 41 23.4444C41 17.1591 35.6978 12 29.0769 12H19ZM24.3846 17.1111H29.0769C32.6521 17.1111 35.6154 19.9114 35.6154 23.4444C35.6154 26.9775 32.6521 29.7778 29.0769 29.7778H24.3846V17.1111ZM26.3846 19.1111V27.7778H29.0769C31.6194 27.7778 33.6154 25.8024 33.6154 23.4444C33.6154 21.0864 31.6194 19.1111 29.0769 19.1111H26.3846Z"
         fill="#24292E"
       ></path>
     </svg>
@@ -260,7 +260,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="gameox" className="bg-black relative overflow-clip">
+        <section id="gameox" className="bg-black relative z-20 overflow-clip">
           <MacbookScroll 
             title={
               <span>
@@ -287,7 +287,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="profile" className="py-20 bg-black">
+        <section id="profile" className="py-20 bg-black relative z-30">
           <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
             <h2 className="text-4xl md:text-6xl font-headline font-bold">Educational Profile</h2>
           </div>

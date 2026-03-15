@@ -1,7 +1,6 @@
-
 "use client";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { MotionValue, motion, useScroll, useTransform } from "motion/react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   IconBrightnessDown,
@@ -53,12 +52,12 @@ export const MacbookScroll = ({
   const scaleX = useTransform(
     scrollYProgress,
     [0, 0.3],
-    [1.2, isMobile ? 1 : 1.5],
+    [1.2, isMobile ? 1 : 1.5]
   );
   const scaleY = useTransform(
     scrollYProgress,
     [0, 0.3],
-    [0.6, isMobile ? 1 : 1.5],
+    [0.6, isMobile ? 1 : 1.5]
   );
   const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
@@ -83,7 +82,6 @@ export const MacbookScroll = ({
           </span>
         )}
       </motion.h2>
-      {/* Lid */}
       <Lid
         src={src}
         scaleX={scaleX}
@@ -91,9 +89,7 @@ export const MacbookScroll = ({
         rotate={rotate}
         translate={translate}
       />
-      {/* Base area */}
       <div className="relative -z-10 h-[22rem] w-[32rem] overflow-hidden rounded-2xl bg-gray-200 dark:bg-[#272729]">
-        {/* above keyboard bar */}
         <div className="relative h-10 w-full">
           <div className="absolute inset-x-0 mx-auto h-4 w-[80%] bg-[#050505]" />
         </div>
@@ -167,7 +163,7 @@ export const Lid = ({
         <div className="absolute inset-0 rounded-lg bg-[#272729]" />
         <img
           src={src || "https://picsum.photos/seed/gameox/1200/800"}
-          alt="aceternity logo"
+          alt="macbook screen"
           className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
         />
       </motion.div>
@@ -189,139 +185,42 @@ export const Trackpad = () => {
 export const Keypad = () => {
   return (
     <div className="mx-1 h-full [transform:translateZ(0)] rounded-md bg-[#050505] p-1 [will-change:transform]">
-      {/* First Row */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn
-          className="w-10 items-end justify-start pb-[2px] pl-[4px]"
-          childrenClassName="items-start"
-        >
-          esc
-        </KBtn>
-        <KBtn>
-          <IconBrightnessDown className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F1</span>
-        </KBtn>
-        <KBtn>
-          <IconBrightnessUp className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F2</span>
-        </KBtn>
-        <KBtn>
-          <IconTable className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F3</span>
-        </KBtn>
-        <KBtn>
-          <IconSearch className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F4</span>
-        </KBtn>
-        <KBtn>
-          <IconMicrophone className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F5</span>
-        </KBtn>
-        <KBtn>
-          <IconMoon className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F6</span>
-        </KBtn>
-        <KBtn>
-          <IconPlayerTrackPrev className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F7</span>
-        </KBtn>
-        <KBtn>
-          <IconPlayerSkipForward className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F8</span>
-        </KBtn>
-        <KBtn>
-          <IconPlayerTrackNext className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F9</span>
-        </KBtn>
-        <KBtn>
-          <IconVolume3 className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F10</span>
-        </KBtn>
-        <KBtn>
-          <IconVolume2 className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F11</span>
-        </KBtn>
-        <KBtn>
-          <IconVolume className="h-[6px] w-[6px]" />
-          <span className="mt-1 inline-block text-[5px]">F12</span>
-        </KBtn>
-        <KBtn>
-          <div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-900 from-20% via-black via-50% to-neutral-900 to-95% p-px">
-            <div className="h-full w-full rounded-full bg-black" />
-          </div>
-        </KBtn>
+        <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start">esc</KBtn>
+        <KBtn><IconBrightnessDown className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F1</span></KBtn>
+        <KBtn><IconBrightnessUp className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F2</span></KBtn>
+        <KBtn><IconTable className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F3</span></KBtn>
+        <KBtn><IconSearch className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F4</span></KBtn>
+        <KBtn><IconMicrophone className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F5</span></KBtn>
+        <KBtn><IconMoon className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F6</span></KBtn>
+        <KBtn><IconPlayerTrackPrev className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F7</span></KBtn>
+        <KBtn><IconPlayerSkipForward className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F8</span></KBtn>
+        <KBtn><IconPlayerTrackNext className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F9</span></KBtn>
+        <KBtn><IconVolume3 className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F10</span></KBtn>
+        <KBtn><IconVolume2 className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F11</span></KBtn>
+        <KBtn><IconVolume className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F12</span></KBtn>
+        <KBtn><div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-900 from-20% via-black via-50% to-neutral-900 to-95% p-px"><div className="h-full w-full rounded-full bg-black" /></div></KBtn>
       </div>
 
-      {/* Second row */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn>
-          <span className="block text-[6px]">~</span>
-          <span className="mt-1 block text-[6px]">`</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">!</span>
-          <span className="block text-[6px]">1</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">@</span>
-          <span className="block text-[6px]">2</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">#</span>
-          <span className="block text-[6px]">3</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">$</span>
-          <span className="block text-[6px]">4</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">%</span>
-          <span className="block text-[6px]">5</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">^</span>
-          <span className="block text-[6px]">6</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">&</span>
-          <span className="block text-[6px]">7</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">*</span>
-          <span className="block text-[6px]">8</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">(</span>
-          <span className="block text-[6px]">9</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">)</span>
-          <span className="block text-[6px]">0</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">&mdash;</span>
-          <span className="block text-[6px]">_</span>
-        </KBtn>
-        <KBtn>
-          <span className="block text-[6px]">+</span>
-          <span className="block text-[6px]"> = </span>
-        </KBtn>
-        <KBtn
-          className="w-10 items-end justify-end pr-[4px] pb-[2px]"
-          childrenClassName="items-end"
-        >
-          delete
-        </KBtn>
+        <KBtn><span className="block text-[6px]">~</span><span className="mt-1 block text-[6px]">`</span></KBtn>
+        <KBtn><span className="block text-[6px]">!</span><span className="block text-[6px]">1</span></KBtn>
+        <KBtn><span className="block text-[6px]">@</span><span className="block text-[6px]">2</span></KBtn>
+        <KBtn><span className="block text-[6px]">#</span><span className="block text-[6px]">3</span></KBtn>
+        <KBtn><span className="block text-[6px]">$</span><span className="block text-[6px]">4</span></KBtn>
+        <KBtn><span className="block text-[6px]">%</span><span className="block text-[6px]">5</span></KBtn>
+        <KBtn><span className="block text-[6px]">^</span><span className="block text-[6px]">6</span></KBtn>
+        <KBtn><span className="block text-[6px]">&</span><span className="block text-[6px]">7</span></KBtn>
+        <KBtn><span className="block text-[6px]">*</span><span className="block text-[6px]">8</span></KBtn>
+        <KBtn><span className="block text-[6px]">(</span><span className="block text-[6px]">9</span></KBtn>
+        <KBtn><span className="block text-[6px]">)</span><span className="block text-[6px]">0</span></KBtn>
+        <KBtn><span className="block text-[6px]">&mdash;</span><span className="block text-[6px]">_</span></KBtn>
+        <KBtn><span className="block text-[6px]">+</span><span className="block text-[6px]"> = </span></KBtn>
+        <KBtn className="w-10 items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end">delete</KBtn>
       </div>
 
-      {/* Third row */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn
-          className="w-10 items-end justify-start pb-[2px] pl-[4px]"
-          childrenClassName="items-start"
-        >
-          tab
-        </KBtn>
+        <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start">tab</KBtn>
         <KBtn><span className="block text-[6px]">Q</span></KBtn>
         <KBtn><span className="block text-[6px]">W</span></KBtn>
         <KBtn><span className="block text-[6px]">E</span></KBtn>
@@ -337,14 +236,8 @@ export const Keypad = () => {
         <KBtn><span className="block text-[6px]">{`|`}</span><span className="block text-[6px]">{`\\`}</span></KBtn>
       </div>
 
-      {/* Fourth Row */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn
-          className="w-[2.8rem] items-end justify-start pb-[2px] pl-[4px]"
-          childrenClassName="items-start"
-        >
-          caps lock
-        </KBtn>
+        <KBtn className="w-[2.8rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start">caps lock</KBtn>
         <KBtn><span className="block text-[6px]">A</span></KBtn>
         <KBtn><span className="block text-[6px]">S</span></KBtn>
         <KBtn><span className="block text-[6px]">D</span></KBtn>
@@ -356,22 +249,11 @@ export const Keypad = () => {
         <KBtn><span className="block text-[6px]">L</span></KBtn>
         <KBtn><span className="block text-[6px]">{`:`}</span><span className="block text-[6px]">{`;`}</span></KBtn>
         <KBtn><span className="block text-[6px]">{`"`}</span><span className="block text-[6px]">{`'`}</span></KBtn>
-        <KBtn
-          className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]"
-          childrenClassName="items-end"
-        >
-          return
-        </KBtn>
+        <KBtn className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end">return</KBtn>
       </div>
 
-      {/* Fifth Row */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn
-          className="w-[3.65rem] items-end justify-start pb-[2px] pl-[4px]"
-          childrenClassName="items-start"
-        >
-          shift
-        </KBtn>
+        <KBtn className="w-[3.65rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start">shift</KBtn>
         <KBtn><span className="block text-[6px]">Z</span></KBtn>
         <KBtn><span className="block text-[6px]">X</span></KBtn>
         <KBtn><span className="block text-[6px]">C</span></KBtn>
@@ -382,15 +264,9 @@ export const Keypad = () => {
         <KBtn><span className="block text-[6px]">{`<`}</span><span className="block text-[6px]">{`,`}</span></KBtn>
         <KBtn><span className="block text-[6px]">{`>`}</span><span className="block text-[6px]">{`.`}</span></KBtn>
         <KBtn><span className="block text-[6px]">{`?`}</span><span className="block text-[6px]">{`/`}</span></KBtn>
-        <KBtn
-          className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]"
-          childrenClassName="items-end"
-        >
-          shift
-        </KBtn>
+        <KBtn className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end">shift</KBtn>
       </div>
 
-      {/* sixth Row */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="" childrenClassName="h-full justify-between py-[4px]">
           <div className="flex w-full justify-end pr-1"><span className="block text-[5px]">fn</span></div>

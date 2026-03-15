@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -13,7 +14,7 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
-import { ArrowRight, Zap, Shield, Database, Monitor } from "lucide-react";
+import { ArrowRight, Zap, Shield, Database, Monitor, Github, Linkedin, Mail, MapPin, Code, GraduationCap, Rocket, Target } from "lucide-react";
 
 export default function Home() {
   const [booted, setBooted] = useState(false);
@@ -55,19 +56,51 @@ export default function Home() {
   const qualificationContent = [
     {
       title: "Medical Education",
-      description: "MBBS @ Jhargram Government Medical College. Specialized focus on pathology, microbiology, and the intersection of emerging MedTech protocols.",
+      description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently pursuing, with focus areas in pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
       content: (
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center text-xl font-bold">
-          Bachelor of Medicine & Surgery
+          <GraduationCap className="w-12 h-12 mb-4 block mx-auto" />
+          MBBS Candidate
         </div>
       ),
     },
     {
-      title: "AI Engineering",
-      description: "Founder of Lynex (AI Assistant) and Gameox (Health Analytics). Expertise in neural processing, local-first architectures, and clinical data integration.",
+      title: "Technical Interests",
+      description: "Active exploration of artificial intelligence, automation, and healthcare technology. Developing experimental tools and systems to define the role of intelligent technologies in future healthcare environments.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-indigo-500 text-white p-6 text-center text-xl font-bold">
-          Machine Learning Specialist
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-500 text-white p-6 text-center text-xl font-bold">
+          <Code className="w-12 h-12 mb-4 block mx-auto" />
+          AI & Healthcare Automation
+        </div>
+      ),
+    },
+    {
+      title: "Independent Projects",
+      description: "Project Lynex: A modular AI assistant for workflow automation and healthcare integration. Gameox: A gesture-operated space shooter exploring motor-data analytics for health and neurological monitoring.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center text-xl font-bold">
+          <Rocket className="w-12 h-12 mb-4 block mx-auto" />
+          Lynex & Gameox
+        </div>
+      ),
+    },
+    {
+      title: "Core Skills",
+      description: "Proficient in Python programming, AI tool integration, computer vision concepts, and voice interface development. Experienced in technical writing and digital content design using Canva.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center text-xl font-bold">
+          <Target className="w-12 h-12 mb-4 block mx-auto" />
+          Technical Expertise
+        </div>
+      ),
+    },
+    {
+      title: "Open To Collaboration",
+      description: "Open to research collaborations, health technology projects, AI and healthcare innovation initiatives, and open-source development projects globally.",
+      content: (
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-500 to-cyan-500 text-white p-6 text-center text-xl font-bold">
+          <Zap className="w-12 h-12 mb-4 block mx-auto" />
+          Innovation Hub
         </div>
       ),
     },
@@ -228,12 +261,57 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Educational Profile Section */}
-        <section id="profile" className="py-20 bg-black relative z-30">
-          <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+        {/* Educational Profile & Contact Section */}
+        <section id="profile" className="py-32 bg-black relative z-30">
+          <div className="max-w-7xl mx-auto px-6 mb-16 text-center space-y-6">
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              className="text-primary font-medium tracking-wide uppercase text-sm"
+            >
+              Medical student exploring the intersection of medicine, artificial intelligence, and future healthcare systems.
+            </motion.p>
             <h2 className="text-4xl md:text-6xl font-headline font-bold">Professional Milestones</h2>
           </div>
+          
           <StickyScroll content={qualificationContent} />
+
+          {/* Contact Details Integration */}
+          <div className="max-w-4xl mx-auto mt-32 px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <h3 className="text-3xl font-headline font-bold">Get In Touch</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 text-neutral-400">
+                  <Mail className="w-5 h-5 text-primary" />
+                  <span>lynexmedtech@gmail.com</span>
+                </div>
+                <div className="flex items-center gap-4 text-neutral-400">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span>West Bengal, India</span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <RainbowButton onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
+                  <Github className="w-4 h-4 mr-2" />
+                  GitHub
+                </RainbowButton>
+                <RainbowButton onClick={() => window.open('https://www.linkedin.com/in/ayan-mukhopadhyay1', '_blank')}>
+                  <Linkedin className="w-4 h-4 mr-2" />
+                  LinkedIn
+                </RainbowButton>
+              </div>
+            </div>
+            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm space-y-6">
+              <h4 className="text-xl font-bold">Project Collaborations</h4>
+              <p className="text-neutral-400 text-sm">Open to research collaborations, health technology projects, and AI-driven healthcare initiatives.</p>
+              <button 
+                onClick={() => window.location.href = 'mailto:lynexmedtech@gmail.com'}
+                className="w-full h-12 rounded-xl bg-white text-black font-bold hover:bg-neutral-200 transition-colors"
+              >
+                Send Message
+              </button>
+            </div>
+          </div>
         </section>
 
         <Footer />
@@ -241,3 +319,4 @@ export default function Home() {
     </main>
   );
 }
+

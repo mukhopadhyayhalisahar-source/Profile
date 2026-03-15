@@ -15,7 +15,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { 
   ArrowRight, Mail, MapPin, Rocket, Target, 
-  BrainCircuit, Activity, AlertCircle, Cpu, Zap, Eye, Info
+  BrainCircuit, Activity, AlertCircle, Cpu, Zap, Eye, Info,
+  Code, GraduationCap, Award, HeartPulse, ShieldCheck, Gamepad2
 } from "lucide-react";
 
 export default function Home() {
@@ -330,15 +331,15 @@ export default function Home() {
         </section>
 
         {/* Visualizing the Vision */}
-        <section className="bg-black pt-20">
-          <div className="max-w-7xl mx-auto px-6 py-10 text-center space-y-4">
+        <section className="bg-black pt-10">
+          <div className="max-w-7xl mx-auto px-6 py-4 text-center space-y-2">
             <h2 className="text-5xl md:text-7xl font-headline font-bold">Visualizing the Vision</h2>
           </div>
           <ZoomParallax images={lynexParallaxImages} />
         </section>
 
         {/* Project Gameox HQ */}
-        <section id="gameox-hq" className="px-6 py-10 bg-black">
+        <section id="gameox-hq" className="px-6 py-10 bg-black -mt-10">
           <div className="max-w-7xl mx-auto space-y-20">
             <div className="space-y-6 max-w-4xl">
               <h2 className="text-4xl md:text-6xl font-headline font-bold text-white">

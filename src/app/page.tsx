@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -14,9 +15,9 @@ import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { 
-  ArrowRight, Zap, Shield, Database, Monitor, Github, 
-  Linkedin, Mail, MapPin, Code, GraduationCap, Rocket, Target, 
-  BrainCircuit, Activity, HeartPulse, UserCircle
+  ArrowRight, Github, 
+  Linkedin, Mail, MapPin, GraduationCap, Code, Rocket, Target, 
+  BrainCircuit, Activity, HeartPulse, UserCircle, Shield
 } from "lucide-react";
 
 export default function Home() {
@@ -219,7 +220,7 @@ export default function Home() {
                   {[
                     { icon: Activity, title: "Voice Interaction", desc: "Natural language communication for hands-free control." },
                     { icon: Shield, title: "Dual Mode", desc: "Online and offline capabilities for data security." },
-                    { icon: Zap, title: "Task Automation", desc: "Executes predefined workflows and application control." },
+                    { icon: Rocket, title: "Task Automation", desc: "Executes predefined workflows and application control." },
                     { icon: BrainCircuit, title: "Contextual Assistance", desc: "Remembers preferences for relevant responses." }
                   ].map((feature, i) => (
                     <li key={i} className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
@@ -248,15 +249,6 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-8">
-                  <h4 className="font-bold mb-4">Development Goals</h4>
-                  <ul className="text-sm text-neutral-400 space-y-2 list-disc list-inside">
-                    <li>Persistent AI memory system</li>
-                    <li>Computer vision integration</li>
-                    <li>Device control expansion</li>
-                    <li>Cross-device synchronization</li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -273,13 +265,6 @@ export default function Home() {
             src="https://github.com/user-attachments/assets/c6b07f4d-2222-4c76-9b75-e10040ddd5a9"
             showGradient={false}
           />
-
-          <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center border-t border-white/5">
-            <h3 className="text-3xl font-headline font-bold">Experimental Platform</h3>
-            <p className="text-xl text-neutral-400 leading-relaxed font-body">
-              A gesture-operated space shooter game designed exploring how gameplay motion data—speed, stability, and reaction time—could contribute to health analytics and neurological monitoring concepts.
-            </p>
-          </div>
         </section>
 
         {/* Educational Profile Section */}
@@ -335,14 +320,6 @@ export default function Home() {
                 <li className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   Health technology projects
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  AI innovation initiatives
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Open-source development
                 </li>
               </ul>
               <button 

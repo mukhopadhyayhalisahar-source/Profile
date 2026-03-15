@@ -1,15 +1,7 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
+import React, { useEffect, useRef, useState } from 'react'
 import { Loader2 } from 'lucide-react'
-
-/**
- * Dynamically import the Spline component with SSR disabled.
- */
-const Spline = dynamic(() => import('@splinetool/react-spline'), {
-  ssr: false,
-})
 
 interface SplineSceneProps {
   scene: string
@@ -17,32 +9,66 @@ interface SplineSceneProps {
 }
 
 /**
- * A hydration-safe wrapper for Spline scenes.
- * Uses both next/dynamic (ssr: false) and a mounted state guard 
- * to prevent React 19 "ReactCurrentOwner" errors during initial render.
+ * A robust, hydration-safe wrapper for Spline scenes.
+ * Bypasses the React wrapper components to avoid React 19 "ReactCurrentOwner" errors
+ * by using the @splinetool/runtime directly on a canvas element.
  */
 export function SplineScene({ scene, className }: SplineSceneProps) {
-  const [isMounted, setIsMounted] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    setIsMounted(true)
-  }, [])
+    let splineRuntime: any = null
 
-  // Return a loader during SSR and the initial hydration pass
-  if (!isMounted) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-black/20 backdrop-blur-sm min-h-[300px]">
-        <Loader2 className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    )
-  }
+    async function initSpline() {
+      if (!canvasRef.current) return
+
+      try {
+        // Dynamically import the Application class from the runtime
+        const { Application } = await import('@splinetool/runtime')
+        
+        // Initialize the vanilla JS application on our canvas ref
+        splineRuntime = new Application(canvasRef.current)
+        
+        // Load the scene file
+        await splineRuntime.load(scene)
+        
+        setIsLoading(false)
+      } catch (err) {
+        console.error('Spline loading error:', err)
+        setError('Failed to initialize 3D scene')
+        setIsLoading(false)
+      }
+    }
+
+    initSpline()
+
+    return () => {
+      // Basic cleanup: if the runtime provides a stop/dispose method in future versions, 
+      // it should be called here. For current versions, removing the canvas via React cleanup is sufficient.
+    }
+  }, [scene])
 
   return (
-    <div className="w-full h-full relative">
-      <Spline
-        scene={scene}
-        className={className}
-      />
+    <div className={(className || "") + " relative flex items-center justify-center overflow-hidden min-h-[300px]"}>
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black/10 backdrop-blur-sm z-10 rounded-xl">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      )}
+      
+      {error ? (
+        <div className="text-destructive text-sm bg-destructive/10 p-4 rounded-lg border border-destructive/20">
+          {error}
+        </div>
+      ) : (
+        <canvas 
+          ref={canvasRef} 
+          className="w-full h-full"
+          style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.5s ease-in-out' }}
+        />
+      )}
     </div>
   )
 }

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -119,7 +120,7 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white selection:bg-primary/40 overflow-x-hidden min-h-screen">
-      {/* Interactive Background - Mounted immediately to request permission early */}
+      {/* Interactive Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <WebcamPixelGrid 
           gridCols={60}
@@ -269,11 +270,11 @@ export default function Home() {
               </span>
             }
             badge={
-              <button onClick={() => window.open('https://github.com/SONIC445-BYTE/Test-gameox', '_blank')}>
+              <button onClick={() => window.open('https://github.com/mukhopadhyayhalisahar-source/Profile/issues/1', '_blank')}>
                 <Badge className="h-10 w-10 -rotate-12 transform hover:scale-110 transition-transform" />
               </button>
             }
-            src="/gameox-demo.webm"
+            src="https://github.com/mukhopadhyayhalisahar-source/Profile/issues/1#issue-4078628592"
             showGradient={false}
           />
 

@@ -1,6 +1,7 @@
+
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import {
   IconBrightnessDown,
@@ -128,7 +129,11 @@ export const Lid = ({
   translate: MotionValue<number>;
   src?: string;
 }) => {
-  const isVideo = src?.endsWith('.webm') || src?.endsWith('.mp4');
+  // Robust detection for video assets (supports GitHub issue attachments and common formats)
+  const isVideo = src?.endsWith('.webm') || 
+                  src?.endsWith('.mp4') || 
+                  src?.includes('user-attachments/assets') || 
+                  src?.includes('github.com') && src?.includes('issue');
 
   return (
     <div className="relative [perspective:800px]">
@@ -198,7 +203,7 @@ export const Trackpad = () => {
 export const Keypad = () => {
   return (
     <div className="mx-1 h-full [transform:translateZ(0)] rounded-md bg-[#050505] p-1 [will-change:transform]">
-      {/* Function Row */}
+      {/* Row 1: Function Keys */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[5px]">esc</KBtn>
         {[
@@ -223,7 +228,7 @@ export const Keypad = () => {
         <KBtn className="flex-none"><div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-900 from-20% via-black via-50% to-neutral-900 to-95% p-px"><div className="h-full w-full rounded-full bg-black" /></div></KBtn>
       </div>
 
-      {/* Row 1 */}
+      {/* Row 2: Numbers */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         {["~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "+"].map((char, i) => (
           <KBtn key={i} className="flex-1"><span className="block text-[6px]">{char}</span></KBtn>
@@ -231,7 +236,7 @@ export const Keypad = () => {
         <KBtn className="w-10 items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">delete</KBtn>
       </div>
 
-      {/* Row 2 */}
+      {/* Row 3: QWERTY */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">tab</KBtn>
         {["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"].map((char, i) => (
@@ -239,7 +244,7 @@ export const Keypad = () => {
         ))}
       </div>
 
-      {/* Row 3 */}
+      {/* Row 4: ASDF */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-[2.8rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">caps lock</KBtn>
         {["A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "'"].map((char, i) => (
@@ -248,7 +253,7 @@ export const Keypad = () => {
         <KBtn className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">return</KBtn>
       </div>
 
-      {/* Row 4 */}
+      {/* Row 5: ZXCV */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-[3.65rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">shift</KBtn>
         {["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"].map((char, i) => (
@@ -257,7 +262,7 @@ export const Keypad = () => {
         <KBtn className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">shift</KBtn>
       </div>
 
-      {/* Bottom Row */}
+      {/* Row 6: Controls */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">
           <div className="flex w-full justify-end pr-1"><span className="block text-[5px]">fn</span></div>

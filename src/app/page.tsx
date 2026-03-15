@@ -105,8 +105,9 @@ export default function Home() {
         <WebcamPixelGrid 
           gridCols={60}
           gridRows={40}
-          darken={0.65}
-          motionSensitivity={0.3}
+          maxElevation={50}
+          motionSensitivity={0.35}
+          elevationSmoothing={0.15}
           className="opacity-40"
         />
       </div>
@@ -269,7 +270,7 @@ export default function Home() {
           
           <MacbookScroll 
             title="Gesture-Operated Space Shooter"
-            src="https://images.unsplash.com/photo-1550741113-5744f66ad05a?auto=format&fit=crop&q=80&w=1200"
+            src="https://picsum.photos/seed/gameox/1200/800"
           />
 
           <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center">

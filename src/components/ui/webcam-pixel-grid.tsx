@@ -28,7 +28,7 @@ interface WebcamPixelGridProps {
 export function WebcamPixelGrid({
   gridCols = 60,
   gridRows = 40,
-  maxElevation = 35,
+  maxElevation = 45,
   motionSensitivity = 0.35,
   elevationSmoothing = 0.15,
   colorMode = "webcam",
@@ -120,6 +120,9 @@ export function WebcamPixelGrid({
         const boxW = cellW - gapX;
         const boxH = cellH - gapY;
 
+        const centerX = gridCols / 2;
+        const centerY = gridRows / 2;
+
         for (let j = 0; j < gridRows; j++) {
           for (let i = 0; i < gridCols; i++) {
             const colIndex = mirror ? (gridCols - 1 - i) : i;
@@ -145,7 +148,6 @@ export function WebcamPixelGrid({
             // Base Color
             let baseR = r, baseG = g, baseB = b;
             if (colorMode === "monochrome") {
-              // Convert monochrome hex to RGB (simple extraction)
               baseR = 90; baseG = 70; baseB = 185; 
             }
             if (invertColors) {
@@ -153,22 +155,28 @@ export function WebcamPixelGrid({
             }
             
             const darkFactor = 1 - darken;
+            // Enhanced shading for better voxel depth
             const mainColor = `rgb(${baseR * darkFactor}, ${baseG * darkFactor}, ${baseB * darkFactor})`;
-            const topColor = `rgb(${Math.min(255, (baseR + 40) * darkFactor)}, ${Math.min(255, (baseG + 40) * darkFactor)}, ${Math.min(255, (baseB + 40) * darkFactor)})`;
-            const sideColor = `rgb(${Math.max(0, (baseR - 30) * darkFactor)}, ${Math.max(0, (baseG - 30) * darkFactor)}, ${Math.max(0, (baseB - 30) * darkFactor)})`;
+            const topColor = `rgb(${Math.min(255, (baseR + 80) * darkFactor)}, ${Math.min(255, (baseG + 80) * darkFactor)}, ${Math.min(255, (baseB + 80) * darkFactor)})`;
+            const sideColor = `rgb(${Math.max(0, (baseR - 60) * darkFactor)}, ${Math.max(0, (baseG - 60) * darkFactor)}, ${Math.max(0, (baseB - 60) * darkFactor)})`;
 
             const drawX = i * cellW + gapX / 2;
             const drawY = j * cellH + gapY / 2;
 
-            // Draw 3D Voxel with Perspective
+            // Voxel depth and perspective offsets
             const depth = elevation;
+            
+            // Perspective extrusion: cubes tilt away from the center
+            const perspectiveX = (i - centerX) / centerX * depth;
+            const perspectiveY = (j - centerY) / centerY * depth;
+
             if (depth > 0.1) {
-              // Right Side Face
+              // Side Face (Right/Left)
               ctx.fillStyle = sideColor;
               ctx.beginPath();
               ctx.moveTo(drawX + boxW, drawY);
-              ctx.lineTo(drawX + boxW + depth, drawY - depth);
-              ctx.lineTo(drawX + boxW + depth, drawY + boxH - depth);
+              ctx.lineTo(drawX + boxW + perspectiveX, drawY + perspectiveY);
+              ctx.lineTo(drawX + boxW + perspectiveX, drawY + boxH + perspectiveY);
               ctx.lineTo(drawX + boxW, drawY + boxH);
               ctx.closePath();
               ctx.fill();
@@ -177,33 +185,27 @@ export function WebcamPixelGrid({
               ctx.fillStyle = topColor;
               ctx.beginPath();
               ctx.moveTo(drawX, drawY);
-              ctx.lineTo(drawX + depth, drawY - depth);
-              ctx.lineTo(drawX + boxW + depth, drawY - depth);
+              ctx.lineTo(drawX + perspectiveX, drawY + perspectiveY);
+              ctx.lineTo(drawX + boxW + perspectiveX, drawY + perspectiveY);
               ctx.lineTo(drawX + boxW, drawY);
               ctx.closePath();
               ctx.fill();
 
               // Front Face (Elevated)
               ctx.fillStyle = mainColor;
-              ctx.fillRect(drawX + depth, drawY - depth, boxW, boxH);
+              ctx.fillRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
               
               if (borderOpacity > 0) {
                 ctx.strokeStyle = borderColor;
                 ctx.globalAlpha = borderOpacity;
                 ctx.lineWidth = 0.5;
-                ctx.strokeRect(drawX + depth, drawY - depth, boxW, boxH);
+                ctx.strokeRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
                 ctx.globalAlpha = 1.0;
               }
             } else {
               // Flat Voxel
               ctx.fillStyle = mainColor;
               ctx.fillRect(drawX, drawY, boxW, boxH);
-              
-              if (borderOpacity > 0) {
-                ctx.strokeStyle = borderColor;
-                ctx.globalAlpha = borderOpacity;
-                ctx.strokeRect(drawX, drawY, boxW, boxH);
-              }
             }
           }
         }

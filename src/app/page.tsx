@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -14,7 +13,11 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
-import { ArrowRight, Zap, Shield, Database, Monitor, Github, Linkedin, Mail, MapPin, Code, GraduationCap, Rocket, Target } from "lucide-react";
+import { 
+  ArrowRight, Zap, Shield, Database, Monitor, Github, 
+  Linkedin, Mail, MapPin, Code, GraduationCap, Rocket, Target, 
+  BrainCircuit, Activity, HeartPulse, UserCircle
+} from "lucide-react";
 
 export default function Home() {
   const [booted, setBooted] = useState(false);
@@ -43,64 +46,50 @@ export default function Home() {
     3: [" [SUCCESS] Connection established. Scroll to explore."],
   };
 
-  const lynexImages = [
-    { src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200", alt: "AI Core" },
-    { src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200", alt: "Hardware" },
-    { src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200", alt: "MedTech" },
-    { src: "https://images.unsplash.com/photo-1531746790731-6c087fecd05a?auto=format&fit=crop&q=80&w=1200", alt: "Neural" },
-    { src: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200", alt: "Robotics" },
-    { src: "https://images.unsplash.com/photo-1551288049-bbbda536339a?auto=format&fit=crop&q=80&w=1200", alt: "Data" },
-    { src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200", alt: "Nature" },
+  const lynexParallaxImages = [
+    { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1280&h=720&fit=crop&q=80', alt: 'AI Architecture' },
+    { src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&h=720&fit=crop&q=80', alt: 'Future City' },
+    { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=800&h=800&fit=crop&q=80', alt: 'Abstract UI' },
+    { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&h=720&fit=crop&q=80', alt: 'Precision' },
+    { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=800&fit=crop&q=80', alt: 'Neural Core' },
+    { src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1280&h=720&fit=crop&q=80', alt: 'Flow' },
+    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&h=720&fit=crop&q=80', alt: 'Organic Intelligence' },
   ];
 
-  const qualificationContent = [
+  const profileContent = [
     {
       title: "Medical Education",
-      description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently pursuing, with focus areas in pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
+      description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently Pursuing. Focus areas include pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center text-xl font-bold">
-          <GraduationCap className="w-12 h-12 mb-4 block mx-auto" />
-          MBBS Candidate
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center">
+          <GraduationCap className="w-16 h-16" />
         </div>
       ),
     },
     {
       title: "Technical Interests",
-      description: "Active exploration of artificial intelligence, automation, and healthcare technology. Developing experimental tools and systems to define the role of intelligent technologies in future healthcare environments.",
+      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments. Key areas: AI in Healthcare, Medical Data Systems, AI Assistants, Human-Computer Interaction.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-500 text-white p-6 text-center text-xl font-bold">
-          <Code className="w-12 h-12 mb-4 block mx-auto" />
-          AI & Healthcare Automation
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center">
+          <Code className="w-16 h-16" />
         </div>
       ),
     },
     {
       title: "Independent Projects",
-      description: "Project Lynex: A modular AI assistant for workflow automation and healthcare integration. Gameox: A gesture-operated space shooter exploring motor-data analytics for health and neurological monitoring.",
+      description: "Project Lynex: Development of a modular AI assistant designed to automate workflows and explore integration in healthcare. Gameox: Gesture-operated space shooter exploring how gameplay motion data could contribute to neurological monitoring concepts.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center text-xl font-bold">
-          <Rocket className="w-12 h-12 mb-4 block mx-auto" />
-          Lynex & Gameox
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center">
+          <Rocket className="w-16 h-16" />
         </div>
       ),
     },
     {
       title: "Core Skills",
-      description: "Proficient in Python programming, AI tool integration, computer vision concepts, and voice interface development. Experienced in technical writing and digital content design using Canva.",
+      description: "Python Programming, AI Tool Integration, Computer Vision Concepts, Voice Interface Development, Technical Writing and Documentation, Digital Content Design (Canva).",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center text-xl font-bold">
-          <Target className="w-12 h-12 mb-4 block mx-auto" />
-          Technical Expertise
-        </div>
-      ),
-    },
-    {
-      title: "Open To Collaboration",
-      description: "Open to research collaborations, health technology projects, AI and healthcare innovation initiatives, and open-source development projects globally.",
-      content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-500 to-cyan-500 text-white p-6 text-center text-xl font-bold">
-          <Zap className="w-12 h-12 mb-4 block mx-auto" />
-          Innovation Hub
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center">
+          <Target className="w-16 h-16" />
         </div>
       ),
     },
@@ -180,7 +169,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3D Scene Card */}
+        {/* Interactive 3D Card */}
         <section className="px-6 py-20 bg-black">
           <div className="max-w-7xl mx-auto">
             <Card className="w-full h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-3xl">
@@ -210,41 +199,71 @@ export default function Home() {
         <section id="lynex" className="bg-black">
           <div className="max-w-7xl mx-auto px-6 py-20 text-center space-y-4">
             <h2 className="text-5xl md:text-7xl font-headline font-bold">Project Lynex</h2>
-            <p className="text-xl text-neutral-400 max-w-2xl mx-auto font-body">Modular AI Assistant architecture for personal productivity and hospital automation.</p>
+            <p className="text-xl text-neutral-400 max-w-2xl mx-auto font-body">Building an Intelligent Personal AI Assistant designed to optimize cognitive performance.</p>
           </div>
-          <ZoomParallax images={lynexImages} />
           
-          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center py-32 border-t border-white/5">
-             <div className="space-y-8">
-               <h3 className="text-3xl font-headline font-bold">Intelligent Core</h3>
-               <p className="text-neutral-400 leading-relaxed font-body text-lg">Local-first inference, contextual memory modules, and cross-device synchronization designed for data security.</p>
-               <div className="grid grid-cols-2 gap-6">
-                 {[
-                   { icon: Zap, label: "Neural Engine", desc: "Optimized edge inference." },
-                   { icon: Shield, label: "Private", desc: "Local data processing." },
-                   { icon: Database, label: "Context", desc: "Deep memory modules." },
-                   { icon: Monitor, label: "Sync", desc: "Omni-channel presence." }
-                 ].map((item, i) => (
-                   <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
-                     <item.icon className="w-5 h-5 text-primary mb-2" />
-                     <h4 className="font-bold text-sm">{item.label}</h4>
-                     <p className="text-xs text-neutral-500">{item.desc}</p>
-                   </div>
-                 ))}
-               </div>
-             </div>
-             <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10">
-                <img 
-                  src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" 
-                  alt="Lynex AI Interface" 
-                  className="object-cover w-full h-full"
-                />
-             </div>
+          <ZoomParallax images={lynexParallaxImages} />
+
+          <div className="max-w-5xl mx-auto px-6 py-32 space-y-16">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-headline font-bold text-primary">Overview</h3>
+              <p className="text-xl text-neutral-300 leading-relaxed font-body">
+                Project Lynex is a modular AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Lynex is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information and supporting productivity in complex environments such as healthcare systems.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <h3 className="text-2xl font-headline font-bold">Core Features</h3>
+                <ul className="space-y-4">
+                  {[
+                    { icon: Activity, title: "Voice Interaction", desc: "Natural language communication for hands-free control." },
+                    { icon: Shield, title: "Dual Mode", desc: "Online and offline capabilities for data security." },
+                    { icon: Zap, title: "Task Automation", desc: "Executes predefined workflows and application control." },
+                    { icon: BrainCircuit, title: "Contextual Assistance", desc: "Remembers preferences for relevant responses." }
+                  ].map((feature, i) => (
+                    <li key={i} className="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors">
+                      <feature.icon className="w-6 h-6 text-primary shrink-0" />
+                      <div>
+                        <h4 className="font-bold">{feature.title}</h4>
+                        <p className="text-sm text-neutral-400">{feature.desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-6">
+                <h3 className="text-2xl font-headline font-bold">Technology Stack</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    "Python (Core)",
+                    "Speech Recognition",
+                    "Text-to-Speech",
+                    "Automation Scripts",
+                    "AI APIs (LLMs)",
+                    "Modular Architecture"
+                  ].map((tech, i) => (
+                    <div key={i} className="p-3 rounded-lg border border-white/10 bg-white/5 text-sm font-medium text-center">
+                      {tech}
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <h4 className="font-bold mb-4">Development Goals</h4>
+                  <ul className="text-sm text-neutral-400 space-y-2 list-disc list-inside">
+                    <li>Persistent AI memory system</li>
+                    <li>Computer vision integration</li>
+                    <li>Device control expansion</li>
+                    <li>Cross-device synchronization</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Project Gameox Section */}
-        <section id="gameox" className="bg-black relative z-20">
+        <section id="gameox" className="bg-black relative">
           <MacbookScroll 
             title={
               <span className="text-3xl md:text-5xl font-bold font-headline">
@@ -255,26 +274,28 @@ export default function Home() {
             showGradient={false}
           />
 
-          <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center border-t border-white/5 relative z-10 bg-black">
-            <h3 className="text-3xl font-headline font-bold">The Science of Movement</h3>
-            <p className="text-xl text-neutral-400 leading-relaxed font-body">Analyzing gesture patterns—speed, stability, and reaction time—to monitor motor coordination via computer vision.</p>
+          <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center border-t border-white/5">
+            <h3 className="text-3xl font-headline font-bold">Experimental Platform</h3>
+            <p className="text-xl text-neutral-400 leading-relaxed font-body">
+              A gesture-operated space shooter game designed exploring how gameplay motion data—speed, stability, and reaction time—could contribute to health analytics and neurological monitoring concepts.
+            </p>
           </div>
         </section>
 
-        {/* Educational Profile & Contact Section */}
-        <section id="profile" className="py-32 bg-black relative z-30">
+        {/* Educational Profile Section */}
+        <section id="profile" className="py-32 bg-black relative z-30 border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 mb-16 text-center space-y-6">
             <motion.p 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-primary font-medium tracking-wide uppercase text-sm"
+              className="text-primary font-medium tracking-wide text-sm border border-primary/20 px-4 py-1 rounded-full inline-block"
             >
               Medical student exploring the intersection of medicine, artificial intelligence, and future healthcare systems.
             </motion.p>
             <h2 className="text-4xl md:text-6xl font-headline font-bold">Professional Milestones</h2>
           </div>
           
-          <StickyScroll content={qualificationContent} />
+          <StickyScroll content={profileContent} />
 
           {/* Contact Details Integration */}
           <div className="max-w-4xl mx-auto mt-32 px-6 grid md:grid-cols-2 gap-12 items-center">
@@ -302,8 +323,28 @@ export default function Home() {
               </div>
             </div>
             <div className="p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-sm space-y-6">
-              <h4 className="text-xl font-bold">Project Collaborations</h4>
-              <p className="text-neutral-400 text-sm">Open to research collaborations, health technology projects, and AI-driven healthcare initiatives.</p>
+              <h4 className="text-xl font-bold flex items-center gap-2">
+                <UserCircle className="w-5 h-5 text-primary" />
+                Open For
+              </h4>
+              <ul className="text-neutral-400 text-sm space-y-2">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  Research collaborations
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  Health technology projects
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  AI innovation initiatives
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  Open-source development
+                </li>
+              </ul>
               <button 
                 onClick={() => window.location.href = 'mailto:lynexmedtech@gmail.com'}
                 className="w-full h-12 rounded-xl bg-white text-black font-bold hover:bg-neutral-200 transition-colors"
@@ -319,4 +360,3 @@ export default function Home() {
     </main>
   );
 }
-

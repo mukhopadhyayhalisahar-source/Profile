@@ -35,14 +35,16 @@ export default function Home() {
     "whoami",
     "cat mission.txt",
     "ls ./current_focus",
+    "cat long_term_goal.txt",
     "./initialize_portfolio.sh",
   ];
 
   const terminalOutputs = {
-    0: ["Mukho. Medical Student @ Jhargram Government Medical College. Founder @ Lynex."],
-    1: ["Bridging clinical healthcare and high-performance machine learning. Building AI-integrated hospital systems and computer vision diagnostics."],
-    2: ["lynex_core_v2/  gameox_cv_engine.exe  clipper-360-prototype/  sign_language_translator.apk"],
-    3: [" [SUCCESS] Connection established. Scroll to explore."],
+    0: ["Ayan Mukhopadhyay", "Medical Student @ Jhargram Government Medical College", "AI Research Builder | Founder @ Project Lynex"],
+    1: ["Redesigning healthcare using AI, computer vision, and intelligent hospital infrastructure."],
+    2: ["lynex_core_v2/", "gameox_cv_engine/", "clipper_360_prototype/", "sign_language_translator/"],
+    3: ["Building the world's first AI-native hospital ecosystem."],
+    4: ["[SUCCESS] Connection established. Scroll to explore."],
   };
 
   const lynexParallaxImages = [
@@ -225,9 +227,17 @@ export default function Home() {
                   <AlertCircle className="w-6 h-6 text-destructive" />
                 </div>
                 <h3 className="text-2xl font-bold">2. The Problem</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Current digital assistants (Siri, Google Assistant, Alexa) have major limitations: mostly command-based interactions, limited contextual memory, and poor customization for individual workflows. Users still spend significant time manually managing tasks and information.
-                </p>
+                <div className="text-neutral-400 text-sm leading-relaxed space-y-2">
+                  <p>Current digital assistants (Siri, Google Assistant, Alexa) have major limitations:</p>
+                  <ul className="list-disc list-inside">
+                    <li>Mostly command-based interactions</li>
+                    <li>Limited contextual memory</li>
+                    <li>Poor customization for individual workflows</li>
+                    <li>Weak integration with specialized domains like healthcare or research</li>
+                    <li>Heavy reliance on cloud connectivity</li>
+                  </ul>
+                  <p>As a result, users still spend significant time manually managing tasks, information, and tools.</p>
+                </div>
               </div>
 
               <div className="p-10 rounded-[2.5rem] bg-primary/5 border border-primary/10 space-y-6">
@@ -235,9 +245,17 @@ export default function Home() {
                   <Rocket className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold">3. The Vision</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Project Lynex aims to create a more intelligent system capable of acting as a digital co-pilot. The long-term goal is to explore how such assistants could support future intelligent hospitals and medical systems through contextual information support.
-                </p>
+                <div className="text-neutral-400 text-sm leading-relaxed space-y-2">
+                  <p>Project Lynex aims to create a more intelligent and adaptable AI system capable of:</p>
+                  <ul className="list-disc list-inside">
+                    <li>Acting as a personal digital assistant</li>
+                    <li>Automating routine digital workflows</li>
+                    <li>Providing contextual information support</li>
+                    <li>Integrating across devices (phone, computer)</li>
+                    <li>Supporting specialized professional environments</li>
+                  </ul>
+                  <p>The long-term goal is to explore how such assistants could support future intelligent hospitals and medical systems.</p>
+                </div>
               </div>
             </div>
 
@@ -281,6 +299,7 @@ export default function Home() {
                       <div className="text-sm font-medium"><span className="text-white">{tech.name}</span> — <span className="text-neutral-400">{tech.role}</span></div>
                     </div>
                   ))}
+                  <p className="text-xs text-neutral-500 mt-4 italic">The system architecture is designed to be modular, allowing future integration of new capabilities such as vision systems, memory layers, and advanced AI models.</p>
                 </div>
               </div>
 
@@ -302,6 +321,7 @@ export default function Home() {
                       <span className="text-xs text-neutral-300">{goal}</span>
                     </div>
                   ))}
+                  <p className="text-xs text-neutral-500 mt-2 italic">These improvements aim to transform Lynex from a simple assistant into a fully capable AI operating companion.</p>
                 </div>
               </div>
             </div>
@@ -313,12 +333,16 @@ export default function Home() {
                   7. Long-Term Impact
                 </h3>
                 <p className="text-neutral-300 leading-relaxed font-body text-lg">
-                  Project Lynex serves as an experimental platform to explore the future role of AI assistants in medical workflows, hospital operations, and decision support systems.
+                  Project Lynex serves as an experimental platform to explore the future role of AI assistants in professional environments. The project is particularly focused on understanding how intelligent systems could eventually assist in medical workflows, hospital operations, and decision support systems.
                 </p>
                 <div className="pt-4 border-t border-white/5">
-                  <div className="flex items-center justify-between max-w-sm">
-                    <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">8. Status: Active Development</span>
-                    <div className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold animate-pulse">ACTIVE</div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center justify-between max-w-sm">
+                      <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">8. Project Status</span>
+                      <div className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold animate-pulse">ACTIVE</div>
+                    </div>
+                    <div className="text-[10px] text-neutral-500">Development Type: Independent project</div>
+                    <div className="text-[10px] text-neutral-500">Focus Area: AI assistants, automation systems, and intelligent interfaces</div>
                   </div>
                 </div>
               </div>
@@ -366,7 +390,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">Purpose</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
-                  Gameox was created as an exploratory project to investigate how interactive games could serve as data collection tools for health analytics. The aim is to demonstrate how gameplay could potentially contribute to non-invasive monitoring of motor functions.
+                  Gameox was created as an exploratory project to investigate how interactive games could serve as data collection tools for health analytics. The aim is not to provide medical diagnosis but to demonstrate how gameplay environments could potentially contribute to non-invasive monitoring of motor functions.
                 </p>
               </div>
             </div>
@@ -421,7 +445,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">Experimental Research Project</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed font-body">
-                  Exploring non-invasive monitoring of motor functions through interactive gameplay.
+                  Exploring non-invasive monitoring of motor functions through interactive gameplay. This concept may open possibilities for future research in digital health.
                 </p>
                 <RainbowButton className="w-full" onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
                   View Case Study

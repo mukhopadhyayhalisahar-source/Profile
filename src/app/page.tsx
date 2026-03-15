@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -15,9 +14,8 @@ import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 import { 
-  ArrowRight, Github, 
-  Linkedin, Mail, MapPin, GraduationCap, Code, Rocket, Target, 
-  BrainCircuit, Activity, Shield, UserCircle, AlertCircle, Cpu, Zap, Eye, Database, Info, Sparkles
+  ArrowRight, Mail, MapPin, Rocket, Target, 
+  BrainCircuit, Activity, AlertCircle, Cpu, Zap, Eye, Info
 } from "lucide-react";
 
 export default function Home() {
@@ -62,16 +60,16 @@ export default function Home() {
       title: "1. Medical Education",
       description: "MBBS (Bachelor of Medicine and Bachelor of Surgery) at Jhargram Government Medical College & Hospital, West Bengal, India. Currently Pursuing. Focus areas include pathology, microbiology, pharmacology, and emerging intersections between medicine and technology.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center font-bold">
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-cyan-500 to-emerald-500 text-white p-6 text-center font-bold text-xl">
           Medical Education
         </div>
       ),
     },
     {
       title: "2. Technical Interests",
-      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments.",
+      description: "Alongside medical training, I actively explore fields related to artificial intelligence, automation, and healthcare technology. My work focuses on developing experimental tools and systems that explore the role of intelligent technologies in future healthcare environments. Key areas include Medical Data Systems, AI Assistants, and Human–Computer Interaction.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center font-bold">
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-500 to-indigo-500 text-white p-6 text-center font-bold text-xl">
           Technical Interests
         </div>
       ),
@@ -80,7 +78,7 @@ export default function Home() {
       title: "3. Independent Projects",
       description: "Project Lynex: Development of a modular AI assistant designed to automate workflows and explore healthcare integration. Gameox: Gesture-operated space shooter game designed to explore gameplay motion data for health analytics and neurological monitoring.",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center font-bold">
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-500 to-yellow-500 text-white p-6 text-center font-bold text-xl">
           Independent Projects
         </div>
       ),
@@ -89,14 +87,14 @@ export default function Home() {
       title: "4. Skills",
       description: "Python Programming, AI Tool Integration, Computer Vision Concepts, Voice Interface Development, Technical Writing and Documentation, Digital Content Design (Canva).",
       content: (
-        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center font-bold">
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pink-500 to-rose-500 text-white p-6 text-center font-bold text-xl">
           Technical Skills
         </div>
       ),
     },
     {
       title: "5. Contact & Socials",
-      description: "Based in West Bengal, India. Open for research collaborations, health technology projects, AI and healthcare innovation initiatives, and open-source development.",
+      description: "Based in West Bengal, India. Open for research collaborations, health technology projects, and AI innovation initiatives.",
       content: (
         <div className="flex flex-col h-full w-full items-center justify-center bg-slate-900 p-8 gap-6">
            <RainbowButton onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
@@ -188,10 +186,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Project Lynex — The HQ */}
+        {/* Project Lynex HQ */}
         <section id="lynex-hq" className="px-6 py-20 bg-black">
           <div className="max-w-7xl mx-auto space-y-20">
-            {/* 1. Header & Overview */}
             <Card className="w-full min-h-[600px] bg-black/[0.96] border-white/10 relative overflow-hidden rounded-[3rem]">
               <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" size={600} />
               <div className="flex flex-col lg:flex-row h-full">
@@ -225,7 +222,6 @@ export default function Home() {
               </div>
             </Card>
 
-            {/* 2. The Problem & 3. The Vision */}
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 space-y-6">
                 <div className="w-12 h-12 rounded-2xl bg-destructive/20 flex items-center justify-center">
@@ -233,15 +229,8 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">2. The Problem</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
-                  Current digital assistants (Siri, Google Assistant, Alexa) have major limitations: 
+                  Current digital assistants (Siri, Google Assistant, Alexa) have major limitations: mostly command-based interactions, limited contextual memory, and poor customization for individual workflows. Users still spend significant time manually managing tasks and information.
                 </p>
-                <ul className="space-y-3 text-neutral-400 text-xs list-disc list-inside">
-                  <li>Mostly command-based interactions</li>
-                  <li>Limited contextual memory</li>
-                  <li>Poor customization for individual workflows</li>
-                  <li>Weak integration with specialized domains like healthcare or research</li>
-                  <li>Heavy reliance on cloud connectivity</li>
-                </ul>
               </div>
 
               <div className="p-10 rounded-[2.5rem] bg-primary/5 border border-primary/10 space-y-6">
@@ -250,20 +239,11 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">3. The Vision</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
-                  Project Lynex aims to create a more intelligent and adaptable AI system capable of:
+                  Project Lynex aims to create a more intelligent system capable of acting as a digital co-pilot. The long-term goal is to explore how such assistants could support future intelligent hospitals and medical systems through contextual information support.
                 </p>
-                <ul className="space-y-3 text-neutral-400 text-xs list-disc list-inside">
-                  <li>Acting as a personal digital assistant</li>
-                  <li>Automating routine digital workflows</li>
-                  <li>Providing contextual information support</li>
-                  <li>Integrating across devices (phone, computer)</li>
-                  <li>Supporting specialized professional environments</li>
-                </ul>
-                <p className="text-neutral-500 text-[10px] mt-4 italic border-t border-white/5 pt-4">The long-term goal is to explore how such assistants could support future intelligent hospitals and medical systems.</p>
               </div>
             </div>
 
-            {/* 4. Core Features */}
             <div className="space-y-8">
               <h3 className="text-3xl font-bold flex items-center gap-3">
                 <Activity className="w-8 h-8 text-secondary" />
@@ -285,7 +265,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 5. Technology Stack & 6. Development Goals */}
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-8">
                 <h3 className="text-3xl font-bold flex items-center gap-3">
@@ -298,7 +277,7 @@ export default function Home() {
                     { name: "Speech Recognition", role: "Voice command processing" },
                     { name: "Text-to-Speech", role: "Voice output generation" },
                     { name: "Automation Scripts", role: "Device and application control" },
-                    { name: "AI APIs", role: "Advanced language processing and reasoning" }
+                    { name: "AI APIs", role: "Advanced language processing" }
                   ].map((tech, i) => (
                     <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
                       <div className="w-2 h-2 rounded-full bg-primary" />
@@ -330,7 +309,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 7. Long-Term Impact & 8. Project Status */}
             <div className="p-12 rounded-[3.5rem] bg-gradient-to-br from-primary/10 via-black to-black border border-white/10 flex flex-col md:flex-row items-center gap-12">
               <div className="flex-1 space-y-6">
                 <h3 className="text-3xl font-bold flex items-center gap-3">
@@ -338,48 +316,30 @@ export default function Home() {
                   7. Long-Term Impact
                 </h3>
                 <p className="text-neutral-300 leading-relaxed font-body text-lg">
-                  Project Lynex serves as an experimental platform to explore the future role of AI assistants in professional environments. The project is particularly focused on understanding how intelligent systems could eventually assist in medical workflows, hospital operations, and decision support systems.
+                  Project Lynex serves as an experimental platform to explore the future role of AI assistants in medical workflows, hospital operations, and decision support systems.
                 </p>
-              </div>
-              <div className="w-full md:w-[350px] p-10 rounded-[2.5rem] bg-white/5 border border-white/10 space-y-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">8. Project Status</span>
-                  <div className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold animate-pulse">ACTIVE</div>
-                </div>
-                <div className="space-y-3 border-y border-white/5 py-6">
-                  <div className="flex justify-between text-xs">
-                    <span className="text-neutral-500">Status:</span>
-                    <span className="text-white font-bold">Active development</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-neutral-500">Type:</span>
-                    <span className="text-white font-bold">Independent project</span>
-                  </div>
-                  <div className="flex justify-between text-xs">
-                    <span className="text-neutral-500">Focus:</span>
-                    <span className="text-white font-bold text-right">AI Assistants, MedTech</span>
+                <div className="pt-4 border-t border-white/5">
+                  <div className="flex items-center justify-between max-w-sm">
+                    <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">8. Status: Active Development</span>
+                    <div className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold animate-pulse">ACTIVE</div>
                   </div>
                 </div>
-                <RainbowButton className="w-full" onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
-                  View Source Code
-                </RainbowButton>
               </div>
             </div>
           </div>
         </section>
 
         {/* Visualizing the Vision */}
-        <section className="bg-black">
-          <div className="max-w-7xl mx-auto px-6 py-20 text-center space-y-4">
+        <section className="bg-black pt-20">
+          <div className="max-w-7xl mx-auto px-6 py-10 text-center space-y-4">
             <h2 className="text-5xl md:text-7xl font-headline font-bold">Visualizing the Vision</h2>
           </div>
           <ZoomParallax images={lynexParallaxImages} />
         </section>
 
-        {/* Project Gameox — The HQ */}
-        <section id="gameox-hq" className="px-6 py-20 bg-black">
+        {/* Project Gameox HQ */}
+        <section id="gameox-hq" className="px-6 py-10 bg-black">
           <div className="max-w-7xl mx-auto space-y-20">
-            {/* Header & Overview */}
             <div className="space-y-6 max-w-4xl">
               <h2 className="text-4xl md:text-6xl font-headline font-bold text-white">
                 Gameox — <span className="text-secondary">Gesture-Operated Health Analytics Game</span>
@@ -392,7 +352,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Concept & Purpose */}
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 space-y-6">
                 <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center">
@@ -400,7 +359,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-bold">Concept</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
-                  Gameox was designed to explore the intersection of gaming, computer vision, and health monitoring. By analyzing a player’s gesture patterns during gameplay—such as movement speed, reaction time, and stability—the system can generate a simple analytical report at the end of the session. The project investigates whether game-based motion analysis could someday contribute to the early screening or monitoring of neurological conditions that affect motor control.
+                  Designed to explore the intersection of gaming, computer vision, and health monitoring. By analyzing gesture patterns—speed, reaction time, and stability—the system generates a simple analytical report. The project investigates screening possibilities for neurological conditions affecting motor control.
                 </p>
               </div>
 
@@ -408,14 +367,13 @@ export default function Home() {
                 <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
                   <Target className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold">Purpose of the Project</h3>
+                <h3 className="text-2xl font-bold">Purpose</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
-                  Gameox was created as an exploratory project to investigate how interactive games could serve as data collection tools for health analytics. The aim is not to provide medical diagnosis but to demonstrate how gameplay environments could potentially contribute to non-invasive monitoring of motor functions. This concept may open possibilities for future research in digital health, neurological monitoring, and gamified diagnostic tools.
+                  Gameox was created as an exploratory project to investigate how interactive games could serve as data collection tools for health analytics. The aim is to demonstrate how gameplay could potentially contribute to non-invasive monitoring of motor functions.
                 </p>
               </div>
             </div>
 
-            {/* Core Features */}
             <div className="space-y-8">
               <h3 className="text-3xl font-bold flex items-center gap-3">
                 <Activity className="w-8 h-8 text-secondary" />
@@ -423,11 +381,11 @@ export default function Home() {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { title: "Gesture-Based Gameplay", desc: "Players control the spaceship using hand gestures detected by the system’s camera, eliminating the need for traditional controllers." },
-                  { title: "Real-Time Motion Tracking", desc: "The system tracks hand movements and converts them into in-game actions such as navigation and shooting." },
+                  { title: "Gesture-Based Gameplay", desc: "Players control the spaceship using hand gestures detected by the camera, eliminating traditional controllers." },
+                  { title: "Real-Time Motion Tracking", desc: "The system tracks hand movements and converts them into in-game actions like navigation and shooting." },
                   { title: "Space Shooter Gameplay", desc: "Players navigate through waves of enemies in a classic arcade-style space environment." },
-                  { title: "Session-Based Analysis", desc: "After the game session ends, the system analyzes captured motion patterns and generates a simple report based on the collected data." },
-                  { title: "Experimental Health Insights", desc: "The report explores potential indicators related to motor coordination, which may be relevant for studying neurological conditions such as Parkinsonian movement patterns." }
+                  { title: "Session-Based Analysis", desc: "After the session, the system analyzes motion patterns and generates a report based on the collected data." },
+                  { title: "Experimental Health Insights", desc: "The report explores indicators related to motor coordination, relevant for studying Parkinsonian movement patterns." }
                 ].map((feature, i) => (
                   <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-secondary/40 transition-colors">
                     <h4 className="font-bold mb-3 text-white">{feature.title}</h4>
@@ -437,7 +395,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Technologies Used & Project Status */}
             <div className="grid md:grid-cols-2 gap-12">
               <div className="space-y-8">
                 <h3 className="text-3xl font-bold flex items-center gap-3">
@@ -463,9 +420,9 @@ export default function Home() {
               <div className="p-12 rounded-[3.5rem] bg-gradient-to-br from-secondary/10 via-black to-black border border-white/10 flex flex-col justify-center space-y-6">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">Project Status</span>
-                  <div className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold">EXPERIMENTAL</div>
+                  <div className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold">PROTOTYPE</div>
                 </div>
-                <h3 className="text-2xl font-bold">Prototype / Experimental Research Project</h3>
+                <h3 className="text-2xl font-bold">Experimental Research Project</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed font-body">
                   Exploring non-invasive monitoring of motor functions through interactive gameplay.
                 </p>
@@ -490,8 +447,8 @@ export default function Home() {
         </section>
 
         {/* Profile Section */}
-        <section id="profile" className="py-32 bg-black relative z-30 border-t border-white/5">
-          <div className="max-w-7xl mx-auto px-6 mb-16 text-center space-y-6">
+        <section id="profile" className="py-20 bg-black relative z-30 border-t border-white/5">
+          <div className="max-w-7xl mx-auto px-6 mb-12 text-center space-y-4">
             <motion.p 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -504,8 +461,8 @@ export default function Home() {
           
           <StickyScroll content={profileContent} />
 
-          {/* Detailed Contact Footer Integration */}
-          <div className="max-w-4xl mx-auto mt-32 px-6 grid md:grid-cols-2 gap-12 items-center">
+          {/* Contact Section */}
+          <div className="max-w-4xl mx-auto mt-20 px-6 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <h3 className="text-3xl font-headline font-bold">Get In Touch</h3>
               <div className="space-y-4">
@@ -528,10 +485,7 @@ export default function Home() {
               </div>
             </div>
             <div className="p-10 rounded-[3rem] border border-white/10 bg-white/5 backdrop-blur-sm space-y-6">
-              <h4 className="text-xl font-bold flex items-center gap-3">
-                <UserCircle className="w-6 h-6 text-primary" />
-                Open For
-              </h4>
+              <h4 className="text-xl font-bold">Open For</h4>
               <ul className="text-neutral-400 text-sm space-y-3">
                 <li className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -543,11 +497,7 @@ export default function Home() {
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  AI and healthcare innovation initiatives
-                </li>
-                <li className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Open-source development
+                  AI innovation initiatives
                 </li>
               </ul>
               <button 

@@ -128,6 +128,8 @@ export const Lid = ({
   translate: MotionValue<number>;
   src?: string;
 }) => {
+  const isVideo = src?.endsWith('.webm') || src?.endsWith('.mp4');
+
   return (
     <div className="relative [perspective:800px]">
       <div
@@ -161,11 +163,22 @@ export const Lid = ({
         className="absolute inset-0 h-96 w-[32rem] rounded-2xl bg-[#010101] p-2"
       >
         <div className="absolute inset-0 rounded-lg bg-[#272729]" />
-        <img
-          src={src || "https://picsum.photos/seed/mac-screen/1200/800"}
-          alt="macbook screen"
-          className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
-        />
+        {isVideo ? (
+          <video
+            src={src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
+          />
+        ) : (
+          <img
+            src={src || "https://picsum.photos/seed/mac-screen/1200/800"}
+            alt="macbook screen"
+            className="absolute inset-0 h-full w-full rounded-lg object-cover object-left-top"
+          />
+        )}
       </motion.div>
     </div>
   );

@@ -260,21 +260,23 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="gameox" className="bg-black relative z-20 overflow-clip">
-          <MacbookScroll 
-            title={
-              <span>
-                Gameox: Gesture-Operated <br /> Health Analytics.
-              </span>
-            }
-            badge={
-              <button onClick={() => window.open('https://github.com/mukhopadhyayhalisahar-source/Profile/issues/1', '_blank')}>
-                <Badge className="h-10 w-10 -rotate-12 transform hover:scale-110 transition-transform" />
-              </button>
-            }
-            src="https://github.com/user-attachments/assets/c6b07f4d-2222-4c76-9b75-e10040ddd5a9"
-            showGradient={false}
-          />
+        <section id="gameox" className="bg-black relative z-20 overflow-visible">
+          <div className="relative z-30 bg-black">
+            <MacbookScroll 
+              title={
+                <span>
+                  Gameox: Gesture-Operated <br /> Health Analytics.
+                </span>
+              }
+              badge={
+                <button onClick={() => window.open('https://github.com/mukhopadhyayhalisahar-source/Profile/issues/1', '_blank')}>
+                  <Badge className="h-10 w-10 -rotate-12 transform hover:scale-110 transition-transform" />
+                </button>
+              }
+              src="https://github.com/user-attachments/assets/c6b07f4d-2222-4c76-9b75-e10040ddd5a9"
+              showGradient={false}
+            />
+          </div>
 
           <div className="max-w-4xl mx-auto px-6 py-32 space-y-12 text-center border-t border-white/5 relative z-10 bg-black">
             <h3 className="text-3xl font-headline font-bold">The Science of Movement</h3>

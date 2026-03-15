@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -48,13 +49,13 @@ export default function Home() {
   };
 
   const ovexisParallaxImages = [
-    { src: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1280&h=720&fit=crop&q=80', alt: 'Ovexis Core Logo' },
-    { src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1280&h=720&fit=crop&q=80', alt: 'Urban Cityscape' },
-    { src: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=800&h=800&fit=crop&q=80', alt: 'Abstract UI' },
-    { src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1280&h=720&fit=crop&q=80', alt: 'Mountainscape' },
-    { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=800&fit=crop&q=80', alt: 'Minimalist Core' },
-    { src: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1280&h=720&fit=crop&q=80', alt: 'Ocean Flow' },
-    { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&h=720&fit=crop&q=80', alt: 'Sunlight Forest' },
+    { src: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1280&h=720&fit=crop&q=80', alt: 'Ovexis Core Interface' },
+    { src: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280&h=720&fit=crop&q=80', alt: 'AI Neural Mapping' },
+    { src: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=800&fit=crop&q=80', alt: 'Robotic Assistance' },
+    { src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1280&h=720&fit=crop&q=80', alt: 'Medical Tech Analysis' },
+    { src: 'https://images.unsplash.com/photo-1531746790731-6c087fecd05a?w=800&h=800&fit=crop&q=80', alt: 'Human-AI Interaction' },
+    { src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&h=720&fit=crop&q=80', alt: 'Core Circuitry' },
+    { src: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1280&h=720&fit=crop&q=80', alt: 'Scientific Research' },
   ];
 
   const profileContent = [

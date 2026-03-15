@@ -11,14 +11,11 @@ interface WebcamPixelGridProps {
   maxElevation?: number;
   motionSensitivity?: number;
   elevationSmoothing?: number;
-  colorMode?: "webcam" | "monochrome";
   backgroundColor?: string;
   mirror?: boolean;
   gapRatio?: number;
   darken?: number;
   className?: string;
-  onWebcamReady?: () => void;
-  onWebcamError?: (err: any) => void;
 }
 
 export function WebcamPixelGrid({
@@ -27,14 +24,11 @@ export function WebcamPixelGrid({
   maxElevation = 45,
   motionSensitivity = 0.4,
   elevationSmoothing = 0.1,
-  colorMode = "webcam",
   backgroundColor = "#030303",
   mirror = true,
   gapRatio = 0.1,
   darken = 0.6,
   className,
-  onWebcamReady,
-  onWebcamError,
 }: WebcamPixelGridProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -52,11 +46,9 @@ export function WebcamPixelGrid({
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
-        onWebcamReady?.();
       } catch (error) {
         console.error('Error accessing camera:', error);
         setHasCameraPermission(false);
-        onWebcamError?.(error);
         toast({
           variant: 'destructive',
           title: 'Camera Access Denied',
@@ -73,7 +65,7 @@ export function WebcamPixelGrid({
         stream.getTracks().forEach(track => track.stop());
       }
     };
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     if (!hasCameraPermission || !canvasRef.current || !videoRef.current) return;
@@ -135,13 +127,11 @@ export function WebcamPixelGrid({
             const elevation = elevationsRef.current[idx];
             if (elevation < 0.2) continue;
 
-            // Base Shading Factors
             const darkFactor = 1 - darken;
             const rScaled = r * darkFactor;
             const gScaled = g * darkFactor;
             const bScaled = b * darkFactor;
 
-            // Face colors
             const frontColor = `rgb(${rScaled}, ${gScaled}, ${bScaled})`;
             const topColor = `rgb(${Math.min(255, rScaled + 40)}, ${Math.min(255, gScaled + 40)}, ${Math.min(255, bScaled + 40)})`;
             const sideColor = `rgb(${Math.max(0, rScaled - 40)}, ${Math.max(0, gScaled - 40)}, ${Math.max(0, bScaled - 40)})`;
@@ -149,11 +139,10 @@ export function WebcamPixelGrid({
             const drawX = i * cellW + (cellW * gapRatio) / 2;
             const drawY = j * cellH + (cellH * gapRatio) / 2;
 
-            // Perspective extrusion projection
             const perspectiveX = (drawX - centerX) / centerX * elevation;
             const perspectiveY = (drawY - centerY) / centerY * elevation;
 
-            // Drawing Side Face
+            // Side Face
             ctx.fillStyle = sideColor;
             ctx.beginPath();
             ctx.moveTo(drawX + boxW, drawY);
@@ -162,7 +151,7 @@ export function WebcamPixelGrid({
             ctx.lineTo(drawX + boxW, drawY + boxH);
             ctx.fill();
 
-            // Drawing Top Face
+            // Top Face
             ctx.fillStyle = topColor;
             ctx.beginPath();
             ctx.moveTo(drawX, drawY);
@@ -171,7 +160,7 @@ export function WebcamPixelGrid({
             ctx.lineTo(drawX + boxW, drawY);
             ctx.fill();
 
-            // Drawing Front Face
+            // Front Face
             ctx.fillStyle = frontColor;
             ctx.fillRect(drawX + perspectiveX, drawY + perspectiveY, boxW, boxH);
           }
@@ -184,7 +173,7 @@ export function WebcamPixelGrid({
 
     render();
     return () => cancelAnimationFrame(animationFrameId);
-  }, [hasCameraPermission, gridCols, gridRows, maxElevation, motionSensitivity, elevationSmoothing, colorMode, backgroundColor, mirror, gapRatio, darken]);
+  }, [hasCameraPermission, gridCols, gridRows, maxElevation, motionSensitivity, elevationSmoothing, backgroundColor, mirror, gapRatio, darken]);
 
   return (
     <div className={cn("relative overflow-hidden w-full h-full", className)}>

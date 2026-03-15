@@ -1,8 +1,7 @@
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface TerminalProps {
   commands: string[];
@@ -40,11 +39,9 @@ export function Terminal({
       } else {
         clearInterval(typeInterval);
         
-        // Add command to history
         setDisplayedLines(prev => [...prev, { type: 'cmd', text: command }]);
         setCurrentText("");
 
-        // Show outputs if any
         if (outputs[currentCommandIndex]) {
           setTimeout(() => {
             setDisplayedLines(prev => [
@@ -52,7 +49,6 @@ export function Terminal({
               ...outputs[currentCommandIndex].map(text => ({ type: 'out' as const, text }))
             ]);
             
-            // Move to next command
             setTimeout(() => {
               setCurrentCommandIndex(prev => prev + 1);
             }, delayBetweenCommands);

@@ -119,7 +119,7 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white selection:bg-primary/40 overflow-x-hidden min-h-screen">
-      {/* Interactive Background */}
+      {/* Interactive Background - Mounted immediately to request permission early */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <WebcamPixelGrid 
           gridCols={60}

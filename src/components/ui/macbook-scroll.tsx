@@ -198,94 +198,60 @@ export const Trackpad = () => {
 export const Keypad = () => {
   return (
     <div className="mx-1 h-full [transform:translateZ(0)] rounded-md bg-[#050505] p-1 [will-change:transform]">
-      {/* Row 1: Function Keys */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start">esc</KBtn>
-        <KBtn className="flex-1"><IconBrightnessDown className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F1</span></KBtn>
-        <KBtn className="flex-1"><IconBrightnessUp className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F2</span></KBtn>
-        <KBtn className="flex-1"><IconTable className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F3</span></KBtn>
-        <KBtn className="flex-1"><IconSearch className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F4</span></KBtn>
-        <KBtn className="flex-1"><IconMicrophone className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F5</span></KBtn>
-        <KBtn className="flex-1"><IconMoon className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F6</span></KBtn>
-        <KBtn className="flex-1"><IconPlayerTrackPrev className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F7</span></KBtn>
-        <KBtn className="flex-1"><IconPlayerSkipForward className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F8</span></KBtn>
-        <KBtn className="flex-1"><IconPlayerTrackNext className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F9</span></KBtn>
-        <KBtn className="flex-1"><IconVolume3 className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F10</span></KBtn>
-        <KBtn className="flex-1"><IconVolume2 className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F11</span></KBtn>
-        <KBtn className="flex-1"><IconVolume className="h-[6px] w-[6px]" /><span className="mt-1 inline-block text-[5px]">F12</span></KBtn>
+        <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[5px]">esc</KBtn>
+        {[
+          { icon: IconBrightnessDown, f: "F1" },
+          { icon: IconBrightnessUp, f: "F2" },
+          { icon: IconTable, f: "F3" },
+          { icon: IconSearch, f: "F4" },
+          { icon: IconMicrophone, f: "F5" },
+          { icon: IconMoon, f: "F6" },
+          { icon: IconPlayerTrackPrev, f: "F7" },
+          { icon: IconPlayerSkipForward, f: "F8" },
+          { icon: IconPlayerTrackNext, f: "F9" },
+          { icon: IconVolume3, f: "F10" },
+          { icon: IconVolume2, f: "F11" },
+          { icon: IconVolume, f: "F12" },
+        ].map((item, i) => (
+          <KBtn key={i} className="flex-1">
+            <item.icon className="h-[6px] w-[6px]" />
+            <span className="mt-1 inline-block text-[5px]">{item.f}</span>
+          </KBtn>
+        ))}
         <KBtn className="flex-none"><div className="h-4 w-4 rounded-full bg-gradient-to-b from-neutral-900 from-20% via-black via-50% to-neutral-900 to-95% p-px"><div className="h-full w-full rounded-full bg-black" /></div></KBtn>
       </div>
 
-      {/* Row 2: Numbers */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
-        <KBtn className="flex-1"><span className="block text-[6px]">~</span><span className="mt-1 block text-[6px]">`</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">!</span><span className="block text-[6px]">1</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">@</span><span className="block text-[6px]">2</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">#</span><span className="block text-[6px]">3</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">$</span><span className="block text-[6px]">4</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">%</span><span className="block text-[6px]">5</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">^</span><span className="block text-[6px]">6</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">&</span><span className="block text-[6px]">7</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">*</span><span className="block text-[6px]">8</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">(</span><span className="block text-[6px]">9</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">)</span><span className="block text-[6px]">0</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">&mdash;</span><span className="block text-[6px]">_</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">+</span><span className="block text-[6px]"> = </span></KBtn>
+        {["~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "+"].map((char, i) => (
+          <KBtn key={i} className="flex-1"><span className="block text-[6px]">{char}</span></KBtn>
+        ))}
         <KBtn className="w-10 items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">delete</KBtn>
       </div>
 
-      {/* Row 3: QWERTY */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-10 items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">tab</KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">Q</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">W</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">E</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">R</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">T</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">Y</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">U</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">I</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">O</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">P</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`{`}</span><span className="block text-[6px]">{`[`}</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`}`}</span><span className="block text-[6px]">{`]`}</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`|`}</span><span className="block text-[6px]">{`\\`}</span></KBtn>
+        {["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"].map((char, i) => (
+          <KBtn key={i} className="flex-1"><span className="text-[7px]">{char}</span></KBtn>
+        ))}
       </div>
 
-      {/* Row 4: ASDF */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-[2.8rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">caps lock</KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">A</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">S</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">D</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">F</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">G</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">H</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">J</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">K</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">L</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`:`}</span><span className="block text-[6px]">{`;`}</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`"`}</span><span className="block text-[6px]">{`'`}</span></KBtn>
+        {["A", "S", "D", "F", "G", "H", "J", "K", "L", ":", "'"].map((char, i) => (
+          <KBtn key={i} className="flex-1"><span className="text-[7px]">{char}</span></KBtn>
+        ))}
         <KBtn className="w-[2.85rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">return</KBtn>
       </div>
 
-      {/* Row 5: ZXCV */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="w-[3.65rem] items-end justify-start pb-[2px] pl-[4px]" childrenClassName="items-start text-[6px]">shift</KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">Z</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">X</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">C</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">V</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">B</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">N</span></KBtn>
-        <KBtn className="flex-1"><span className="text-[7px]">M</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`<`}</span><span className="block text-[6px]">{`,`}</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`>`}</span><span className="block text-[6px]">{`.`}</span></KBtn>
-        <KBtn className="flex-1"><span className="block text-[6px]">{`?`}</span><span className="block text-[6px]">{`/`}</span></KBtn>
+        {["Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"].map((char, i) => (
+          <KBtn key={i} className="flex-1"><span className="text-[7px]">{char}</span></KBtn>
+        ))}
         <KBtn className="w-[3.65rem] items-end justify-end pr-[4px] pb-[2px]" childrenClassName="items-end text-[6px]">shift</KBtn>
       </div>
 
-      {/* Row 6: Modifiers */}
       <div className="mb-[2px] flex w-full shrink-0 gap-[2px]">
         <KBtn className="flex-1" childrenClassName="h-full justify-between py-[4px]">
           <div className="flex w-full justify-end pr-1"><span className="block text-[5px]">fn</span></div>

@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Abstract neural network visualization",
+      "imageUrl": "https://picsum.photos/seed/neural/1920/1080",
+      "imageHint": "neural network"
+    },
+    {
+      "id": "lynex-showcase",
+      "description": "AI Assistant Interface Visualization",
+      "imageUrl": "https://picsum.photos/seed/lynex/1200/800",
+      "imageHint": "ai assistant"
+    },
+    {
+      "id": "gameox-showcase",
+      "description": "Gesture Health Analytics Interface",
+      "imageUrl": "https://picsum.photos/seed/gameox/1200/800",
+      "imageHint": "medical technology"
+    }
+  ]
+}

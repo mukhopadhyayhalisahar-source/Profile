@@ -34,18 +34,15 @@ export function HeroAscii() {
     `;
     document.head.appendChild(embedScript);
 
-    // Add CSS to hide branding elements and crop canvas
     const style = document.createElement('style');
     style.textContent = `
       [data-us-project] {
         position: relative !important;
         overflow: hidden !important;
       }
-      
       [data-us-project] canvas {
         clip-path: inset(0 0 10% 0) !important;
       }
-      
       [data-us-project] * {
         pointer-events: none !important;
       }
@@ -66,30 +63,21 @@ export function HeroAscii() {
     `;
     document.head.appendChild(style);
 
-    // Function to aggressively hide branding
     const hideBranding = () => {
       const projectDiv = document.querySelector('[data-us-project]');
       if (projectDiv) {
-        // Find and remove any elements containing branding text
         const allElements = projectDiv.querySelectorAll('*');
         allElements.forEach(el => {
           const text = (el.textContent || '').toLowerCase();
           if (text.includes('made with') || text.includes('unicorn')) {
-            el.remove(); // Completely remove the element
+            el.remove();
           }
         });
       }
     };
 
-    // Run immediately and periodically
     hideBranding();
     const interval = setInterval(hideBranding, 100);
-    
-    // Also try after delays
-    setTimeout(hideBranding, 1000);
-    setTimeout(hideBranding, 3000);
-    setTimeout(hideBranding, 5000);
-
     return () => {
       clearInterval(interval);
       document.head.removeChild(embedScript);
@@ -98,27 +86,27 @@ export function HeroAscii() {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black py-20">
-      {/* Vitruvian man animation - hidden on mobile */}
+    <main className="relative h-[100dvh] w-full overflow-hidden bg-black flex flex-col">
+      {/* Vitruvian man animation - strictly absolute and contained */}
       <div className="absolute inset-0 w-full h-full hidden lg:block opacity-40">
         <div 
           data-us-project="whwOGlfJ5Rz2rHaEUgHl" 
-          style={{ width: '100%', height: '100%', minHeight: '100vh' }}
+          style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} 
         />
       </div>
 
       {/* Mobile stars background */}
       <div className="absolute inset-0 w-full h-full lg:hidden stars-bg opacity-20"></div>
 
-      {/* Top Header */}
-      <div className="absolute top-0 left-0 right-0 z-20 border-b border-white/20">
-        <div className="container mx-auto px-4 lg:px-8 py-3 lg:py-4 flex items-center justify-between">
+      {/* Top Header - Fixed pinning */}
+      <div className="absolute top-0 left-0 right-0 z-20 border-b border-white/20 bg-black/40 backdrop-blur-sm">
+        <div className="container mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2 lg:gap-4">
             <div className="font-mono text-primary text-xl lg:text-2xl font-bold tracking-widest italic transform -skew-x-12">
               LYNEX.MED
             </div>
-            <div className="h-3 lg:h-4 w-px bg-white/40"></div>
-            <span className="text-white/60 text-[8px] lg:text-[10px] font-mono">CORE_V1.0</span>
+            <div className="h-4 w-px bg-white/40"></div>
+            <span className="text-white/60 text-[10px] font-mono tracking-tighter uppercase">MBBS_CANDIDATE_V2.9</span>
           </div>
           
           <div className="hidden lg:flex items-center gap-3 text-[10px] font-mono text-white/60">
@@ -130,50 +118,47 @@ export function HeroAscii() {
         </div>
       </div>
 
-      {/* Corner Frame Accents */}
-      <div className="absolute top-0 left-0 w-8 h-8 lg:w-12 lg:h-12 border-t-2 border-l-2 border-primary/30 z-20"></div>
-      <div className="absolute top-0 right-0 w-8 h-8 lg:w-12 lg:h-12 border-t-2 border-r-2 border-primary/30 z-20"></div>
-      <div className="absolute left-0 w-8 h-8 lg:w-12 lg:h-12 border-b-2 border-l-2 border-primary/30 z-20" style={{ bottom: '5vh' }}></div>
-      <div className="absolute right-0 w-8 h-8 lg:w-12 lg:h-12 border-b-2 border-r-2 border-primary/30 z-20" style={{ bottom: '5vh' }}></div>
+      {/* Corner Frame Accents - strictly pinned with Tailwind */}
+      <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-primary/40 z-20 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-primary/40 z-20 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-primary/40 z-20 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-primary/40 z-20 pointer-events-none"></div>
 
-      <div className="relative z-10 flex flex-col justify-center pt-24 lg:pt-0 container mx-auto px-6 lg:px-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* Main Content Area - Center focused with strict overflow control */}
+      <div className="relative z-10 flex flex-1 items-center justify-center pt-20 pb-16 px-6 lg:px-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl">
           
           {/* Narrative Column */}
           <div className="max-w-xl relative">
-            {/* Top decorative line */}
             <div className="flex items-center gap-2 mb-3 opacity-60">
               <div className="w-8 h-px bg-primary"></div>
-              <span className="text-primary text-[10px] font-mono tracking-wider">MED-001</span>
+              <span className="text-primary text-[10px] font-mono tracking-wider">MED_FOUNDATION</span>
               <div className="flex-1 h-px bg-white/20"></div>
             </div>
 
-            {/* Title with dithered accent */}
             <div className="relative">
               <div className="hidden lg:block absolute -left-3 top-0 bottom-0 w-1 dither-pattern opacity-40"></div>
-              <h2 className="text-3xl lg:text-5xl font-bold text-white mb-3 lg:mb-4 leading-tight font-mono tracking-wider uppercase" style={{ letterSpacing: '0.1em' }}>
+              <h2 className="text-3xl lg:text-6xl font-bold text-white mb-4 leading-tight font-headline tracking-tight uppercase">
                 MEDICAL
-                <span className="block text-primary mt-1 lg:mt-2 opacity-90 animate-glow">
+                <span className="block text-primary mt-2 opacity-90 animate-glow">
                   JOURNEY
                 </span>
               </h2>
             </div>
 
-            {/* Description */}
             <div className="relative space-y-4">
               <p className="text-xs lg:text-base text-gray-300 leading-relaxed font-mono opacity-80">
-                I am currently pursuing my MBBS at Jhargram Government Medical College with an expected graduation in 2029. My medical journey combines traditional clinical training with a deep interest in technology, neuroscience, and healthcare innovation.
+                Pursuing MBBS at JGMCH (2029). Bridging traditional clinical training with advanced AI and neuroscience protocols to redesign healthcare delivery.
               </p>
-              <p className="text-[10px] lg:text-xs text-primary font-mono opacity-90 italic">
-                Alongside my medical education, I actively explore how AI, software systems, and data-driven tools can improve diagnosis, hospital efficiency, and patient care.
+              <div className="hidden lg:flex gap-1 py-2 opacity-40">
+                {Array.from({ length: 40 }).map((_, i) => (
+                  <div key={i} className="w-0.5 h-0.5 bg-primary rounded-full"></div>
+                ))}
+              </div>
+              <p className="text-[10px] lg:text-xs text-primary font-mono opacity-90 italic flex items-center gap-2">
+                <Zap className="w-3 h-3" />
+                SYSTEM_MODE: THINKER_INNOVATOR_BUILDER
               </p>
-            </div>
-
-            {/* Tech Details Bar */}
-            <div className="hidden lg:flex items-center gap-2 mt-8 opacity-40">
-              <span className="text-white text-[9px] font-mono">∞</span>
-              <div className="flex-1 h-px bg-white/20"></div>
-              <span className="text-white text-[9px] font-mono tracking-widest uppercase">Vitruvian_Architecture</span>
             </div>
             
             <div className="flex gap-4 mt-8">
@@ -186,48 +171,48 @@ export function HeroAscii() {
             </div>
           </div>
 
-          {/* Data Grid Column */}
+          {/* Data Grid Column - Interactive Technical Modules */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4">
+            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 hover:border-primary/40 transition-colors">
               <div className="flex items-center gap-2 text-primary">
                 <ClipboardList className="w-4 h-4" />
                 <span className="text-[10px] font-mono font-bold tracking-widest">CLINICAL_EXPOSURE</span>
               </div>
-              <ul className="space-y-2 text-[9px] font-mono text-white/60 uppercase">
-                <li>• OBGY Rotation</li>
-                <li>• General Surgery</li>
-                <li>• General Medicine</li>
+              <ul className="space-y-1.5 text-[9px] font-mono text-white/60 uppercase">
+                <li>• OBGY ROTATION</li>
+                <li>• GENERAL SURGERY</li>
+                <li>• GENERAL MEDICINE</li>
                 <li>• ENT / ICTC</li>
-                <li>• PSM Field Visits</li>
+                <li>• PSM FIELD VISITS</li>
               </ul>
             </div>
 
-            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4">
+            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 hover:border-primary/40 transition-colors">
               <div className="flex items-center gap-2 text-primary">
                 <Scissors className="w-4 h-4" />
                 <span className="text-[10px] font-mono font-bold tracking-widest">PROCEDURES_OBSERVED</span>
               </div>
-              <ul className="space-y-2 text-[9px] font-mono text-white/60 uppercase">
-                <li>• Hernia Repair</li>
-                <li>• Lipofibroma Removal</li>
-                <li>• Ward Procedures</li>
-                <li>• Diagnostic Eval</li>
+              <ul className="space-y-1.5 text-[9px] font-mono text-white/60 uppercase">
+                <li>• HERNIA REPAIR</li>
+                <li>• LIPOFIBROMA REMOVAL</li>
+                <li>• WARD PROCEDURES</li>
+                <li>• DIAGNOSTIC EVAL</li>
               </ul>
             </div>
 
-            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 md:col-span-2">
+            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 md:col-span-2 hover:border-primary/40 transition-colors">
               <div className="flex items-center gap-2 text-primary">
                 <Rocket className="w-4 h-4" />
-                <span className="text-[10px] font-mono font-bold tracking-widest">MEDICAL_PROJECTS</span>
+                <span className="text-[10px] font-mono font-bold tracking-widest">ACTIVE_MEDICAL_PROJECTS</span>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 <div>
                   <h4 className="text-[10px] font-bold text-white mb-1 uppercase tracking-tight">Gameox</h4>
-                  <p className="text-[8px] text-white/40 leading-tight">Neurological screening via gesture analytics.</p>
+                  <p className="text-[8px] text-white/40 leading-tight">Neurological screening via gesture analytics and motor stability tracking.</p>
                 </div>
                 <div>
                   <h4 className="text-[10px] font-bold text-white mb-1 uppercase tracking-tight">Clipper 360</h4>
-                  <p className="text-[8px] text-white/40 leading-tight">Advanced diagnostic approach tools.</p>
+                  <p className="text-[8px] text-white/40 leading-tight">Omni-channel diagnostic reasoning engine for complex cases.</p>
                 </div>
               </div>
             </div>
@@ -235,26 +220,27 @@ export function HeroAscii() {
         </div>
       </div>
 
-      {/* Bottom Footer Section Indicators */}
-      <div className="absolute left-0 right-0 z-20 border-t border-white/20 bg-black/40 backdrop-blur-sm" style={{ bottom: '5vh' }}>
-        <div className="container mx-auto px-4 lg:px-8 py-2 lg:py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3 lg:gap-6 text-[8px] lg:text-[9px] font-mono text-white/50">
-            <span className="hidden lg:inline text-primary">MEDICAL_STUDENT → THINKER → INNOVATOR</span>
-            <div className="hidden lg:flex gap-1">
+      {/* Bottom Footer Section Indicators - strictly pinned */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-white/20 bg-black/60 backdrop-blur-md">
+        <div className="container mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3 lg:gap-6 text-[9px] font-mono text-white/50">
+            <span className="hidden lg:inline text-primary tracking-widest">STUDENT → THINKER → INNOVATOR → BUILDER</span>
+            <div className="hidden lg:flex gap-1 items-end">
               {randomHeights.map((height, i) => (
-                <div key={i} className="w-1 h-3 bg-primary/30" style={{ height: `${height}px` }}></div>
+                <div key={i} className="w-1 bg-primary/30" style={{ height: `${height}px` }}></div>
               ))}
             </div>
-            <span>V2.9.0_FINAL</span>
+            <span>LOC.JGMCH_WB_IN</span>
           </div>
           
-          <div className="flex items-center gap-2 lg:gap-4 text-[8px] lg:text-[9px] font-mono text-white/50">
-             <span className="hidden lg:inline">◐ DIAGNOSTIC_ENGINE_ACTIVE</span>
+          <div className="flex items-center gap-2 lg:gap-4 text-[9px] font-mono text-white/50 uppercase tracking-widest">
+             <span className="hidden lg:inline">◐ DIAGNOSTIC_ENGINE_SYNCED</span>
             <div className="flex gap-1">
-              <div className="w-1 h-1 bg-primary/60 rounded-full animate-pulse"></div>
-              <div className="w-1 h-1 bg-primary/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-              <div className="w-1 h-1 bg-primary/20 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+              <div className="w-1.5 h-1.5 bg-primary/60 rounded-full animate-pulse"></div>
+              <div className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-1.5 h-1.5 bg-primary/20 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
             </div>
+            <span>V2.9.0_CORE</span>
           </div>
         </div>
       </div>
@@ -272,15 +258,11 @@ export function HeroAscii() {
             radial-gradient(1px 1px at 20% 30%, white, transparent),
             radial-gradient(1px 1px at 60% 70%, white, transparent),
             radial-gradient(1px 1px at 50% 50%, white, transparent),
-            radial-gradient(1px 1px at 80% 10%, white, transparent),
-            radial-gradient(1px 1px at 90% 60%, white, transparent),
-            radial-gradient(1px 1px at 33% 80%, white, transparent),
-            radial-gradient(1px 1px at 15% 60%, white, transparent),
-            radial-gradient(1px 1px at 70% 40%, white, transparent);
-          background-size: 200% 200%, 180% 180%, 250% 250%, 220% 220%, 190% 190%, 240% 240%, 210% 210%, 230% 230%;
-          background-position: 0% 0%, 40% 40%, 60% 60%, 20% 20%, 80% 80%, 30% 30%, 70% 70%, 50% 50%;
+            radial-gradient(1px 1px at 80% 10%, white, transparent);
+          background-size: 200% 200%;
+          background-position: center;
         }
       `}</style>
-    </div>
+    </main>
   );
 }

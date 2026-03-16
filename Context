@@ -1,4 +1,4 @@
-For landing page first i will add the terminal UI- "use client";
+For landing page first i will add the terminal UI(Thos os the unskippable part the user must wait before proceeding- "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 

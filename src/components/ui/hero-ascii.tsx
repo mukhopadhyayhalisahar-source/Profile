@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { 
   Stethoscope, Syringe, Microscope, Dna, HeartPulse, 
@@ -11,7 +11,12 @@ import {
 } from "lucide-react";
 
 export function HeroAscii() {
+  const [randomHeights, setRandomHeights] = useState<number[]>([]);
+
   useEffect(() => {
+    // Prevent hydration mismatch
+    setRandomHeights(Array.from({ length: 8 }).map(() => Math.random() * 12 + 4));
+
     const embedScript = document.createElement('script');
     embedScript.type = 'text/javascript';
     embedScript.textContent = `
@@ -236,8 +241,8 @@ export function HeroAscii() {
           <div className="flex items-center gap-3 lg:gap-6 text-[8px] lg:text-[9px] font-mono text-white/50">
             <span className="hidden lg:inline text-primary">MEDICAL_STUDENT → THINKER → INNOVATOR</span>
             <div className="hidden lg:flex gap-1">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="w-1 h-3 bg-primary/30" style={{ height: `${Math.random() * 12 + 4}px` }}></div>
+              {randomHeights.map((height, i) => (
+                <div key={i} className="w-1 h-3 bg-primary/30" style={{ height: `${height}px` }}></div>
               ))}
             </div>
             <span>V2.9.0_FINAL</span>

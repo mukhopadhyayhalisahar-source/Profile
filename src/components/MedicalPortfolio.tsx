@@ -12,7 +12,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 
 export function MedicalPortfolio() {
+  const [randomHeights, setRandomHeights] = useState<number[]>([]);
+
   useEffect(() => {
+    // Prevent hydration mismatch by generating random heights only on the client
+    setRandomHeights(Array.from({ length: 12 }).map(() => Math.random() * 12 + 4));
+
     const embedScript = document.createElement('script');
     embedScript.type = 'text/javascript';
     embedScript.textContent = `
@@ -254,8 +259,8 @@ export function MedicalPortfolio() {
           {/* Final Advice / Positioning */}
           <div className="pt-24 border-t border-white/5 text-center space-y-4">
             <div className="flex justify-center gap-1">
-              {Array.from({ length: 12 }).map((_, i) => (
-                <div key={i} className="w-1 h-3 bg-primary/20" style={{ height: `${Math.random() * 12 + 4}px` }}></div>
+              {randomHeights.map((height, i) => (
+                <div key={i} className="w-1 h-3 bg-primary/20" style={{ height: `${height}px` }}></div>
               ))}
             </div>
             <p className="text-[10px] font-mono text-neutral-500 tracking-[0.3em] uppercase">

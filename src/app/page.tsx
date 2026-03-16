@@ -11,6 +11,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import { RainbowButton } from "@/components/ui/rainbow-button";
+import { HeroSection as GalaxyHero } from "@/components/ui/galaxy-interactive-hero-section";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
@@ -54,8 +55,6 @@ export default function Home() {
     { src: 'https://github.com/user-attachments/assets/f0bf1cd2-96ba-4e92-b529-3cb2942f0531', alt: 'Ovexis Neural Node' },
     { src: 'https://github.com/user-attachments/assets/8b56ae54-b536-46a1-9cd6-589089dcc3d1', alt: 'Ovexis Data Analytics' },
     { src: 'https://github.com/user-attachments/assets/6c27a12c-eec8-414e-a846-2472576b7b74', alt: 'Ovexis Visual Protocol' },
-    { src: 'https://github.com/user-attachments/assets/4e0dc5bf-5639-4aaa-a117-c665fec5f5c5', alt: 'Ovexis Sub-system' },
-    { src: 'https://github.com/user-attachments/assets/f0bf1cd2-96ba-4e92-b529-3cb2942f0531', alt: 'Ovexis Component' },
   ];
 
   const profileContent = [
@@ -483,6 +482,17 @@ export default function Home() {
           </div>
           
           <StickyScroll content={profileContent} />
+
+          {/* NEW: UI Showcase Section */}
+          <section className="py-20 bg-black">
+             <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+                <h2 className="text-4xl md:text-6xl font-headline font-bold">Interactive UI Showcase</h2>
+                <p className="mt-4 text-neutral-400 max-w-2xl mx-auto font-body">
+                  An exploration of cutting-edge interface design, combining 3D environments with responsive user controls.
+                </p>
+             </div>
+             <GalaxyHero />
+          </section>
 
           {/* Contact Section */}
           <div className="max-w-4xl mx-auto mt-20 px-6 grid md:grid-cols-2 gap-12 items-center">

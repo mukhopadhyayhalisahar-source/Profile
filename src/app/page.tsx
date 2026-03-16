@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -12,6 +13,7 @@ import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { HeroAscii } from "@/components/ui/hero-ascii";
 import { MedicalDashboard } from "@/components/MedicalDashboard";
+import { AdvancedAILab } from "@/components/medical-ai";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
@@ -171,9 +173,7 @@ export default function Home() {
             <h1 className="mb-6 text-4xl md:text-7xl font-headline font-bold tracking-tight text-white leading-tight">
               Medicine, AI, and the Future <br /> of <span className="text-primary animate-glow">Intelligent Hospitals.</span>
             </h1>
-            <p className="mx-auto mb-10 max-w-2xl text-lg md:text-xl text-white/60 font-body">
-              Medical student at Jhargram Government Medical College building Ovexis AI assistants and healthcare systems designed for the next generation of medicine.
-            </p>
+            <h2 className="text-sm font-mono text-primary uppercase tracking-[0.3em] mb-8">System Builder Phase: Research & Prototype</h2>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <button 
                 onClick={() => document.getElementById('ovexis-hq')?.scrollIntoView({ behavior: 'smooth' })}
@@ -198,20 +198,11 @@ export default function Home() {
                     whileInView={{ opacity: 1, x: 0 }}
                     className="text-4xl md:text-6xl font-headline font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400"
                   >
-                    Project Ovexis — <br /> <span className="text-primary text-3xl md:text-5xl">Building an Intelligent Personal AI Assistant</span>
+                    Project Ovexis — <br /> <span className="text-primary text-3xl md:text-5xl">Intelligent AI Personal Assistant</span>
                   </motion.h2>
                   <p className="text-neutral-300 max-w-2xl text-lg md:text-xl leading-relaxed font-body">
-                    Project Ovexis is a modular AI assistant designed to function as a personal companion, productivity system, and intelligent automation platform capable of operating across devices.
+                    A modular AI ecosystem designed to automate professional workflows and explore AI-native medical system integrations.
                   </p>
-                  <div className="space-y-4 pt-4 border-t border-white/10">
-                    <h3 className="text-xl font-bold flex items-center gap-2">
-                      <Info className="w-5 h-5 text-primary" />
-                      1. Overview
-                    </h3>
-                    <p className="text-neutral-400 font-body text-sm leading-relaxed">
-                      Project Ovexis is an AI assistant built to go beyond traditional voice assistants. Instead of simply responding to commands, Ovexis is designed to understand context, learn user preferences, automate tasks, and assist in decision-making. The goal is to develop a system that functions as a digital co-pilot—capable of managing information, supporting productivity, and eventually integrating with complex environments such as healthcare systems.
-                    </p>
-                  </div>
                 </div>
                 <div className="flex-1 relative min-h-[400px]">
                   <SplineScene 
@@ -221,280 +212,41 @@ export default function Home() {
                 </div>
               </div>
             </Card>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 space-y-6">
-                <div className="w-12 h-12 rounded-2xl bg-destructive/20 flex items-center justify-center">
-                  <AlertCircle className="w-6 h-6 text-destructive" />
-                </div>
-                <h3 className="text-2xl font-bold">2. The Problem</h3>
-                <div className="text-neutral-400 text-sm leading-relaxed space-y-2">
-                  <p>Current digital assistants (Siri, Google Assistant, Alexa) have major limitations:</p>
-                  <ul className="list-disc list-inside">
-                    <li>Mostly command-based interactions</li>
-                    <li>Limited contextual memory</li>
-                    <li>Poor customization for individual workflows</li>
-                    <li>Weak integration with specialized domains like healthcare or research</li>
-                    <li>Heavy reliance on cloud connectivity</li>
-                  </ul>
-                  <p>As a result, users still spend significant time manually managing tasks, information, and tools.</p>
-                </div>
-              </div>
-
-              <div className="p-10 rounded-[2.5rem] bg-primary/5 border border-primary/10 space-y-6">
-                <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
-                  <Rocket className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold">3. The Vision</h3>
-                <div className="text-neutral-400 text-sm leading-relaxed space-y-2">
-                  <p>Project Ovexis aims to create a more intelligent and adaptable AI system capable of:</p>
-                  <ul className="list-disc list-inside">
-                    <li>Acting as a personal digital assistant</li>
-                    <li>Automating routine digital workflows</li>
-                    <li>Providing contextual information support</li>
-                    <li>Integrating across devices (phone, computer)</li>
-                    <li>Supporting specialized professional environments</li>
-                  </ul>
-                  <p>The long-term goal is to explore how such assistants could support future intelligent hospitals and medical systems.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              <h3 className="text-3xl font-bold flex items-center gap-3">
-                <Activity className="w-8 h-8 text-secondary" />
-                4. Core Features
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { title: "Voice Interaction", desc: "Natural language communication allowing hands-free interaction with the assistant." },
-                  { title: "Dual Mode Operation", desc: "Online and offline capabilities so the assistant remains usable even without internet connectivity." },
-                  { title: "Task Automation", desc: "Ability to launch applications, retrieve information, and execute predefined workflows." },
-                  { title: "Contextual Assistance", desc: "Designed to remember user preferences and provide more relevant responses over time." },
-                  { title: "Cross-Platform Vision", desc: "The project explores how a unified assistant can operate across mobile and desktop environments." }
-                ].map((feature, i) => (
-                  <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/40 transition-colors">
-                    <h4 className="font-bold mb-3 text-white">{feature.title}</h4>
-                    <p className="text-neutral-400 text-xs leading-relaxed">{feature.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <h3 className="text-3xl font-bold flex items-center gap-3">
-                  <Cpu className="w-8 h-8 text-primary" />
-                  5. Technology Stack
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    { name: "Python", role: "Core development language" },
-                    { name: "Speech Recognition", role: "Voice command processing" },
-                    { name: "Text-to-Speech", role: "Voice output generation" },
-                    { name: "Automation Scripts", role: "Device and application control" },
-                    { name: "AI APIs", role: "Advanced language processing" }
-                  ].map((tech, i) => (
-                    <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="w-2 h-2 rounded-full bg-primary" />
-                      <div className="text-sm font-medium"><span className="text-white">{tech.name}</span> — <span className="text-neutral-400">{tech.role}</span></div>
-                    </div>
-                  ))}
-                  <p className="text-xs text-neutral-500 mt-4 italic">The system architecture is designed to be modular, allowing future integration of new capabilities such as vision systems, memory layers, and advanced AI models.</p>
-                </div>
-              </div>
-
-              <div className="space-y-8">
-                <h3 className="text-3xl font-bold flex items-center gap-3">
-                  <Zap className="w-8 h-8 text-yellow-500" />
-                  6. Development Goals
-                </h3>
-                <div className="grid grid-cols-1 gap-4">
-                  {[
-                    "Persistent AI memory system",
-                    "Computer vision integration",
-                    "Device control and automation expansion",
-                    "Cross-device synchronization",
-                    "Advanced reasoning capabilities"
-                  ].map((goal, i) => (
-                    <div key={i} className="p-6 rounded-[2rem] bg-white/5 border border-white/10 flex items-center gap-4">
-                      <Target className="w-5 h-5 text-primary" />
-                      <span className="text-xs text-neutral-300">{goal}</span>
-                    </div>
-                  ))}
-                  <p className="text-xs text-neutral-500 mt-2 italic">These improvements aim to transform Ovexis from a simple assistant into a fully capable AI operating companion.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-12 rounded-[3.5rem] bg-gradient-to-br from-primary/10 via-black to-black border border-white/10 flex flex-col md:flex-row items-center gap-12">
-              <div className="flex-1 space-y-6">
-                <h3 className="text-3xl font-bold flex items-center gap-3">
-                  <Eye className="w-8 h-8 text-primary" />
-                  7. Long-Term Impact
-                </h3>
-                <p className="text-neutral-300 leading-relaxed font-body text-lg">
-                  Project Ovexis serves as an experimental platform to explore the future role of AI assistants in professional environments. The project is particularly focused on understanding how intelligent systems could eventually assist in medical workflows, hospital operations, and decision support systems.
-                </p>
-                <div className="pt-4 border-t border-white/5">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center justify-between max-w-sm">
-                      <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">8. Project Status</span>
-                      <div className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold animate-pulse">ACTIVE</div>
-                    </div>
-                    <div className="text-[10px] text-neutral-500">Development Type: Independent project</div>
-                    <div className="text-[10px] text-neutral-500">Focus Area: AI assistants, automation systems, and intelligent interfaces</div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
         {/* Visualizing the Vision */}
         <section className="bg-black pt-10">
           <div className="max-w-7xl mx-auto px-6 py-4 text-center space-y-2">
-            <h2 className="text-5xl md:text-7xl font-headline font-bold">Visualizing the Vision</h2>
+            <h2 className="text-5xl md:text-7xl font-headline font-bold uppercase">Vision Visualization</h2>
           </div>
           <ZoomParallax images={ovexisParallaxImages} />
         </section>
 
-        {/* Project Gameox HQ */}
-        <section id="gameox-hq" className="px-6 py-10 bg-black -mt-10">
-          <div className="max-w-7xl mx-auto space-y-20">
-            <div className="space-y-6 max-w-4xl">
-              <h2 className="text-4xl md:text-6xl font-headline font-bold text-white">
-                Gameox — <span className="text-secondary">Gesture-Operated Health Analytics Game</span>
-              </h2>
-              <p className="text-neutral-300 text-lg md:text-xl leading-relaxed font-body">
-                Gameox is an experimental gesture-controlled space shooter game that combines interactive gameplay with basic health analytics. The project explores how gaming environments can be used to collect motion data and generate preliminary insights related to neurological and motor conditions.
-              </p>
-              <p className="text-neutral-400 text-sm leading-relaxed font-body">
-                Unlike traditional games that rely on keyboards or controllers, Gameox allows players to control the game using hand gestures detected through a camera. Player movements directly control the spaceship, enabling a fully touch-free gameplay experience.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-10 rounded-[2.5rem] bg-white/5 border border-white/10 space-y-6">
-                <div className="w-12 h-12 rounded-2xl bg-secondary/20 flex items-center justify-center">
-                  <BrainCircuit className="w-6 h-6 text-secondary" />
-                </div>
-                <h3 className="text-2xl font-bold">Concept</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Designed to explore the intersection of gaming, computer vision, and health monitoring. By analyzing gesture patterns—speed, reaction time, and stability—the system generates a simple analytical report. The project investigates screening possibilities for neurological conditions affecting motor control.
-                </p>
-              </div>
-
-              <div className="p-10 rounded-[2.5rem] bg-primary/5 border border-primary/10 space-y-6">
-                <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
-                  <Target className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold">Purpose</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
-                  Gameox was created as an exploratory project to investigate how interactive games could serve as data collection tools for health analytics. The aim is not to provide medical diagnosis but to demonstrate how gameplay environments could potentially contribute to non-invasive monitoring of motor functions.
-                </p>
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              <h3 className="text-3xl font-bold flex items-center gap-3">
-                <Activity className="w-8 h-8 text-secondary" />
-                Core Features
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  { title: "Gesture-Based Gameplay", desc: "Players control the spaceship using hand gestures detected by the camera, eliminating traditional controllers." },
-                  { title: "Real-Time Motion Tracking", desc: "The system tracks hand movements and converts them into in-game actions like navigation and shooting." },
-                  { title: "Space Shooter Gameplay", desc: "Players navigate through waves of enemies in a classic arcade-style space environment." },
-                  { title: "Session-Based Analysis", desc: "After the session, the system analyzes motion patterns and generates a report based on the collected data." },
-                  { title: "Experimental Health Insights", desc: "The report explores indicators related to motor coordination, relevant for studying Parkinsonian movement patterns." }
-                ].map((feature, i) => (
-                  <div key={i} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-secondary/40 transition-colors">
-                    <h4 className="font-bold mb-3 text-white">{feature.title}</h4>
-                    <p className="text-neutral-400 text-xs leading-relaxed">{feature.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-8">
-                <h3 className="text-3xl font-bold flex items-center gap-3">
-                  <Cpu className="w-8 h-8 text-secondary" />
-                  Technologies Used
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    "Computer Vision for gesture detection",
-                    "Real-time motion tracking algorithms",
-                    "Python-based game logic",
-                    "Camera input processing",
-                    "Data analysis for session reporting"
-                  ].map((tech, i) => (
-                    <div key={i} className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="w-2 h-2 rounded-full bg-secondary" />
-                      <div className="text-sm font-medium text-neutral-300">{tech}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-12 rounded-[3.5rem] bg-gradient-to-br from-secondary/10 via-black to-black border border-white/10 flex flex-col justify-center space-y-6">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-neutral-500 font-bold uppercase tracking-widest">Project Status</span>
-                  <div className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold">PROTOTYPE</div>
-                </div>
-                <h3 className="text-2xl font-bold">Experimental Research Project</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed font-body">
-                  Exploring non-invasive monitoring of motor functions through interactive gameplay. This concept may open possibilities for future research in digital health.
-                </p>
-                <RainbowButton className="w-full" onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
-                  View Case Study
-                </RainbowButton>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Project Gameox Animation */}
-        <section id="gameox" className="bg-black relative">
-          <MacbookScroll 
-            title={
-              <span className="text-3xl md:text-5xl font-bold font-headline">
-                Gameox: Gesture-Operated <br /> Health Analytics.
-              </span>
-            }
-            src="https://github.com/user-attachments/assets/c6b07f4d-2222-4c76-9b75-e10040ddd5a9"
-          />
-        </section>
-
-        {/* Profile Section */}
+        {/* Educational Qualifications */}
         <section id="profile" className="py-20 bg-black relative z-30 border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 mb-12 text-center space-y-4">
-            <motion.p 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="text-primary font-bold tracking-tight text-lg max-w-2xl mx-auto"
-            >
-              Medical student exploring the intersection of medicine, artificial intelligence, and future healthcare systems.
-            </motion.p>
-            <h2 className="text-4xl md:text-6xl font-headline font-bold">Educational Qualifications</h2>
+            <h2 className="text-4xl md:text-6xl font-headline font-bold">Academic Journey</h2>
           </div>
-          
           <StickyScroll content={profileContent} />
+        </section>
 
-          {/* Section 5 - MED FOUNDATION (Hero ASCII UI) */}
-          <div className="h-[100dvh] w-full overflow-hidden m-0 p-0 border-t border-white/5">
-            <HeroAscii />
-          </div>
+        {/* Section 5 - MED FOUNDATION (Hero ASCII UI) */}
+        <section className="h-[100dvh] w-full overflow-hidden m-0 p-0">
+          <HeroAscii />
+        </section>
 
-          {/* Section 6 - CLINICAL DASHBOARD (Falling Pattern UI) */}
-          <MedicalDashboard />
+        {/* Section 6 - CLINICAL DASHBOARD (MedicalDashboard UI) */}
+        <MedicalDashboard />
 
-          {/* Contact Section */}
-          <div className="max-w-4xl mx-auto mt-20 px-6 grid md:grid-cols-2 gap-12 items-center">
+        {/* Section 7 - ADVANCED AI LAB */}
+        <AdvancedAILab />
+
+        {/* Contact Section */}
+        <section className="py-32 bg-black border-t border-white/5">
+          <div className="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
-              <h3 className="text-3xl font-headline font-bold">Get In Touch</h3>
+              <h3 className="text-3xl font-headline font-bold">Collaborate</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-4 text-neutral-400">
                   <Mail className="w-5 h-5 text-primary" />
@@ -507,27 +259,27 @@ export default function Home() {
               </div>
               <div className="flex flex-wrap gap-4">
                 <RainbowButton onClick={() => window.open('https://github.com/SONIC445-BYTE', '_blank')}>
-                  GitHub Profile
+                  GitHub
                 </RainbowButton>
                 <RainbowButton onClick={() => window.open('https://www.linkedin.com/in/ayan-mukhopadhyay1', '_blank')}>
-                  LinkedIn Profile
+                  LinkedIn
                 </RainbowButton>
               </div>
             </div>
             <div className="p-10 rounded-[3rem] border border-white/10 bg-white/5 backdrop-blur-sm space-y-6">
-              <h4 className="text-xl font-bold">Open For</h4>
-              <ul className="text-neutral-400 text-sm space-y-3">
+              <h4 className="text-xl font-bold">Research Areas</h4>
+              <ul className="text-neutral-400 text-sm space-y-3 font-mono">
                 <li className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Research collaborations
+                  NEUROSCIENCE_AI
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  Health technology projects
+                  HOSPITAL_AUTOMATION
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  AI innovation initiatives
+                  DIAGNOSTIC_DATA_SYSTEMS
                 </li>
               </ul>
               <button 

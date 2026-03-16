@@ -9,7 +9,7 @@ export function HeroAscii() {
   const [randomHeights, setRandomHeights] = useState<number[]>([]);
 
   useEffect(() => {
-    // Prevent hydration mismatch
+    // Prevent hydration mismatch by generating heights only on client
     setRandomHeights(Array.from({ length: 12 }).map(() => Math.random() * 12 + 4));
 
     const embedScript = document.createElement('script');

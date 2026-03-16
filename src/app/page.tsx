@@ -483,12 +483,12 @@ export default function Home() {
           
           <StickyScroll content={profileContent} />
 
-          {/* NEW: Section 5 - Medical Foundation Cinematic Dashboard */}
+          {/* Section 5 - MED FOUNDATION (Hero ASCII UI) */}
           <div className="h-[100dvh] w-full overflow-hidden m-0 p-0 border-t border-white/5">
             <HeroAscii />
           </div>
 
-          {/* NEW: Section 6 - Clinical Uncompressed Dashboard */}
+          {/* Section 6 - CLINICAL DASHBOARD (Falling Pattern UI) */}
           <MedicalDashboard />
 
           {/* Contact Section */}

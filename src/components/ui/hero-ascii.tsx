@@ -1,14 +1,13 @@
-
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Badge } from "@/components/ui/badge";
 import { 
-  Stethoscope, Syringe, Microscope, Dna, HeartPulse, 
-  ClipboardList, BookOpen, Rocket, Target, Activity,
-  Baby, Scissors, GraduationCap, ChevronRight, BrainCircuit,
-  Eye, Zap, ShieldCheck
+  ClipboardList, Rocket, Activity,
+  Scissors, GraduationCap, ChevronRight, BrainCircuit,
+  Zap, Microscope, BookOpen, Target
 } from "lucide-react";
+import { FallingPattern } from "@/components/ui/falling-pattern";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function HeroAscii() {
   const [randomHeights, setRandomHeights] = useState<number[]>([]);
@@ -95,9 +94,6 @@ export function HeroAscii() {
         />
       </div>
 
-      {/* Mobile stars background */}
-      <div className="absolute inset-0 w-full h-full lg:hidden stars-bg opacity-20"></div>
-
       {/* Top Header - Fixed pinning */}
       <div className="absolute top-0 left-0 right-0 z-20 border-b border-white/20 bg-black/40 backdrop-blur-sm">
         <div className="container mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
@@ -118,18 +114,18 @@ export function HeroAscii() {
         </div>
       </div>
 
-      {/* Corner Frame Accents - strictly pinned with Tailwind */}
+      {/* Corner Frame Accents */}
       <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-primary/40 z-20 pointer-events-none"></div>
       <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-primary/40 z-20 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-primary/40 z-20 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-primary/40 z-20 pointer-events-none"></div>
 
-      {/* Main Content Area - Center focused with strict overflow control */}
+      {/* Main Content Area */}
       <div className="relative z-10 flex flex-1 items-center justify-center pt-20 pb-16 px-6 lg:px-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12 items-center w-full max-w-7xl h-[70vh]">
           
           {/* Narrative Column */}
-          <div className="max-w-xl relative">
+          <div className="max-w-xl relative flex flex-col justify-center h-full">
             <div className="flex items-center gap-2 mb-3 opacity-60">
               <div className="w-8 h-px bg-primary"></div>
               <span className="text-primary text-[10px] font-mono tracking-wider">MED_FOUNDATION</span>
@@ -148,7 +144,7 @@ export function HeroAscii() {
 
             <div className="relative space-y-4">
               <p className="text-xs lg:text-base text-gray-300 leading-relaxed font-mono opacity-80">
-                Pursuing MBBS at JGMCH (2029). Bridging traditional clinical training with advanced AI and neuroscience protocols to redesign healthcare delivery.
+                Pursuing MBBS at Jhargram Government Medical College (2029). Bridging traditional clinical training with advanced AI and neuroscience protocols to redesign healthcare delivery.
               </p>
               <div className="hidden lg:flex gap-1 py-2 opacity-40">
                 {Array.from({ length: 40 }).map((_, i) => (
@@ -162,7 +158,7 @@ export function HeroAscii() {
             </div>
             
             <div className="flex gap-4 mt-8">
-              <button className="relative px-6 py-2.5 bg-primary/10 text-primary font-mono text-xs border border-primary/40 hover:bg-primary hover:text-white transition-all duration-300 group">
+              <button className="relative px-6 py-2.5 bg-primary/10 text-primary font-mono text-xs border border-primary/40 hover:bg-primary hover:text-white transition-all duration-300">
                 RESEARCH_VISION
               </button>
               <button className="relative px-6 py-2.5 bg-transparent border border-white/20 text-white font-mono text-xs hover:bg-white/10 transition-all duration-300">
@@ -171,56 +167,103 @@ export function HeroAscii() {
             </div>
           </div>
 
-          {/* Data Grid Column - Interactive Technical Modules */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 hover:border-primary/40 transition-colors">
-              <div className="flex items-center gap-2 text-primary">
-                <ClipboardList className="w-4 h-4" />
-                <span className="text-[10px] font-mono font-bold tracking-widest">CLINICAL_EXPOSURE</span>
-              </div>
-              <ul className="space-y-1.5 text-[9px] font-mono text-white/60 uppercase">
-                <li>• OBGY ROTATION</li>
-                <li>• GENERAL SURGERY</li>
-                <li>• GENERAL MEDICINE</li>
-                <li>• ENT / ICTC</li>
-                <li>• PSM FIELD VISITS</li>
-              </ul>
+          {/* New Dashboard Column with FallingPattern */}
+          <div className="h-full border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl overflow-hidden relative">
+            <div className="absolute inset-0 z-0 opacity-20">
+              <FallingPattern 
+                color="hsl(var(--primary))" 
+                blurIntensity="4px" 
+                density={1.5}
+              />
             </div>
-
-            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 hover:border-primary/40 transition-colors">
-              <div className="flex items-center gap-2 text-primary">
-                <Scissors className="w-4 h-4" />
-                <span className="text-[10px] font-mono font-bold tracking-widest">PROCEDURES_OBSERVED</span>
-              </div>
-              <ul className="space-y-1.5 text-[9px] font-mono text-white/60 uppercase">
-                <li>• HERNIA REPAIR</li>
-                <li>• LIPOFIBROMA REMOVAL</li>
-                <li>• WARD PROCEDURES</li>
-                <li>• DIAGNOSTIC EVAL</li>
-              </ul>
-            </div>
-
-            <div className="p-6 border border-white/10 bg-black/60 backdrop-blur-xl rounded-xl space-y-4 md:col-span-2 hover:border-primary/40 transition-colors">
-              <div className="flex items-center gap-2 text-primary">
-                <Rocket className="w-4 h-4" />
-                <span className="text-[10px] font-mono font-bold tracking-widest">ACTIVE_MEDICAL_PROJECTS</span>
-              </div>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h4 className="text-[10px] font-bold text-white mb-1 uppercase tracking-tight">Gameox</h4>
-                  <p className="text-[8px] text-white/40 leading-tight">Neurological screening via gesture analytics and motor stability tracking.</p>
+            
+            <div className="relative z-10 h-full flex flex-col p-6">
+              <div className="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2 text-primary">
+                  <BrainCircuit className="w-5 h-5" />
+                  <span className="text-xs font-mono font-bold tracking-widest">CLINICAL_DASHBOARD_V2.9</span>
                 </div>
-                <div>
-                  <h4 className="text-[10px] font-bold text-white mb-1 uppercase tracking-tight">Clipper 360</h4>
-                  <p className="text-[8px] text-white/40 leading-tight">Omni-channel diagnostic reasoning engine for complex cases.</p>
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 rounded-full bg-primary/40 animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-primary/20 animate-pulse" style={{ animationDelay: '0.2s' }} />
                 </div>
               </div>
+
+              <ScrollArea className="flex-1 pr-4">
+                <div className="space-y-8 pb-8">
+                  {/* 2. Clinical Exposure */}
+                  <div className="space-y-3">
+                    <h4 className="text-[10px] font-mono text-primary font-bold flex items-center gap-2">
+                      <ClipboardList className="w-3 h-3" /> 02. CLINICAL_EXPOSURE
+                    </h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {["OBGY ROTATION", "GENERAL SURGERY", "GENERAL MEDICINE", "ENT", "ICTC CENTRE", "PSM FIELD VISITS"].map((item, i) => (
+                        <div key={i} className="bg-white/5 border border-white/5 p-2 rounded text-[9px] font-mono text-white/60">
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* 3. Observed Procedures */}
+                  <div className="space-y-3">
+                    <h4 className="text-[10px] font-mono text-primary font-bold flex items-center gap-2">
+                      <Scissors className="w-3 h-3" /> 03. PROCEDURES_OBSERVED
+                    </h4>
+                    <ul className="space-y-1.5 text-[9px] font-mono text-white/60">
+                      <li>• HERNIA REPAIR SURGERY</li>
+                      <li>• LIPOFIBROMA REMOVAL</li>
+                      <li>• SURGICAL WARD PROTOCOLS</li>
+                      <li>• DIAGNOSTIC EVALUATIONS</li>
+                    </ul>
+                  </div>
+
+                  {/* 4. Medical Projects */}
+                  <div className="space-y-3">
+                    <h4 className="text-[10px] font-mono text-primary font-bold flex items-center gap-2">
+                      <Rocket className="w-3 h-3" /> 04. MEDICAL_PROJECTS
+                    </h4>
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-[10px] text-white font-bold">GAMEOX</p>
+                        <p className="text-[9px] text-white/40 leading-tight">Neuro-screening via gesture analytics and motor stability tracking.</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-white font-bold">CLIPPER 360</p>
+                        <p className="text-[9px] text-white/40 leading-tight">Omni-channel diagnostic reasoning engine for complex cases.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 5, 6, 7. Streamlined Data */}
+                  <div className="grid grid-cols-1 gap-6 pt-4 border-t border-white/5">
+                    <div>
+                      <h5 className="text-[9px] font-bold text-primary flex items-center gap-2 mb-2">
+                        <BookOpen className="w-3 h-3" /> 05. LEARNING_FOCUS
+                      </h5>
+                      <p className="text-[8px] text-white/50 font-mono">CLINICAL MEDICINE | PATHOLOGY | NEUROSCIENCE | DIAGNOSTICS</p>
+                    </div>
+                    <div>
+                      <h5 className="text-[9px] font-bold text-primary flex items-center gap-2 mb-2">
+                        <Microscope className="w-3 h-3" /> 06. RESEARCH_INTERESTS
+                      </h5>
+                      <p className="text-[8px] text-white/50 font-mono">AI IN MEDICINE | DIAGNOSTIC TECH | HOSPITAL SYSTEM DESIGN</p>
+                    </div>
+                    <div>
+                      <h5 className="text-[9px] font-bold text-primary flex items-center gap-2 mb-2">
+                        <Target className="w-3 h-3" /> 07. FUTURE_VISION
+                      </h5>
+                      <p className="text-[8px] text-white/50 font-mono italic">CONTRIBUTING TO AI-NATIVE HEALTHCARE ECOSYSTEMS & AUTOMATED CARE.</p>
+                    </div>
+                  </div>
+                </div>
+              </ScrollArea>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Footer Section Indicators - strictly pinned */}
+      {/* Bottom Footer Section Indicators */}
       <div className="absolute bottom-0 left-0 right-0 z-20 border-t border-white/20 bg-black/60 backdrop-blur-md">
         <div className="container mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3 lg:gap-6 text-[9px] font-mono text-white/50">
@@ -251,16 +294,6 @@ export function HeroAscii() {
             repeating-linear-gradient(0deg, transparent 0px, transparent 1px, white 1px, white 2px),
             repeating-linear-gradient(90deg, transparent 0px, transparent 1px, white 1px, white 2px);
           background-size: 3px 3px;
-        }
-        
-        .stars-bg {
-          background-image: 
-            radial-gradient(1px 1px at 20% 30%, white, transparent),
-            radial-gradient(1px 1px at 60% 70%, white, transparent),
-            radial-gradient(1px 1px at 50% 50%, white, transparent),
-            radial-gradient(1px 1px at 80% 10%, white, transparent);
-          background-size: 200% 200%;
-          background-position: center;
         }
       `}</style>
     </main>

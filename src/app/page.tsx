@@ -12,6 +12,7 @@ import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { HeroSection as GalaxyHero } from "@/components/ui/galaxy-interactive-hero-section";
+import { MedicalPortfolio } from "@/components/MedicalPortfolio";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
@@ -483,10 +484,13 @@ export default function Home() {
           
           <StickyScroll content={profileContent} />
 
+          {/* NEW: Medical Portfolio Section */}
+          <MedicalPortfolio />
+
           {/* NEW: UI Showcase Section */}
           <section className="py-20 bg-black">
              <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
-                <h2 className="text-4xl md:text-6xl font-headline font-bold">Interactive UI Showcase</h2>
+                <h2 className="text-4xl md:text-6xl font-headline font-bold">UI Showcase</h2>
                 <p className="mt-4 text-neutral-400 max-w-2xl mx-auto font-body">
                   An exploration of cutting-edge interface design, combining 3D environments with responsive user controls.
                 </p>

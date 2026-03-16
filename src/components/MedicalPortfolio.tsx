@@ -1,221 +1,268 @@
 
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { 
   Stethoscope, Syringe, Microscope, Dna, HeartPulse, 
   ClipboardList, BookOpen, Rocket, Target, Activity,
-  Baby, Scissors, GraduationCap, ChevronRight
+  Baby, Scissors, GraduationCap, ChevronRight, BrainCircuit,
+  Info, ShieldCheck, Zap, Eye
 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const TimelineData = [
-  {
-    date: "2023 – Present",
-    title: "MBBS Student",
-    institution: "Jhargram Government Medical College",
-    details: "Clinical Training Exposure: OBGY | Surgery | Medicine | ENT | ICTC | Community Health",
-    projects: "Projects: Gameox | Clipper 360 | Public Health Projects"
-  }
-];
-
-const ClinicalRotations = [
-  { name: "Obstetrics & Gynecology (OBGY)", icon: Baby },
-  { name: "General Surgery", icon: Scissors },
-  { name: "General Medicine", icon: Stethoscope },
-  { name: "ENT", icon: Activity },
-  { name: "ICTC", icon: ClipboardList, desc: "Integrated Counselling & Testing Centre" },
-  { name: "Preventive & Social Medicine (PSM)", icon: HeartPulse, desc: "Field visits and Public health surveys" },
-];
-
-const Procedures = [
-  "Hernia repair surgery",
-  "Lipofibroma removal surgery",
-  "Routine surgical ward procedures",
-  "Patient diagnostic evaluations"
-];
-
 export function MedicalPortfolio() {
+  useEffect(() => {
+    const embedScript = document.createElement('script');
+    embedScript.type = 'text/javascript';
+    embedScript.textContent = `
+      !function(){
+        if(!window.UnicornStudio){
+          window.UnicornStudio={isInitialized:!1};
+          var i=document.createElement("script");
+          i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.33/dist/unicornStudio.umd.js";
+          i.onload=function(){
+            window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)
+          };
+          (document.head || document.body).appendChild(i)
+        }
+      }();
+    `;
+    document.head.appendChild(embedScript);
+
+    const style = document.createElement('style');
+    style.textContent = `
+      [data-us-project] {
+        position: relative !important;
+        overflow: hidden !important;
+      }
+      [data-us-project] canvas {
+        clip-path: inset(0 0 10% 0) !important;
+      }
+      [data-us-project] * {
+        pointer-events: none !important;
+      }
+      .dither-pattern {
+        background-image: 
+          repeating-linear-gradient(0deg, transparent 0px, transparent 1px, white 1px, white 2px),
+          repeating-linear-gradient(90deg, transparent 0px, transparent 1px, white 1px, white 2px);
+        background-size: 3px 3px;
+      }
+    `;
+    document.head.appendChild(style);
+
+    const hideBranding = () => {
+      const projectDiv = document.querySelector('[data-us-project]');
+      if (projectDiv) {
+        const allElements = projectDiv.querySelectorAll('*');
+        allElements.forEach(el => {
+          const text = (el.textContent || '').toLowerCase();
+          if (text.includes('made with') || text.includes('unicorn')) {
+            el.remove();
+          }
+        });
+      }
+    };
+
+    hideBranding();
+    const interval = setInterval(hideBranding, 500);
+    
+    return () => {
+      clearInterval(interval);
+      document.head.removeChild(embedScript);
+      document.head.removeChild(style);
+    };
+  }, []);
+
   return (
-    <section className="py-24 bg-black relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary blur-[120px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary blur-[120px] rounded-full" />
+    <section className="relative min-h-screen bg-black border-t border-white/10 overflow-hidden pt-20">
+      {/* Vitruvian Background Background */}
+      <div className="absolute inset-0 w-full h-full opacity-30 pointer-events-none hidden lg:block">
+        <div 
+          data-us-project="whwOGlfJ5Rz2rHaEUgHl" 
+          style={{ width: '100%', height: '100%', minHeight: '100vh' }}
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* 1. Medical Journey */}
-        <div className="mb-24 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-bold text-primary mb-6"
-          >
-            <GraduationCap className="w-4 h-4" />
-            Medical Journey
-          </motion.div>
-          <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8">
-            Medical Student Exploring the <br /> <span className="text-primary">Future of Healthcare</span>
-          </h2>
-          <p className="max-w-3xl mx-auto text-neutral-400 text-lg md:text-xl leading-relaxed font-body">
-            I am currently pursuing my MBBS at Jhargram Government Medical College with an expected graduation in 2029. 
-            My medical journey combines traditional clinical training with a deep interest in technology, 
-            neuroscience, and healthcare innovation. Alongside my medical education, I actively explore how AI, 
-            software systems, and data-driven tools can improve diagnosis, hospital efficiency, and patient care.
-          </p>
-        </div>
+      {/* Frame Accents */}
+      <div className="absolute top-10 left-10 w-12 h-12 border-t-2 border-l-2 border-primary/30 z-20"></div>
+      <div className="absolute top-10 right-10 w-12 h-12 border-t-2 border-r-2 border-primary/30 z-20"></div>
 
-        {/* 2 & 3. Clinical Depth */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-24">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold flex items-center gap-3">
-              <Stethoscope className="w-6 h-6 text-primary" />
-              Clinical Exposure
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {ClinicalRotations.map((rotation, i) => (
-                <Card key={i} className="bg-white/5 border-white/10 hover:border-primary/40 transition-colors">
-                  <CardContent className="p-6">
-                    <rotation.icon className="w-8 h-8 text-primary mb-4" />
-                    <h4 className="font-bold text-sm mb-1">{rotation.name}</h4>
-                    {rotation.desc && <p className="text-[10px] text-neutral-500">{rotation.desc}</p>}
-                  </CardContent>
-                </Card>
-              ))}
+      <div className="container mx-auto px-6 lg:px-16 relative z-10 py-20">
+        <div className="max-w-5xl space-y-32">
+          
+          {/* 1. Medical Journey (Hero Style) */}
+          <div className="space-y-8 relative">
+            <div className="flex items-center gap-2 mb-3 opacity-60">
+              <div className="w-8 h-px bg-primary"></div>
+              <span className="text-primary text-[10px] font-mono tracking-wider">MED-CORE-001</span>
+              <div className="flex-1 h-px bg-primary"></div>
+            </div>
+            
+            <div className="relative">
+              <div className="absolute -left-3 top-0 bottom-0 w-1 dither-pattern opacity-40"></div>
+              <h2 className="text-4xl lg:text-7xl font-bold text-white leading-tight font-headline tracking-tight">
+                MEDICAL <br />
+                <span className="text-primary animate-glow">JOURNEY</span>
+              </h2>
+            </div>
+
+            <div className="max-w-2xl space-y-6">
+              <p className="text-lg lg:text-2xl text-white/80 font-body leading-relaxed">
+                Medical Student Exploring the Future of Healthcare
+              </p>
+              <p className="text-sm lg:text-lg text-neutral-400 font-body leading-relaxed">
+                Currently pursuing MBBS at Jhargram Government Medical College (Expected 2029). 
+                I bridge the gap between traditional clinical training and advanced technology—designing 
+                AI systems that don&apos;t just think, but understand the complexities of human biology.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Badge variant="outline" className="px-4 py-2 border-primary/50 text-primary font-mono text-[10px]">SYSTEM.MBBS_CANDIDATE</Badge>
+              <Badge variant="outline" className="px-4 py-2 border-white/20 text-white/50 font-mono text-[10px]">LOCATION.JGMCH_WB</Badge>
             </div>
           </div>
 
-          <div className="space-y-8">
-            <h3 className="text-2xl font-bold flex items-center gap-3">
-              <Scissors className="w-6 h-6 text-primary" />
-              Observed Clinical Procedures
-            </h3>
-            <div className="space-y-4">
-              {Procedures.map((procedure, i) => (
-                <div key={i} className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 group hover:bg-white/10 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                    <ChevronRight className="w-5 h-5 text-primary" />
+          {/* 2 & 3. Clinical Exposure & Procedures (Technical Grid) */}
+          <div className="grid lg:grid-cols-2 gap-12">
+            <div className="space-y-8 p-8 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+              <div className="flex items-center gap-3">
+                <Stethoscope className="w-6 h-6 text-primary" />
+                <h3 className="text-xl font-bold font-headline uppercase tracking-widest">Clinical Exposure</h3>
+              </div>
+              <p className="text-sm text-neutral-500 font-body leading-relaxed">
+                Gained deep exposure to hospital-based medicine and community healthcare systems through rigorous department rotations.
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { name: "OBGY", icon: Baby },
+                  { name: "General Surgery", icon: Scissors },
+                  { name: "General Medicine", icon: HeartPulse },
+                  { name: "ENT", icon: Activity },
+                  { name: "ICTC", icon: ClipboardList },
+                  { name: "PSM", icon: Target }
+                ].map((item, i) => (
+                  <div key={i} className="p-4 rounded-xl border border-white/5 bg-black/40 flex items-center gap-3 group hover:border-primary/40 transition-colors">
+                    <item.icon className="w-4 h-4 text-primary group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-neutral-300 font-mono">{item.name}</span>
                   </div>
-                  <span className="text-sm md:text-base text-neutral-300 font-medium">{procedure}</span>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-8 p-8 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-sm relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-24 h-24 dither-pattern opacity-10" />
+               <div className="flex items-center gap-3">
+                <Scissors className="w-6 h-6 text-primary" />
+                <h3 className="text-xl font-bold font-headline uppercase tracking-widest">Clinical Procedures</h3>
+              </div>
+              <div className="space-y-4">
+                {[
+                  "Hernia repair surgery",
+                  "Lipofibroma removal surgery",
+                  "Routine surgical ward procedures",
+                  "Patient diagnostic evaluations"
+                ].map((proc, i) => (
+                  <div key={i} className="flex items-center justify-between p-4 border-b border-white/5 group hover:bg-white/5 transition-all">
+                    <span className="text-xs text-neutral-400 font-mono tracking-tighter">{proc}</span>
+                    <ChevronRight className="w-3 h-3 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Medical Projects (ASCII/Technical Cards) */}
+          <div className="space-y-12">
+            <div className="flex items-center gap-4">
+              <Rocket className="w-8 h-8 text-primary" />
+              <h3 className="text-3xl font-bold font-headline">Medical Projects & Explorations</h3>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                { 
+                  title: "Gameox", 
+                  desc: "Gesture-operated game generating neurological reports for conditions like Parkinson's based on gameplay motion analysis.",
+                  tag: "NEURO_AI"
+                },
+                { 
+                  title: "PSM Project", 
+                  desc: "Field-based research exploring community healthcare challenges and public health initiatives.",
+                  tag: "PUBLIC_HEALTH"
+                },
+                { 
+                  title: "Pathology Museum", 
+                  desc: "Academic engagement in pathological learning through museum-based specimen observation.",
+                  tag: "ACADEMIA"
+                },
+                { 
+                  title: "Clipper 360", 
+                  desc: "Ongoing exploratory project focused on new diagnostic approaches and healthcare tools.",
+                  tag: "DIAGNOSTICS"
+                }
+              ].map((project, i) => (
+                <div key={i} className="group p-8 border border-white/10 bg-black hover:border-primary/50 transition-all relative">
+                   <div className="absolute top-2 right-2 text-[8px] font-mono text-primary opacity-50 tracking-widest">{project.tag}</div>
+                   <h4 className="text-xl font-bold mb-4 font-headline text-white group-hover:text-primary transition-colors">{project.title}</h4>
+                   <p className="text-sm text-neutral-400 font-body leading-relaxed">{project.desc}</p>
+                   <div className="mt-6 h-px w-full bg-white/5 group-hover:bg-primary/20 transition-all" />
                 </div>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* 4. Medical Projects */}
-        <div className="mb-24">
-          <h3 className="text-3xl font-bold mb-12 flex items-center gap-3">
-            <Rocket className="w-8 h-8 text-secondary" />
-            Medical Projects & Explorations
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { 
-                title: "Gameox", 
-                desc: "A gesture-operated game designed to generate medical reports related to neurological conditions such as Parkinson’s disease based on gameplay analysis.",
-                tag: "AI & Neuro"
-              },
-              { 
-                title: "PSM Project", 
-                desc: "Participation in public health initiatives and field-based research exploring community healthcare challenges.",
-                tag: "Public Health"
-              },
-              { 
-                title: "Pathology Museum Work", 
-                desc: "Engagement in academic activities involving specimen observation and pathological learning through museum-based study.",
-                tag: "Academia"
-              },
-              { 
-                title: "Clipper 360", 
-                desc: "An ongoing project exploring new diagnostic approaches and healthcare tools to improve diagnostics.",
-                tag: "Diagnostics"
-              }
-            ].map((project, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 h-full">
-                <CardContent className="p-8 flex flex-col h-full">
-                  <Badge variant="secondary" className="w-fit mb-4 text-[10px]">{project.tag}</Badge>
-                  <h4 className="text-xl font-bold mb-4">{project.title}</h4>
-                  <p className="text-sm text-neutral-400 leading-relaxed font-body flex-grow">
-                    {project.desc}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
+          {/* 5, 6 & 7. Learning, Research & Vision */}
+          <div className="grid lg:grid-cols-3 gap-8">
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold text-primary font-mono tracking-widest uppercase flex items-center gap-2">
+                <BookOpen className="w-4 h-4" /> 01. Learning
+              </h4>
+              <ul className="space-y-3 text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Clinical Medicine</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Pathology Mechanisms</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Neuroscience</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Diagnostic Reasoning</li>
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold text-primary font-mono tracking-widest uppercase flex items-center gap-2">
+                <Microscope className="w-4 h-4" /> 02. Research
+              </h4>
+              <ul className="space-y-3 text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> AI in Medicine</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Neuroscience Protocols</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Hospital Infrastructure</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Public Health Systems</li>
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold text-primary font-mono tracking-widest uppercase flex items-center gap-2">
+                <Target className="w-4 h-4" /> 03. Vision
+              </h4>
+              <ul className="space-y-3 text-[10px] font-mono text-neutral-500 uppercase tracking-widest">
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> AI-Assisted Diagnostics</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Intelligent Hospitals</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Medical Automation</li>
+                <li className="flex items-center gap-2"><div className="w-1 h-1 bg-primary" /> Data-Driven Care</li>
+              </ul>
+            </div>
           </div>
-        </div>
 
-        {/* 5, 6 & 7. Learning, Research & Vision */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-24">
-          <Card className="bg-gradient-to-b from-primary/10 to-transparent border-primary/20">
-            <CardContent className="p-8 space-y-6">
-              <h3 className="text-2xl font-bold flex items-center gap-3">
-                <BookOpen className="w-6 h-6 text-primary" />
-                Learning
-              </h3>
-              <ul className="space-y-3 text-sm text-neutral-400">
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> Clinical medicine</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> Pathology mechanisms</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> Neuroscience</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-primary" /> Diagnostic reasoning</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-b from-secondary/10 to-transparent border-secondary/20">
-            <CardContent className="p-8 space-y-6">
-              <h3 className="text-2xl font-bold flex items-center gap-3">
-                <Microscope className="w-6 h-6 text-secondary" />
-                Research
-              </h3>
-              <ul className="space-y-3 text-sm text-neutral-400">
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-secondary" /> AI in medicine</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-secondary" /> Neuroscience</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-secondary" /> Hospital system design</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-secondary" /> Public health systems</li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-b from-white/10 to-transparent border-white/20">
-            <CardContent className="p-8 space-y-6">
-              <h3 className="text-2xl font-bold flex items-center gap-3">
-                <Target className="w-6 h-6 text-white" />
-                Vision
-              </h3>
-              <ul className="space-y-3 text-sm text-neutral-400">
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white" /> AI-assisted diagnostics</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white" /> Intelligent infrastructure</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white" /> Medical automation</li>
-                <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-white" /> Data-driven management</li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Timeline */}
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-3xl font-bold mb-12 text-center">Timeline</h3>
-          <div className="relative border-l border-white/10 ml-6 pl-12 space-y-12">
-            {TimelineData.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="relative"
-              >
-                <div className="absolute -left-[3.75rem] top-0 w-6 h-6 rounded-full bg-primary border-4 border-black z-20" />
-                <span className="text-primary font-bold text-sm">{item.date}</span>
-                <h4 className="text-2xl font-bold mt-2">{item.title}</h4>
-                <p className="text-neutral-300 font-medium">{item.institution}</p>
-                <p className="text-neutral-500 text-sm mt-4">{item.details}</p>
-                <p className="text-neutral-500 text-sm mt-1">{item.projects}</p>
-              </motion.div>
-            ))}
+          {/* Final Advice / Positioning */}
+          <div className="pt-24 border-t border-white/5 text-center space-y-4">
+            <div className="flex justify-center gap-1">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div key={i} className="w-1 h-3 bg-primary/20" style={{ height: `${Math.random() * 12 + 4}px` }}></div>
+              ))}
+            </div>
+            <p className="text-[10px] font-mono text-neutral-500 tracking-[0.3em] uppercase">
+              Medical Student → Thinker → Innovator → Future System Builder
+            </p>
           </div>
+
         </div>
       </div>
     </section>

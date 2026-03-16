@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -12,6 +11,7 @@ import { MacbookScroll } from "@/components/ui/macbook-scroll";
 import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { HeroAscii } from "@/components/ui/hero-ascii";
+import { MedicalDashboard } from "@/components/MedicalDashboard";
 import { Footer } from "@/components/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
@@ -483,10 +483,13 @@ export default function Home() {
           
           <StickyScroll content={profileContent} />
 
-          {/* NEW: Medical Portfolio Section - Strictly framed cinematic dashboard */}
+          {/* NEW: Section 5 - Medical Foundation Cinematic Dashboard */}
           <div className="h-[100dvh] w-full overflow-hidden m-0 p-0 border-t border-white/5">
             <HeroAscii />
           </div>
+
+          {/* NEW: Section 6 - Clinical Uncompressed Dashboard */}
+          <MedicalDashboard />
 
           {/* Contact Section */}
           <div className="max-w-4xl mx-auto mt-20 px-6 grid md:grid-cols-2 gap-12 items-center">

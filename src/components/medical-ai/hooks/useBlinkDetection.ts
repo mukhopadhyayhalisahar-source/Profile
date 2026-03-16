@@ -8,9 +8,11 @@ const EAR_THRESHOLD = 0.22;
 export const useBlinkDetection = (landmarks: any) => {
   const [blinkCount, setBlinkCount] = useState(0);
   const [blinkRate, setBlinkRate] = useState(0);
+  const [blinkDuration, setBlinkDuration] = useState(0);
   const isBlinkingRef = useRef(false);
   const blinkStartTimeRef = useRef(0);
   const lastResetRef = useRef(performance.now());
+  const historyRef = useRef<number[]>([]);
 
   const calculateEAR = (eye: any[]) => {
     const dist = (p1: any, p2: any) => Math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2);
@@ -45,7 +47,10 @@ export const useBlinkDetection = (landmarks: any) => {
     } else {
       if (isBlinkingRef.current) {
         isBlinkingRef.current = false;
+        const duration = performance.now() - blinkStartTimeRef.current;
+        setBlinkDuration(duration);
         setBlinkCount(prev => prev + 1);
+        historyRef.current.push(duration);
       }
     }
 
@@ -59,5 +64,5 @@ export const useBlinkDetection = (landmarks: any) => {
     }
   }, [landmarks, blinkCount]);
 
-  return { blinkCount, blinkRate };
+  return { blinkCount, blinkRate, blinkDuration };
 };
